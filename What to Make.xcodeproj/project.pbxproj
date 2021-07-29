@@ -20,6 +20,9 @@
 		753AF06F26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF06E26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift */; };
 		753AF07126AA1CB300AE1D54 /* RecipeInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF07026AA1CB300AE1D54 /* RecipeInfoViewController.swift */; };
 		753AF07326AA200200AE1D54 /* TSBlurEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF07226AA200200AE1D54 /* TSBlurEffectView.swift */; };
+		75A25C7726AE575C00A6643F /* dynamicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A25C7626AE575C00A6643F /* dynamicColor.swift */; };
+		75A25C7926AE75C800A6643F /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A25C7826AE75C800A6643F /* WebViewViewController.swift */; };
+		75A25C8326B257AE00A6643F /* RecipeInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A25C8226B257AE00A6643F /* RecipeInfoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		753AF06E26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		753AF07026AA1CB300AE1D54 /* RecipeInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInfoViewController.swift; sourceTree = "<group>"; };
 		753AF07226AA200200AE1D54 /* TSBlurEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSBlurEffectView.swift; sourceTree = "<group>"; };
+		75A25C7626AE575C00A6643F /* dynamicColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dynamicColor.swift; sourceTree = "<group>"; };
+		75A25C7826AE75C800A6643F /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
+		75A25C8226B257AE00A6643F /* RecipeInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInfoTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,7 @@
 		753AF04C26A9D06200AE1D54 /* What to Make */ = {
 			isa = PBXGroup;
 			children = (
+				75A25C7326AC8A8100A6643F /* misc */,
 				753AF06D26A9D91700AE1D54 /* models */,
 				753AF06C26A9D91100AE1D54 /* views */,
 				753AF06B26A9D90A00AE1D54 /* controllers */,
@@ -82,12 +89,10 @@
 		753AF06B26A9D90A00AE1D54 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				75A25C6626AC65DB00A6643F /* pageViews */,
 				753AF06126A9D13800AE1D54 /* TabBarController.swift */,
-				753AF06626A9D16000AE1D54 /* FolderViewController.swift */,
-				753AF06326A9D16000AE1D54 /* FeedViewController.swift */,
-				753AF06526A9D16000AE1D54 /* FilterViewController.swift */,
-				753AF07026AA1CB300AE1D54 /* RecipeInfoViewController.swift */,
 				753AF07226AA200200AE1D54 /* TSBlurEffectView.swift */,
+				75A25C8226B257AE00A6643F /* RecipeInfoTableViewCell.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -110,6 +115,26 @@
 				753AF06E26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		75A25C6626AC65DB00A6643F /* pageViews */ = {
+			isa = PBXGroup;
+			children = (
+				753AF07026AA1CB300AE1D54 /* RecipeInfoViewController.swift */,
+				753AF06526A9D16000AE1D54 /* FilterViewController.swift */,
+				753AF06626A9D16000AE1D54 /* FolderViewController.swift */,
+				753AF06326A9D16000AE1D54 /* FeedViewController.swift */,
+				75A25C7826AE75C800A6643F /* WebViewViewController.swift */,
+			);
+			path = pageViews;
+			sourceTree = "<group>";
+		};
+		75A25C7326AC8A8100A6643F /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				75A25C7626AE575C00A6643F /* dynamicColor.swift */,
+			);
+			path = misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,7 +216,10 @@
 				753AF06226A9D13800AE1D54 /* TabBarController.swift in Sources */,
 				753AF04E26A9D06200AE1D54 /* AppDelegate.swift in Sources */,
 				753AF06A26A9D16000AE1D54 /* FolderViewController.swift in Sources */,
+				75A25C7726AE575C00A6643F /* dynamicColor.swift in Sources */,
+				75A25C7926AE75C800A6643F /* WebViewViewController.swift in Sources */,
 				753AF05026A9D06200AE1D54 /* SceneDelegate.swift in Sources */,
+				75A25C8326B257AE00A6643F /* RecipeInfoTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

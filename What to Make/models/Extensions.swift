@@ -15,9 +15,9 @@ extension UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.barTintColor = .black
-        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: dynamicColorText]
     }
 }
 
