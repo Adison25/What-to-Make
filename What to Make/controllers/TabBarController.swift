@@ -17,7 +17,6 @@ class TabBarController: UITabBarController {
         setUpControllers()
         NotificationCenter.default.addObserver(self, selector: #selector(self.notificationReceived(_:)), name: tabBarNotificationKey, object: nil)
         selectedIndex = 1
-
     }
     
     @objc func notificationReceived(_ notification: Notification) {
@@ -36,8 +35,8 @@ extension TabBarController {
     fileprivate func setupMenuBar() {
         tabBar.backgroundImage = UIImage()
         tabBar.shadowImage = UIImage()
-        tabBar.tintColor = UIColor.white
-        tabBar.backgroundColor = UIColor.black
+        tabBar.tintColor = dynamicColorText //UIColor.white
+        tabBar.backgroundColor = dynamicColorBackground//UIColor.black //background of the nav bar
     }
     
     fileprivate func setUpControllers() {
@@ -45,13 +44,11 @@ extension TabBarController {
         let ViewFolders = FolderViewController()
         let viewFilters = FilterViewController()
         
-         let viewOne = templateNavController(unselectedImage: UIImage.init(systemName: "person"), selectedImage: UIImage.init(systemName: "person"), rootViewController: ViewFolders)
-        let viewTwo = templateNavController(unselectedImage: UIImage.init(systemName: "house"), selectedImage: UIImage.init(systemName: "house"), rootViewController: viewFeed)
-         let viewThree = templateNavController(unselectedImage: UIImage.init(systemName: "gear"), selectedImage: UIImage.init(systemName: "gear"), rootViewController: viewFilters)
+         let viewOne = templateNavController(unselectedImage: UIImage.init(systemName: "folder.fill"), selectedImage: UIImage.init(systemName: "folder.fill"), rootViewController: ViewFolders)
+        let viewTwo = templateNavController(unselectedImage: UIImage.init(systemName: "house.fill"), selectedImage: UIImage.init(systemName: "house.fill"), rootViewController: viewFeed)
+         let viewThree = templateNavController(unselectedImage: UIImage.init(systemName: "line.horizontal.3.decrease.circle.fill"), selectedImage: UIImage.init(systemName: "line.horizontal.3.decrease.circle.fill"), rootViewController: viewFilters)
          viewControllers = [viewOne,viewTwo ,viewThree]
-
      }
-    
     
     fileprivate func templateNavController(unselectedImage: UIImage?, selectedImage: UIImage?, rootViewController: UIViewController = UIViewController()) -> UINavigationController {
         let viewController = rootViewController
@@ -60,7 +57,4 @@ extension TabBarController {
         viewNavController.tabBarItem.selectedImage = selectedImage
         return viewNavController
     }
-    
-    
 }
-

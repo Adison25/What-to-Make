@@ -19,22 +19,31 @@ class ChecklistItem {
 class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private var urlString: String = ""
-    private let ingredientsTableView = UITableView()
+    private let ingredientsTableView = DynamicSizeTableView()
     private var ingredientsArray = [ChecklistItem]()
+    private let directionsTableView = DynamicSizeTableView()
+    private var directionsArray = [ChecklistItem]()
     
     struct Cells {
         static let ingredientCell = "ingredientsCell"
+        static let directionCell = "directionsCell"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = dynamicColorBackground
-        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "wow", style: .plain, target: self, action: #selector(didTapDone))
         
         ingredientsTableView.register(UITableViewCell.self, forCellReuseIdentifier: Cells.ingredientCell)
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
+        
+        directionsTableView.register(UITableViewCell.self, forCellReuseIdentifier: Cells.directionCell)
+        directionsTableView.delegate = self
+        directionsTableView.dataSource = self
+        
+        
     }
+    
     
     @objc private func didTapDone(){
         dismiss(animated: true, completion: nil)
@@ -49,26 +58,24 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         present(navVC, animated: true)
     }
     
-    func fillArrayIngredients(with model: PhotoModel){
-        //print(model.ingredients.count)
+    func fillArrays(with model: PhotoModel){
+        
         for x in 0..<model.ingredients.count {
-            //print(x)
             ingredientsArray.append(ChecklistItem(title: model.ingredients[x]))
-//            ingredientsArray[x].title = model.ingredients[x]
+        }
+        for x in 0..<model.directions.count {
+            directionsArray.append(ChecklistItem(title: model.directions[x]))
         }
     }
     
-    func configureInfoView(with model: PhotoModel, size: CGFloat) {
-        
-        urlString = model.url
-        fillArrayIngredients(with: model)
-        
-        //create scroll view for the whole page
+    private func createScrollView() -> UIScrollView{
         let scrollView = UIScrollView(frame: view.bounds)
         scrollView.contentSize = CGSize(width: view.frame.size.width, height: 2200)
         scrollView.backgroundColor = .clear
-
-        
+        return scrollView
+    }
+    
+    private func createRecipeImageView(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) {
         //imageView
         let imageName = model.photoFileName
         let image = UIImage(named: imageName)
@@ -76,7 +83,9 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         imageView.frame = CGRect(x: 0 , y: 0, width: size, height: size)
         imageView.contentMode = .scaleAspectFit
         scrollView.addSubview(imageView)
-        
+    }
+    
+    private func createTitleLabel(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) {
         //title
         let titleLabel = UIButton()
         titleLabel.setTitle("\(model.title)",for: .normal)
@@ -89,7 +98,9 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         //titleLabel.addTarget(self, action: #selector(hi), for: .touchUpInside)
         //titleLabel.backgroundColor = .red
         scrollView.addSubview(titleLabel)
-        
+    }
+    
+    private func createSourceButton(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) {
         //source
         let sourceButton = UIButton()
         sourceButton.setTitle("Source", for: .normal)
@@ -103,7 +114,9 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         //sourceButton.backgroundColor = .red
         //sourceButton.roundCorners(corners:  [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 7)
         scrollView.addSubview(sourceButton)
-        
+    }
+    
+    private func createBackButton(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) {
         //backButton
         let backButton = UIButton()
         backButton.setTitle("Back", for: .normal)
@@ -117,7 +130,9 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         //sourceButton.backgroundColor = .red
         //sourceButton.roundCorners(corners:  [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 7)
         scrollView.addSubview(backButton)
-        
+    }
+    
+    private func createIngredientHeader(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) {
         //ingredientsTitle
         let ingredienHeader = UIButton()
         ingredienHeader.setTitle("Ingredients:",for: .normal)
@@ -130,41 +145,136 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         ingredienHeader.frame = CGRect(x: 20, y: size + 80, width: 200, height: 80)
         //ingredienHeader.backgroundColor = .red
         scrollView.addSubview(ingredienHeader)
-        
+    }
+    
+    private func createIngredientTableView(scrollView: UIScrollView, size: CGFloat) {
         //ingredientsList
-        
-        //need to make size dynamic
         ingredientsTableView.frame = CGRect(x: 0, y: size + 80 + 80 , width: size, height: size * 1.3)
         ingredientsTableView.backgroundColor = .clear//dynamicColorBackground
+        ingredientsTableView.estimatedRowHeight = UITableView.automaticDimension
         scrollView.addSubview(ingredientsTableView)
+    }
+    
+    private func createDirectionHeader(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) {
+        //ingredientsTitle
+        let directionsHeader = UIButton()
+        directionsHeader.setTitle("Directions:",for: .normal)
+        //call some func that makes the size fit perfectly to how many characterrs are in the string
+        directionsHeader.titleLabel?.font = UIFont(name: "Optima Regular", size: 30)
+        //titleLabel.font = UIFont.boldSystemFont(ofSize: 40)
+        directionsHeader.setTitleColor(dynamicColorText, for: .normal)
+        directionsHeader.contentHorizontalAlignment =  UIControl.ContentHorizontalAlignment.left
+        //ingredienHeader.contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
+        directionsHeader.frame = CGRect(x: 20, y: size + 80 + 80 + 550, width: 200, height: 80)
+        //ingredienHeader.backgroundColor = .red
+        scrollView.addSubview(directionsHeader)
+    }
+    
+    private func createDirectionTableView(scrollView: UIScrollView, size: CGFloat) {
+        //ingredientsList
+        directionsTableView.frame = CGRect(x: 0, y: size + 80 + 80 + 640, width: size, height: size * 1.3)
+        directionsTableView.backgroundColor = .clear//dynamicColorBackground
+        //directionsTableView.estimatedRowHeight = UITableView.automaticDimension
+        scrollView.addSubview(directionsTableView)
+    }
+    
+    //home func that calls all the other functions
+    func configureInfoView(with model: PhotoModel, size: CGFloat) {
         
-        //directions
+        urlString = model.url
+        fillArrays(with: model)
         
-        //append scroll view to view
+        let scrollView = createScrollView()
+        createRecipeImageView(with: model, scrollView: scrollView, size: size)
+        createTitleLabel(with: model, scrollView: scrollView, size: size)
+        createSourceButton(with: model, scrollView: scrollView, size: size)
+        createBackButton(with: model, scrollView: scrollView, size: size)
+        //ingredient views
+        createIngredientHeader(with: model, scrollView: scrollView, size: size)
+        createIngredientTableView(scrollView: scrollView, size: size)
+        //directions views
+        createDirectionHeader(with: model, scrollView: scrollView, size: size)
+        createDirectionTableView(scrollView: scrollView, size: size)
+        
         view.addSubview(scrollView)
     }
     
     //tableview func
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredientsArray.count
+        var count:Int?
+        
+        if tableView == self.ingredientsTableView {
+            count = ingredientsArray.count
+        }
+        
+        if tableView == self.directionsTableView {
+            count =  directionsArray.count
+        }
+        
+        return count!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = ingredientsArray[indexPath.row]
-        let cell = ingredientsTableView.dequeueReusableCell(withIdentifier: Cells.ingredientCell, for: indexPath) //as! Recip
-        cell.textLabel?.text = item.title
-        cell.textLabel?.tintColor = dynamicColorText
-        cell.accessoryType =  item.isChecked ? .checkmark : .none
-        return cell
+        var cell:UITableViewCell?
+        
+        if tableView == self.ingredientsTableView {
+            let item = ingredientsArray[indexPath.row]
+            cell = ingredientsTableView.dequeueReusableCell(withIdentifier: Cells.ingredientCell, for: indexPath) //as! Recip
+            cell?.textLabel?.text = item.title
+            cell?.textLabel?.tintColor = dynamicColorText
+            cell?.textLabel?.numberOfLines = 0
+            cell?.accessoryType =  item.isChecked ? .checkmark : .none
+        }
+        
+        if tableView == self.directionsTableView {
+            let item = directionsArray[indexPath.row]
+            cell = directionsTableView.dequeueReusableCell(withIdentifier: Cells.directionCell, for: indexPath) //as! Recip
+            cell?.textLabel?.text = item.title
+            cell?.textLabel?.tintColor = dynamicColorText
+            cell?.textLabel?.numberOfLines = 0
+            cell?.accessoryType =  item.isChecked ? .checkmark : .none
+        }
+        
+        return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let  item  = ingredientsArray[indexPath.row]
-        item.isChecked = !item.isChecked
+        
+        if tableView == self.ingredientsTableView {
+            let  item  = ingredientsArray[indexPath.row]
+            item.isChecked = !item.isChecked
+        }
+        
+        if tableView == self.directionsTableView {
+            let  item  = directionsArray[indexPath.row]
+            item.isChecked = !item.isChecked
+        }
+
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+       return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 
+}
+
+public class DynamicSizeTableView: UITableView {
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        if bounds.size != intrinsicContentSize {
+            invalidateIntrinsicContentSize()
+        }
+    }
+    
+    public override var intrinsicContentSize: CGSize {
+        return contentSize
+    }
 }
 
 extension UIView {

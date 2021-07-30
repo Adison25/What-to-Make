@@ -11,7 +11,7 @@ import UIKit
 class FilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         setupClearNavBar()
         navigationItem.title = "Filters"
     }

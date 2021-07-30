@@ -20,7 +20,7 @@ class RecipeInfoTableViewCell: UITableViewCell {
         //configureImageView()
         configureTitleLabel()
         //setImageConstraints()
-        setTitleLabelConstraints()
+       // setTitleLabelConstraints()
     }
     
     required init?(coder: NSCoder) {
