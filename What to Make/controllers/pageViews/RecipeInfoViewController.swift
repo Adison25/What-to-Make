@@ -18,17 +18,18 @@ class ChecklistItem {
 
 class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    struct Cells {
+        static let ingredientCell = "ingredientsCell"
+        static let directionCell = "directionsCell"
+    }
+
     private var urlString: String = ""
     private let ingredientsTableView = DynamicSizeTableView()
     private var ingredientsArray = [ChecklistItem]()
     private let directionsTableView = DynamicSizeTableView()
     private var directionsArray = [ChecklistItem]()
     
-    struct Cells {
-        static let ingredientCell = "ingredientsCell"
-        static let directionCell = "directionsCell"
-    }
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = dynamicColorBackground
@@ -40,8 +41,6 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         directionsTableView.register(UITableViewCell.self, forCellReuseIdentifier: Cells.directionCell)
         directionsTableView.delegate = self
         directionsTableView.dataSource = self
-        
-        
     }
     
     
@@ -70,22 +69,27 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func createScrollView() -> UIScrollView{
         let scrollView = UIScrollView(frame: view.bounds)
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 2200)
+        //scrollView.contentSize = CGSize(width: view.frame.size.width, height: 2200)
         scrollView.backgroundColor = .clear
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false //if we dont specify this then our constraints wont be used properly
         return scrollView
     }
     
-    private func createRecipeImageView(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) {
+    private func createRecipeImageView(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) -> UIImageView {
         //imageView
         let imageName = model.photoFileName
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
-        imageView.frame = CGRect(x: 0 , y: 0, width: size, height: size)
+        //imageView.frame = CGRect(x: 0 , y: 0, width: size, height: size)
         imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .red
         scrollView.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }
-    
-    private func createTitleLabel(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) {
+
+    private func createTitleLabel(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) -> UIButton{
         //title
         let titleLabel = UIButton()
         titleLabel.setTitle("\(model.title)",for: .normal)
@@ -94,13 +98,15 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         //titleLabel.font = UIFont.boldSystemFont(ofSize: 40)
         titleLabel.setTitleColor(dynamicColorText, for: .normal)
         titleLabel.titleLabel?.textAlignment = .center
-        titleLabel.frame = CGRect(x: 0, y: size, width: size, height: 80)
+        //titleLabel.frame = CGRect(x: 0, y: size, width: size, height: 80)
         //titleLabel.addTarget(self, action: #selector(hi), for: .touchUpInside)
         //titleLabel.backgroundColor = .red
         scrollView.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        return titleLabel
     }
-    
-    private func createSourceButton(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) {
+
+    private func createSourceButton(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) -> UIButton {
         //source
         let sourceButton = UIButton()
         sourceButton.setTitle("Source", for: .normal)
@@ -114,9 +120,11 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         //sourceButton.backgroundColor = .red
         //sourceButton.roundCorners(corners:  [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 7)
         scrollView.addSubview(sourceButton)
+        sourceButton.translatesAutoresizingMaskIntoConstraints = false
+        return sourceButton
     }
-    
-    private func createBackButton(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) {
+
+    private func createBackButton(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) -> UIButton {
         //backButton
         let backButton = UIButton()
         backButton.setTitle("Back", for: .normal)
@@ -130,54 +138,58 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         //sourceButton.backgroundColor = .red
         //sourceButton.roundCorners(corners:  [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 7)
         scrollView.addSubview(backButton)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        return backButton
     }
-    
-    private func createIngredientHeader(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) {
+
+    private func createIngredientHeader(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat)  -> UIButton{
         //ingredientsTitle
-        let ingredienHeader = UIButton()
-        ingredienHeader.setTitle("Ingredients:",for: .normal)
+        let ingredientHeader = UIButton()
+        ingredientHeader.setTitle("Ingredients:",for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
-        ingredienHeader.titleLabel?.font = UIFont(name: "Optima Regular", size: 30)
+        ingredientHeader.titleLabel?.font = UIFont(name: "Optima Regular", size: 30)
         //titleLabel.font = UIFont.boldSystemFont(ofSize: 40)
-        ingredienHeader.setTitleColor(dynamicColorText, for: .normal)
-        ingredienHeader.contentHorizontalAlignment =  UIControl.ContentHorizontalAlignment.left
+        ingredientHeader.setTitleColor(dynamicColorText, for: .normal)
+        ingredientHeader.contentHorizontalAlignment =  UIControl.ContentHorizontalAlignment.center
         //ingredienHeader.contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
-        ingredienHeader.frame = CGRect(x: 20, y: size + 80, width: 200, height: 80)
+        ingredientHeader.frame = CGRect(x: 20, y: size + 80, width: 200, height: 80)
         //ingredienHeader.backgroundColor = .red
-        scrollView.addSubview(ingredienHeader)
+        scrollView.addSubview(ingredientHeader)
+        ingredientHeader.translatesAutoresizingMaskIntoConstraints = false
+        return ingredientHeader
     }
-    
-    private func createIngredientTableView(scrollView: UIScrollView, size: CGFloat) {
-        //ingredientsList
-        ingredientsTableView.frame = CGRect(x: 0, y: size + 80 + 80 , width: size, height: size * 1.3)
-        ingredientsTableView.backgroundColor = .clear//dynamicColorBackground
-        ingredientsTableView.estimatedRowHeight = UITableView.automaticDimension
-        scrollView.addSubview(ingredientsTableView)
-    }
-    
-    private func createDirectionHeader(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) {
-        //ingredientsTitle
-        let directionsHeader = UIButton()
-        directionsHeader.setTitle("Directions:",for: .normal)
-        //call some func that makes the size fit perfectly to how many characterrs are in the string
-        directionsHeader.titleLabel?.font = UIFont(name: "Optima Regular", size: 30)
-        //titleLabel.font = UIFont.boldSystemFont(ofSize: 40)
-        directionsHeader.setTitleColor(dynamicColorText, for: .normal)
-        directionsHeader.contentHorizontalAlignment =  UIControl.ContentHorizontalAlignment.left
-        //ingredienHeader.contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
-        directionsHeader.frame = CGRect(x: 20, y: size + 80 + 80 + 550, width: 200, height: 80)
-        //ingredienHeader.backgroundColor = .red
-        scrollView.addSubview(directionsHeader)
-    }
-    
-    private func createDirectionTableView(scrollView: UIScrollView, size: CGFloat) {
-        //ingredientsList
-        directionsTableView.frame = CGRect(x: 0, y: size + 80 + 80 + 640, width: size, height: size * 1.3)
-        directionsTableView.backgroundColor = .clear//dynamicColorBackground
-        //directionsTableView.estimatedRowHeight = UITableView.automaticDimension
-        scrollView.addSubview(directionsTableView)
-    }
-    
+
+//    private func createIngredientTableView(scrollView: UIScrollView, size: CGFloat) {
+//        //ingredientsList
+//        ingredientsTableView.frame = CGRect(x: 0, y: size + 80 + 80 , width: size, height: size * 1.3)
+//        ingredientsTableView.backgroundColor = .clear//dynamicColorBackground
+//        ingredientsTableView.estimatedRowHeight = UITableView.automaticDimension
+//        scrollView.addSubview(ingredientsTableView)
+//    }
+//
+//    private func createDirectionHeader(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) {
+//        //ingredientsTitle
+//        let directionsHeader = UIButton()
+//        directionsHeader.setTitle("Directions:",for: .normal)
+//        //call some func that makes the size fit perfectly to how many characterrs are in the string
+//        directionsHeader.titleLabel?.font = UIFont(name: "Optima Regular", size: 30)
+//        //titleLabel.font = UIFont.boldSystemFont(ofSize: 40)
+//        directionsHeader.setTitleColor(dynamicColorText, for: .normal)
+//        directionsHeader.contentHorizontalAlignment =  UIControl.ContentHorizontalAlignment.left
+//        //ingredienHeader.contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
+//        directionsHeader.frame = CGRect(x: 20, y: size + 80 + 80 + 550, width: 200, height: 80)
+//        //ingredienHeader.backgroundColor = .red
+//        scrollView.addSubview(directionsHeader)
+//    }
+//
+//    private func createDirectionTableView(scrollView: UIScrollView, size: CGFloat) {
+//        //ingredientsList
+//        directionsTableView.frame = CGRect(x: 0, y: size + 80 + 80 + 640, width: size, height: size * 1.3)
+//        directionsTableView.backgroundColor = .clear//dynamicColorBackground
+//        //directionsTableView.estimatedRowHeight = UITableView.automaticDimension
+//        scrollView.addSubview(directionsTableView)
+//    }
+//
     //home func that calls all the other functions
     func configureInfoView(with model: PhotoModel, size: CGFloat) {
         
@@ -185,18 +197,46 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         fillArrays(with: model)
         
         let scrollView = createScrollView()
-        createRecipeImageView(with: model, scrollView: scrollView, size: size)
-        createTitleLabel(with: model, scrollView: scrollView, size: size)
-        createSourceButton(with: model, scrollView: scrollView, size: size)
-        createBackButton(with: model, scrollView: scrollView, size: size)
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        let imageView = createRecipeImageView(with: model, scrollView: scrollView, size: size)
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: size)
+        ])
+        let titleButton = createTitleLabel(with: model, scrollView: scrollView, size: size)
+        NSLayoutConstraint.activate([
+            titleButton.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: 10),
+            titleButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+        ])
+        let sourceButton = createSourceButton(with: model, scrollView: scrollView, size: size)
+        NSLayoutConstraint.activate([
+            sourceButton.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 35),
+            sourceButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1.75)
+        ])
+        let backButton = createBackButton(with: model, scrollView: scrollView, size: size)
+        NSLayoutConstraint.activate([
+            backButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor,constant: 45),
+            backButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.15) //or 0.25 can change depending on what i want it to look like
+        ])
         //ingredient views
-        createIngredientHeader(with: model, scrollView: scrollView, size: size)
-        createIngredientTableView(scrollView: scrollView, size: size)
-        //directions views
-        createDirectionHeader(with: model, scrollView: scrollView, size: size)
-        createDirectionTableView(scrollView: scrollView, size: size)
+        let ingredientHeader = createIngredientHeader(with: model, scrollView: scrollView, size: size)
+//        ingredientHeader.backgroundColor = .red
+        NSLayoutConstraint.activate([
+            ingredientHeader.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 25),
+            ingredientHeader.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.45)
+        ])
+//        createIngredientTableView(scrollView: scrollView, size: size)
+//        //directions views
+//        createDirectionHeader(with: model, scrollView: scrollView, size: size)
+//        createDirectionTableView(scrollView: scrollView, size: size)
+//
         
-        view.addSubview(scrollView)
     }
     
     //tableview func
