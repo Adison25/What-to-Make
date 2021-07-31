@@ -102,6 +102,8 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         titleLabel.setTitle("\(model.title)",for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
         titleLabel.titleLabel?.font = UIFont(name: "Optima Regular", size: 40)
+        titleLabel.titleLabel?.numberOfLines = 0
+        titleLabel.titleLabel?.lineBreakMode = .byWordWrapping
         //titleLabel.font = UIFont.boldSystemFont(ofSize: 40)
         titleLabel.setTitleColor(dynamicColorText, for: .normal)
         titleLabel.titleLabel?.textAlignment = .center
@@ -222,7 +224,9 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         ])
         let titleButton = createTitleLabel(with: model, scrollView: scrollView, size: size)
         NSLayoutConstraint.activate([
-            titleButton.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: 10),
+            titleButton.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: 25),
+            titleButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
+            titleButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
             titleButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
         ])
         let sourceButton = createSourceButton(with: model, scrollView: scrollView, size: size)
@@ -257,7 +261,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             directionsTableView.topAnchor.constraint(equalTo: ingredientsTableView.bottomAnchor,constant: 65),
             directionsTableView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             directionsTableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-        ])        
+        ])
     }
     
     //tableview func
