@@ -45,11 +45,12 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         directionsTableView.dataSource = self
     }
     
-    
+    //dismisses the current vc
     @objc private func didTapDone(){
         dismiss(animated: true, completion: nil)
     }
     
+    //opens the link
     @objc func openLink(){
         guard let url = URL(string: urlString) else {
             return
@@ -64,6 +65,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         reloadInputViews()
     }
     
+    //appens the information from the model (will change when I work on json stuff
     func fillArrays(with model: PhotoModel){
         
         for x in 0..<model.ingredients.count {
@@ -124,7 +126,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         sourceButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         sourceButton.setTitleColor(dynamicColorTextLink, for: .normal)
         sourceButton.titleLabel?.textAlignment = .center
-        sourceButton.frame = CGRect(x: size * 0.80 , y: size + 80 + 20  , width: 80, height: 40)
+//        sourceButton.frame = CGRect(x: size * 0.80 , y: size + 80 + 20  , width: 80, height: 40)
         sourceButton.addTarget(self, action: #selector(openLink), for: .touchUpInside)
         //sourceButton.backgroundColor = .red
         //sourceButton.roundCorners(corners:  [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 7)
@@ -136,16 +138,18 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     private func createBackButton(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) -> UIButton {
         //backButton
         let backButton = UIButton()
-        backButton.setTitle("Back", for: .normal)
+        backButton.setTitle("X", for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
         backButton.titleLabel?.font = UIFont(name: "Avenir Next", size: 18)
         backButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        backButton.setTitleColor(dynamicColorTextLink, for: .normal)
+        backButton.setTitleColor(dynamicColorText, for: .normal)
         backButton.titleLabel?.textAlignment = .center
-        backButton.frame = CGRect(x: 0 , y: 40  , width: 80, height: 40)
+//        backButton.frame = CGRect(x: 0 , y: 40  , width: 80, height: 40)
         backButton.addTarget(self, action: #selector(didTapDone), for: .touchUpInside)
-        //sourceButton.backgroundColor = .red
-        //sourceButton.roundCorners(corners:  [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 7)
+        backButton.backgroundColor = dynamicColorBackground
+//        backButton.addBlurrEffect()
+        backButton.layer.cornerRadius = 18
+//        backButton.layer.borderWidth = 3
         scrollView.addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         return backButton
@@ -237,7 +241,8 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         let backButton = createBackButton(with: model, scrollView: scrollView, size: size)
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 25),
-            backButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.15) //or 0.25 can change depending on what i want it to look like
+            backButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.09), //or 0.25 can change depending on what i want it to look like
+            backButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -10)
         ])
         //ingredient views
         let ingredientHeader = createIngredientHeader(with: model, scrollView: scrollView, size: size)
@@ -344,30 +349,30 @@ public class DynamicSizeTableView: UITableView {
 
 extension UIView {
 
-//    func addBlurrEffect() {
-//        let blurEffectView = TSBlurEffectView() // creating a blur effect view
-//        blurEffectView.intensity = 1 // setting blur intensity from 0.1 to 10
-//        self.addSubview(blurEffectView) // adding blur effect view as a subview to your view in which you want to use
-//    }
-//
-//    func removeBlurEffect() {
-//        for subview in self.subviews {
-//            if subview is UIVisualEffectView {
-//                subview.removeFromSuperview()
-//            }
-//        }
-//    }
-    
-    func roundCorners(corners:UIRectCorner, radius: CGFloat) {
+    func addBlurrEffect() {
+        let blurEffectView = TSBlurEffectView() // creating a blur effect view
+        blurEffectView.intensity = 1 // setting blur intensity from 0.1 to 10
+        self.addSubview(blurEffectView) // adding blur effect view as a subview to your view in which you want to use
+    }
 
-        DispatchQueue.main.async {
-            let path = UIBezierPath(roundedRect: self.bounds,
-                                    byRoundingCorners: corners,
-                                    cornerRadii: CGSize(width: radius, height: radius))
-            let maskLayer = CAShapeLayer()
-            maskLayer.frame = self.bounds
-            maskLayer.path = path.cgPath
-            self.layer.mask = maskLayer
+    func removeBlurEffect() {
+        for subview in self.subviews {
+            if subview is UIVisualEffectView {
+                subview.removeFromSuperview()
+            }
         }
     }
+    
+//    func roundCorners(corners:UIRectCorner, radius: CGFloat) {
+//
+//        DispatchQueue.main.async {
+//            let path = UIBezierPath(roundedRect: self.bounds,
+//                                    byRoundingCorners: corners,
+//                                    cornerRadii: CGSize(width: radius, height: radius))
+//            let maskLayer = CAShapeLayer()
+//            maskLayer.frame = self.bounds
+//            maskLayer.path = path.cgPath
+//            self.layer.mask = maskLayer
+//        }
+//    }
 }
