@@ -22,7 +22,6 @@ struct PhotoModel {
 
 private var data = fetchData() 
 
-
 class FeedViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     private let cellId = "PhotoCollectionViewCell"
     private var prevScrollDirection: CGFloat = 0

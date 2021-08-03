@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BEMCheckBox
 
 class FolderViewController: UIViewController {
     override func viewDidLoad() {
@@ -15,5 +16,11 @@ class FolderViewController: UIViewController {
         setupClearNavBar()
         navigationItem.title = "Folders"
 
+        
+        let myCheckBox = BEMCheckBox()
+        myCheckBox.frame = CGRect(x: 50, y: 250, width: 50, height: 50)
+        myCheckBox.onAnimationType = .oneStroke
+        myCheckBox.offAnimationType = .bounce
+        view.addSubview(myCheckBox)
     }
 }
