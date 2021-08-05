@@ -122,16 +122,16 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     private func createSourceButton(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) -> UIButton {
         //source
         let sourceButton = UIButton()
-        sourceButton.setTitle("Source", for: .normal)
+        sourceButton.setTitle("i", for: .normal)
+//        sourceButton.backgroundColor = .red
         //call some func that makes the size fit perfectly to how many characterrs are in the string
-        sourceButton.titleLabel?.font = UIFont(name: "Avenir Next", size: 18)
-        sourceButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        sourceButton.setTitleColor(dynamicColorTextLink, for: .normal)
+        sourceButton.titleLabel?.font = UIFont(name: "Apple Color Emoji", size: 18)
+//        sourceButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        sourceButton.setTitleColor(dynamicColorText, for: .normal)
         sourceButton.titleLabel?.textAlignment = .center
-//        sourceButton.frame = CGRect(x: size * 0.80 , y: size + 80 + 20  , width: 80, height: 40)
+        sourceButton.backgroundColor = dynamicColorBackground
+        sourceButton.layer.cornerRadius = 18
         sourceButton.addTarget(self, action: #selector(openLink), for: .touchUpInside)
-        //sourceButton.backgroundColor = .red
-        //sourceButton.roundCorners(corners:  [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 7)
         scrollView.addSubview(sourceButton)
         sourceButton.translatesAutoresizingMaskIntoConstraints = false
         return sourceButton
@@ -146,10 +146,8 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         backButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         backButton.setTitleColor(dynamicColorText, for: .normal)
         backButton.titleLabel?.textAlignment = .center
-//        backButton.frame = CGRect(x: 0 , y: 40  , width: 80, height: 40)
         backButton.addTarget(self, action: #selector(didTapDone), for: .touchUpInside)
         backButton.backgroundColor = dynamicColorBackground
-//        backButton.addBlurrEffect()
         backButton.layer.cornerRadius = 18
 //        backButton.layer.borderWidth = 3
         scrollView.addSubview(backButton)
@@ -239,14 +237,15 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         ])
         let sourceButton = createSourceButton(with: model, scrollView: scrollView, size: size)
         NSLayoutConstraint.activate([
-            sourceButton.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 35),
-            sourceButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1.75)
+            sourceButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 25),
+            sourceButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.09),
+            sourceButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -10)
         ])
         let backButton = createBackButton(with: model, scrollView: scrollView, size: size)
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 25),
             backButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.09), //or 0.25 can change depending on what i want it to look like
-            backButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -10)
+            backButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 10)
         ])
         //ingredient views
         let ingredientHeader = createIngredientHeader(with: model, scrollView: scrollView, size: size)

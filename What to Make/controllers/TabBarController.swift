@@ -55,6 +55,7 @@ extension TabBarController {
         let viewNavController = UINavigationController(rootViewController: viewController)
         viewNavController.tabBarItem.image = unselectedImage
         viewNavController.tabBarItem.selectedImage = selectedImage
+        viewNavController.navigationBar.isHidden = true
         return viewNavController
     }
 }

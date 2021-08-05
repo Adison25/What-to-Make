@@ -53,17 +53,28 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupCollectionView()
-        setupClearNavBar()
-        setupNavBarUI()
+//        setupClearNavBar()
+//        setupNavBarUI()
         //setupGradient()
 
     }
 }
 
 extension FeedViewController {
-    fileprivate func setupNavBarUI() {
-        navigationItem.title = "Recipes"
-    }
+//    fileprivate func setupNavBarUI() {
+//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: recipeTitleFont()]
+//
+//        navigationItem.title = "Recipes"
+//
+//        navigationItem.title
+//        let label = UILabel()
+//        label.text = "Recipes"
+//        label.font = recipeTitleFont()
+//        label.frame = CGRect(x: 0, y: 0, width: 60, height: 40)
+//        let view = UIView()
+//        view.addSubview(label)
+//        navigationItem.titleView = view
+//    }
     
     fileprivate func setupCollectionView() {
         view.addSubview(collectionView)
