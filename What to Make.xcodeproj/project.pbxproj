@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4DCCF1E9787A21FA4BD4EE9F /* Pods_What_to_Make.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC378A188847D5AB1E6B8E91 /* Pods_What_to_Make.framework */; };
-		751664AA26B8455500CBACCC /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751664A926B8455500CBACCC /* IngredientTableViewCell.swift */; };
+		751664AF26BB3FD000CBACCC /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751664AD26BB3FD000CBACCC /* IngredientTableViewCell.swift */; };
+		751664B026BB3FD000CBACCC /* IngredientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 751664AE26BB3FD000CBACCC /* IngredientTableViewCell.xib */; };
+		751664B326BC4A5D00CBACCC /* DirectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751664B126BC4A5D00CBACCC /* DirectionTableViewCell.swift */; };
+		751664B426BC4A5D00CBACCC /* DirectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 751664B226BC4A5D00CBACCC /* DirectionTableViewCell.xib */; };
 		753AF04E26A9D06200AE1D54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF04D26A9D06200AE1D54 /* AppDelegate.swift */; };
 		753AF05026A9D06200AE1D54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF04F26A9D06200AE1D54 /* SceneDelegate.swift */; };
 		753AF05526A9D06200AE1D54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753AF05326A9D06200AE1D54 /* Main.storyboard */; };
@@ -24,13 +27,15 @@
 		753AF07326AA200200AE1D54 /* TSBlurEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF07226AA200200AE1D54 /* TSBlurEffectView.swift */; };
 		75A25C7726AE575C00A6643F /* dynamicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A25C7626AE575C00A6643F /* dynamicColor.swift */; };
 		75A25C7926AE75C800A6643F /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A25C7826AE75C800A6643F /* WebViewViewController.swift */; };
-		75A25C8326B257AE00A6643F /* RecipeInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A25C8226B257AE00A6643F /* RecipeInfoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		35915F2ED7B5E953EAD0E1C8 /* Pods-What to Make.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What to Make.debug.xcconfig"; path = "Target Support Files/Pods-What to Make/Pods-What to Make.debug.xcconfig"; sourceTree = "<group>"; };
 		496B42D7A453ACCFDF88FF34 /* Pods-What to Make.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What to Make.release.xcconfig"; path = "Target Support Files/Pods-What to Make/Pods-What to Make.release.xcconfig"; sourceTree = "<group>"; };
-		751664A926B8455500CBACCC /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
+		751664AD26BB3FD000CBACCC /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
+		751664AE26BB3FD000CBACCC /* IngredientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientTableViewCell.xib; sourceTree = "<group>"; };
+		751664B126BC4A5D00CBACCC /* DirectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionTableViewCell.swift; sourceTree = "<group>"; };
+		751664B226BC4A5D00CBACCC /* DirectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DirectionTableViewCell.xib; sourceTree = "<group>"; };
 		753AF04A26A9D06200AE1D54 /* What to Make.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What to Make.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		753AF04D26A9D06200AE1D54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		753AF04F26A9D06200AE1D54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +53,6 @@
 		753AF07226AA200200AE1D54 /* TSBlurEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSBlurEffectView.swift; sourceTree = "<group>"; };
 		75A25C7626AE575C00A6643F /* dynamicColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dynamicColor.swift; sourceTree = "<group>"; };
 		75A25C7826AE75C800A6643F /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
-		75A25C8226B257AE00A6643F /* RecipeInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInfoTableViewCell.swift; sourceTree = "<group>"; };
 		CC378A188847D5AB1E6B8E91 /* Pods_What_to_Make.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_to_Make.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -76,8 +80,10 @@
 			isa = PBXGroup;
 			children = (
 				753AF06E26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift */,
-				75A25C8226B257AE00A6643F /* RecipeInfoTableViewCell.swift */,
-				751664A926B8455500CBACCC /* IngredientTableViewCell.swift */,
+				751664AD26BB3FD000CBACCC /* IngredientTableViewCell.swift */,
+				751664AE26BB3FD000CBACCC /* IngredientTableViewCell.xib */,
+				751664B126BC4A5D00CBACCC /* DirectionTableViewCell.swift */,
+				751664B226BC4A5D00CBACCC /* DirectionTableViewCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -231,9 +237,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				751664B026BB3FD000CBACCC /* IngredientTableViewCell.xib in Resources */,
 				753AF05A26A9D06300AE1D54 /* LaunchScreen.storyboard in Resources */,
 				753AF05726A9D06300AE1D54 /* Assets.xcassets in Resources */,
 				753AF05526A9D06200AE1D54 /* Main.storyboard in Resources */,
+				751664B426BC4A5D00CBACCC /* DirectionTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,18 +296,18 @@
 			files = (
 				753AF06726A9D16000AE1D54 /* FeedViewController.swift in Sources */,
 				753AF06F26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift in Sources */,
-				751664AA26B8455500CBACCC /* IngredientTableViewCell.swift in Sources */,
 				753AF07126AA1CB300AE1D54 /* RecipeInfoViewController.swift in Sources */,
 				753AF06826A9D16000AE1D54 /* Extensions.swift in Sources */,
 				753AF06926A9D16000AE1D54 /* FilterViewController.swift in Sources */,
 				753AF07326AA200200AE1D54 /* TSBlurEffectView.swift in Sources */,
+				751664AF26BB3FD000CBACCC /* IngredientTableViewCell.swift in Sources */,
 				753AF06226A9D13800AE1D54 /* TabBarController.swift in Sources */,
 				753AF04E26A9D06200AE1D54 /* AppDelegate.swift in Sources */,
 				753AF06A26A9D16000AE1D54 /* FolderViewController.swift in Sources */,
 				75A25C7726AE575C00A6643F /* dynamicColor.swift in Sources */,
 				75A25C7926AE75C800A6643F /* WebViewViewController.swift in Sources */,
 				753AF05026A9D06200AE1D54 /* SceneDelegate.swift in Sources */,
-				75A25C8326B257AE00A6643F /* RecipeInfoTableViewCell.swift in Sources */,
+				751664B326BC4A5D00CBACCC /* DirectionTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

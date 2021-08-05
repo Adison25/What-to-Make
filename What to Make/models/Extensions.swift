@@ -82,12 +82,19 @@ extension UITabBarController {
     }
 }
 
+func recipeTitleFont() -> UIFont {
+    return UIFont(name: "Optima Regular", size: 40)!
+}
+
+func tableViewHeaderFont() -> UIFont {
+    return UIFont(name: "Optima Regular", size: 30)!
+}
 
 func fetchData() -> [PhotoModel]{
     return [
         PhotoModel(title: "Cupcake",
                    ingredients: ["5 ounces white chocolate (finely chopped)",
-                                                                    "1 1/4 cups unbleached all purpose flour",
+                                                                    "1 1/4 cups unbleached all purpose flourdsfjgdk;sjkg;dsgdsgdggmmmmmmmhfhdsfkjggfdkfgksdjgfksdgfksgkfgsdkgfkdsfkdsgfkgdskfgdsfkgdskfjgsdkjfsdggkjffsdkfksdaloiweoiioweroi hellofolks!!!",
                                                                     "1/4 cup cake flour (preferably unbleached)",
                                                                     "1 teaspoon baking powder",
                                                                     "1/2 teaspoon salt",
