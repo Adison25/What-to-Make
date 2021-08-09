@@ -18,11 +18,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oTk-OS-FZ8" customClass="BEMCheckBox">
-                        <rect key="frame" x="12" y="38" width="50" height="50"/>
+                        <rect key="frame" x="12" y="43" width="40" height="40"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="Jek-jk-tZE"/>
-                            <constraint firstAttribute="width" constant="50" id="wgG-bT-kab"/>
+                            <constraint firstAttribute="height" constant="40" id="Jek-jk-tZE"/>
+                            <constraint firstAttribute="width" constant="40" id="wgG-bT-kab"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="onCheckColor">

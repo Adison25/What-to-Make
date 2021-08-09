@@ -8,6 +8,20 @@
 
 import UIKit
 
+public class DynamicSizeTableView: UITableView {
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        if bounds.size != intrinsicContentSize {
+            invalidateIntrinsicContentSize()
+        }
+    }
+    
+    public override var intrinsicContentSize: CGSize {
+        return contentSize
+    }
+}
+
 extension UIViewController {
     //for the upper title
 //    func setupClearNavBar() {
