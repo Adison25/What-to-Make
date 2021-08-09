@@ -35,7 +35,11 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        let collectionView = UICollectionView(frame: CGRect(x: 0 , y: 0, width: view.frame.size.width , height: view.frame.size.height), collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout) //UICollectionView(frame: CGRect(x: 0 , y: 0, width: view.frame.size.width , height: view.frame.size.height), collectionViewLayout: layout)
+//            UICollectionView()
+//        collectionView.collectionViewLayout = layout
+//        collectionView.frame.size.width = view.frame.size.width
+//        collectionView.frame.size.height = view.frame.size.height
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isPagingEnabled = false
@@ -53,6 +57,7 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupCollectionView()
+        
 //        setupClearNavBar()
 //        setupNavBarUI()
         //setupGradient()

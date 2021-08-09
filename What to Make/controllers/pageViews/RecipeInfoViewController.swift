@@ -130,7 +130,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         sourceButton.setTitleColor(dynamicColorText, for: .normal)
         sourceButton.titleLabel?.textAlignment = .center
         sourceButton.backgroundColor = dynamicColorBackground
-        sourceButton.layer.cornerRadius = 18
+        sourceButton.layer.cornerRadius = 20
         sourceButton.addTarget(self, action: #selector(openLink), for: .touchUpInside)
         scrollView.addSubview(sourceButton)
         sourceButton.translatesAutoresizingMaskIntoConstraints = false
@@ -142,13 +142,13 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         let backButton = UIButton()
         backButton.setTitle("X", for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
-        backButton.titleLabel?.font = UIFont(name: "Avenir Next", size: 18)
-        backButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        backButton.titleLabel?.font = UIFont(name: "Apple Color Emoji", size: 18)
+//        backButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         backButton.setTitleColor(dynamicColorText, for: .normal)
         backButton.titleLabel?.textAlignment = .center
         backButton.addTarget(self, action: #selector(didTapDone), for: .touchUpInside)
         backButton.backgroundColor = dynamicColorBackground
-        backButton.layer.cornerRadius = 18
+        backButton.layer.cornerRadius = 20
 //        backButton.layer.borderWidth = 3
         scrollView.addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false

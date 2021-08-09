@@ -10,16 +10,16 @@ import UIKit
 
 extension UIViewController {
     //for the upper title
-    func setupClearNavBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: dynamicColorText]
-    }
+//    func setupClearNavBar() {
+//        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        navigationController?.navigationBar.shadowImage = UIImage()
+//        navigationController?.navigationBar.tintColor = .white
+//        navigationController?.navigationBar.barTintColor = .white
+//        navigationController?.navigationBar.barStyle = .default
+//        navigationController?.navigationBar.isTranslucent = true
+//        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: dynamicColorText]
+//    }
 }
 
 extension UIView {
@@ -88,6 +88,10 @@ func recipeTitleFont() -> UIFont {
 
 func tableViewHeaderFont() -> UIFont {
     return UIFont(name: "Optima Regular", size: 30)!
+}
+
+func buttonFont() -> UIFont {
+    return UIFont(name: "Optima Regular", size: 15)!
 }
 
 func fetchData() -> [PhotoModel]{
