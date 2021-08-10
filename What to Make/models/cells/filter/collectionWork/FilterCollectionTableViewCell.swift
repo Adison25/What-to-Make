@@ -16,7 +16,8 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     
     @IBOutlet var collectionView: UICollectionView!
     
-    var models = [Model]()
+    var models = [String]()
+    var totalWidth : CGFloat = 0.0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,7 +35,7 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         // Configure the view for the selected state
     }
     
-    func configure(with models: [Model]) {
+    func configure(with models: [String]) {
         self.models = models
         collectionView.reloadData()
     }
@@ -45,14 +46,26 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonCollectionViewCell.identifier, for: indexPath) as! ButtonCollectionViewCell
-        cell.configure(with: models[indexPath.row].text)
+        cell.configure(with: models[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let aWidth : CGFloat = models[indexPath.row].text.width(withConstraintedHeight: 40, font: UIFont.systemFont(ofSize: 17.0))
+        let aWidth : CGFloat = models[indexPath.row].width(withConstraintedHeight: 0, font: UIFont.systemFont(ofSize: 17.0))
+        totalWidth += aWidth
+//        print(aWidth)
+//        print(contentView.frame.size.width)
+//        let aHeight = aWidth/contentView.frame.size.width
+//        print(aHeight)
+//        let height = aHeight * 20
+//        print(height)
+//        print(totalWidth)
+//        print(indexPath.row)
+        return CGSize(width: aWidth + 15 , height: 30)
+    }
 
-             return CGSize(width: aWidth + 15 , height: 40)
+    func getHeight() -> CGFloat {
+        return 20 * ceil( totalWidth / contentView.frame.size.height)
     }
     
     // THIS IS THE MOST IMPORTANT METHOD
@@ -66,6 +79,7 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         // If the cell's size has to be exactly the content
         // Size of the collection View, just return the
         // collectionViewLayout's collectionViewContentSize.
+//        print("ere")
 
         self.collectionView.frame = CGRect(x: 0, y: 0,
                                        width: targetSize.width, height: 600)

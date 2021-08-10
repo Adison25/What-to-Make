@@ -22,7 +22,15 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var prevScrollDirection: CGFloat = 0
     
     var models = [Model]()
+    var buttonArray = [
+        ["Under 15 Min","Under 30 Min","Under 45 Min"],
+        ["Breakfast","Lunch","Dinner"],
+        ["Vegan","Gluten Free","Vegetarian", "Mediterranean", "Pescatarian", "Kosher","Nut Free"]
+    ]
 //    var timeArray = ["Under 15 Min", "Under 30 Min", "Under 45 Min"]
+    var header = ["Time","Dish Type","Dietary"]
+    var indexHeader = 0
+    var indexButton = 0
     
     
     override func viewDidLoad() {
@@ -30,16 +38,16 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         models.append(Model(text: "Under 15 Min"))
         models.append(Model(text: "Under 30 Min"))
-        models.append(Model(text: "Under 45 Min"))
+        models.append(Model(text: "Under 45"))
         
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
             
-//        tableView.register(FilterHeaderTableViewCell.nib(), forCellReuseIdentifier: FilterHeaderTableViewCell.identifier)
+        tableView.register(FilterHeaderTableViewCell.nib(), forCellReuseIdentifier: FilterHeaderTableViewCell.identifier)
         tableView.register(FilterCollectionTableViewCell.nib(), forCellReuseIdentifier: FilterCollectionTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
-//        tableView.separatorStyle = .none
+        tableView.separatorStyle = .none
     }
     
     override func viewDidLayoutSubviews() {
@@ -52,14 +60,35 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: FilterHeaderTableViewCell.identifier, for: indexPath) as! FilterHeaderTableViewCell
-        
-//        cell.configure(with: "Time")
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.identifier, for: indexPath) as! FilterCollectionTableViewCell
-        cell.configure(with: models)
-        cell.selectionStyle = .none
-        return cell
+
+        if indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: FilterHeaderTableViewCell.identifier, for: indexPath) as! FilterHeaderTableViewCell
+            cell.configure(with: header[indexHeader])
+            cell.selectionStyle = .none
+            
+            if indexHeader < 2 {
+                indexHeader += 1
+            }else {
+                indexHeader = 0
+            }
+//            print("indexHeader\(indexPath.row)")
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.identifier, for: indexPath) as! FilterCollectionTableViewCell
+//            print("\(buttonArray[indexButton])")
+            cell.configure(with: buttonArray[indexButton])
+//            cell.configure(with: models)
+            cell.selectionStyle = .none
+
+            if indexButton < 2 {
+                indexButton += 1
+            }else {
+                indexButton = 0
+            }
+//            print("tableview\(indexPath.row)")
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
