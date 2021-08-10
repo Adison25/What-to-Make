@@ -28,11 +28,8 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        models.append(Model(text: "Under 15 Minshdfflhdslffhdslhflsdhlfhl"))
+        models.append(Model(text: "Under 15 Min"))
         models.append(Model(text: "Under 30 Min"))
-        models.append(Model(text: "Under 45 Min"))
-        models.append(Model(text: "Under 45 Min"))
-        models.append(Model(text: "Under 45 Min"))
         models.append(Model(text: "Under 45 Min"))
         
         view.backgroundColor = .systemBackground

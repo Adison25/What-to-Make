@@ -25,7 +25,6 @@ class ButtonCollectionViewCell: UICollectionViewCell {
     public func configure(with title: String) {
         filterButton.setTitle(title, for: .normal)
         filterButton.titleLabel?.font = buttonFont()
-        filterButton.titleLabel?.numberOfLines = 1
         filterButton.backgroundColor = .green
     }
 
