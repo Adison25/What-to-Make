@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ButtonCollectionViewCell" id="gTV-IL-0wX" customClass="ButtonCollectionViewCell" customModule="What_to_Make" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="151"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="300" height="151"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="tc3-re-t6U">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="151"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="tc3-re-t6U" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="4zu-py-cZN"/>
+                <constraint firstItem="tc3-re-t6U" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="DCz-Wi-51v"/>
+                <constraint firstAttribute="bottom" secondItem="tc3-re-t6U" secondAttribute="bottom" id="hjE-3P-Fgd"/>
+                <constraint firstAttribute="trailing" secondItem="tc3-re-t6U" secondAttribute="trailing" id="wg8-qZ-3aA"/>
+            </constraints>
+            <size key="customSize" width="300" height="151"/>
+            <connections>
+                <outlet property="filterButton" destination="tc3-re-t6U" id="Ein-Vh-biO"/>
+            </connections>
+            <point key="canvasLocation" x="228.98550724637684" y="133.59375"/>
+        </collectionViewCell>
+    </objects>
+</document>

@@ -12,6 +12,12 @@
 		751664B026BB3FD000CBACCC /* IngredientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 751664AE26BB3FD000CBACCC /* IngredientTableViewCell.xib */; };
 		751664B326BC4A5D00CBACCC /* DirectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751664B126BC4A5D00CBACCC /* DirectionTableViewCell.swift */; };
 		751664B426BC4A5D00CBACCC /* DirectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 751664B226BC4A5D00CBACCC /* DirectionTableViewCell.xib */; };
+		751664BC26C1AA0700CBACCC /* FilterHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751664BA26C1AA0700CBACCC /* FilterHeaderTableViewCell.swift */; };
+		751664BD26C1AA0700CBACCC /* FilterHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 751664BB26C1AA0700CBACCC /* FilterHeaderTableViewCell.xib */; };
+		751664C026C1AD8900CBACCC /* FilterCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751664BE26C1AD8900CBACCC /* FilterCollectionTableViewCell.swift */; };
+		751664C126C1AD8900CBACCC /* FilterCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 751664BF26C1AD8900CBACCC /* FilterCollectionTableViewCell.xib */; };
+		751664C726C1EACF00CBACCC /* ButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751664C526C1EACF00CBACCC /* ButtonCollectionViewCell.swift */; };
+		751664C826C1EACF00CBACCC /* ButtonCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 751664C626C1EACF00CBACCC /* ButtonCollectionViewCell.xib */; };
 		753AF04E26A9D06200AE1D54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF04D26A9D06200AE1D54 /* AppDelegate.swift */; };
 		753AF05026A9D06200AE1D54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF04F26A9D06200AE1D54 /* SceneDelegate.swift */; };
 		753AF05526A9D06200AE1D54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753AF05326A9D06200AE1D54 /* Main.storyboard */; };
@@ -36,6 +42,12 @@
 		751664AE26BB3FD000CBACCC /* IngredientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientTableViewCell.xib; sourceTree = "<group>"; };
 		751664B126BC4A5D00CBACCC /* DirectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionTableViewCell.swift; sourceTree = "<group>"; };
 		751664B226BC4A5D00CBACCC /* DirectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DirectionTableViewCell.xib; sourceTree = "<group>"; };
+		751664BA26C1AA0700CBACCC /* FilterHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		751664BB26C1AA0700CBACCC /* FilterHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		751664BE26C1AD8900CBACCC /* FilterCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionTableViewCell.swift; sourceTree = "<group>"; };
+		751664BF26C1AD8900CBACCC /* FilterCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCollectionTableViewCell.xib; sourceTree = "<group>"; };
+		751664C526C1EACF00CBACCC /* ButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		751664C626C1EACF00CBACCC /* ButtonCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCollectionViewCell.xib; sourceTree = "<group>"; };
 		753AF04A26A9D06200AE1D54 /* What to Make.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What to Make.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		753AF04D26A9D06200AE1D54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		753AF04F26A9D06200AE1D54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,13 +91,51 @@
 		751664A826B83A7900CBACCC /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				753AF06E26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift */,
+				751664B726C1A63000CBACCC /* filter */,
+				751664B626C1A62600CBACCC /* photoCollection */,
+				751664B526C1A61300CBACCC /* recipeInfo */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		751664B526C1A61300CBACCC /* recipeInfo */ = {
+			isa = PBXGroup;
+			children = (
 				751664AD26BB3FD000CBACCC /* IngredientTableViewCell.swift */,
 				751664AE26BB3FD000CBACCC /* IngredientTableViewCell.xib */,
 				751664B126BC4A5D00CBACCC /* DirectionTableViewCell.swift */,
 				751664B226BC4A5D00CBACCC /* DirectionTableViewCell.xib */,
 			);
-			path = cells;
+			path = recipeInfo;
+			sourceTree = "<group>";
+		};
+		751664B626C1A62600CBACCC /* photoCollection */ = {
+			isa = PBXGroup;
+			children = (
+				753AF06E26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift */,
+			);
+			path = photoCollection;
+			sourceTree = "<group>";
+		};
+		751664B726C1A63000CBACCC /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				751664BA26C1AA0700CBACCC /* FilterHeaderTableViewCell.swift */,
+				751664BB26C1AA0700CBACCC /* FilterHeaderTableViewCell.xib */,
+				751664C226C1EA8900CBACCC /* collectionWork */,
+			);
+			path = filter;
+			sourceTree = "<group>";
+		};
+		751664C226C1EA8900CBACCC /* collectionWork */ = {
+			isa = PBXGroup;
+			children = (
+				751664BE26C1AD8900CBACCC /* FilterCollectionTableViewCell.swift */,
+				751664BF26C1AD8900CBACCC /* FilterCollectionTableViewCell.xib */,
+				751664C526C1EACF00CBACCC /* ButtonCollectionViewCell.swift */,
+				751664C626C1EACF00CBACCC /* ButtonCollectionViewCell.xib */,
+			);
+			path = collectionWork;
 			sourceTree = "<group>";
 		};
 		753AF04126A9D06200AE1D54 = {
@@ -237,10 +287,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				751664C826C1EACF00CBACCC /* ButtonCollectionViewCell.xib in Resources */,
+				751664C126C1AD8900CBACCC /* FilterCollectionTableViewCell.xib in Resources */,
 				751664B026BB3FD000CBACCC /* IngredientTableViewCell.xib in Resources */,
 				753AF05A26A9D06300AE1D54 /* LaunchScreen.storyboard in Resources */,
 				753AF05726A9D06300AE1D54 /* Assets.xcassets in Resources */,
 				753AF05526A9D06200AE1D54 /* Main.storyboard in Resources */,
+				751664BD26C1AA0700CBACCC /* FilterHeaderTableViewCell.xib in Resources */,
 				751664B426BC4A5D00CBACCC /* DirectionTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,7 +358,10 @@
 				753AF04E26A9D06200AE1D54 /* AppDelegate.swift in Sources */,
 				753AF06A26A9D16000AE1D54 /* FolderViewController.swift in Sources */,
 				75A25C7726AE575C00A6643F /* dynamicColor.swift in Sources */,
+				751664C026C1AD8900CBACCC /* FilterCollectionTableViewCell.swift in Sources */,
 				75A25C7926AE75C800A6643F /* WebViewViewController.swift in Sources */,
+				751664BC26C1AA0700CBACCC /* FilterHeaderTableViewCell.swift in Sources */,
+				751664C726C1EACF00CBACCC /* ButtonCollectionViewCell.swift in Sources */,
 				753AF05026A9D06200AE1D54 /* SceneDelegate.swift in Sources */,
 				751664B326BC4A5D00CBACCC /* DirectionTableViewCell.swift in Sources */,
 			);

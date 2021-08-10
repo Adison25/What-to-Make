@@ -37,7 +37,7 @@
                         </connections>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKJ-Ah-AKT">
-                        <rect key="frame" x="70" y="8" width="238" height="118"/>
+                        <rect key="frame" x="66" y="4" width="238" height="118"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Dcz-Ae-26a"/>
                         </constraints>
