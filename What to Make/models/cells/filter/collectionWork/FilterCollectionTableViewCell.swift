@@ -25,6 +25,7 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         collectionView.delegate = self
         collectionView.dataSource = self
 //        collectionView.backgroundColor = .red
+//        collectionView.allowsMultipleSelection = false
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -52,7 +53,6 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         let aWidth : CGFloat = models[indexPath.row].text.width(withConstraintedHeight: 40, font: UIFont.systemFont(ofSize: 17.0))
 
              return CGSize(width: aWidth + 15 , height: 40)
-//        return CGSize(width: 250, height: 250)
     }
     
     // THIS IS THE MOST IMPORTANT METHOD
@@ -74,6 +74,10 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         // It Tells what size is required for the CollectionView
         return self.collectionView.collectionViewLayout.collectionViewContentSize
 
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("im here bud")
     }
 
 }
