@@ -34,7 +34,7 @@ class ButtonCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func buttonTap(){
-//        filterButton.backgroundColor = dynamicColorBackgrounad
+//        filterButton.backgroundColor = dynamicColorBackgroud
         //dynamic color changing
     }
     
