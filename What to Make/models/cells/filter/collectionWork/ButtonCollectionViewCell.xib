@@ -17,13 +17,16 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="tc3-re-t6U">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
-                        <state key="normal" title="Button"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="151"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
                     </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="tc3-re-t6U" secondAttribute="bottom" id="3tQ-11-Aee"/>
                 <constraint firstItem="tc3-re-t6U" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="4zu-py-cZN"/>
                 <constraint firstItem="tc3-re-t6U" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="DCz-Wi-51v"/>
                 <constraint firstAttribute="trailing" secondItem="tc3-re-t6U" secondAttribute="trailing" id="wg8-qZ-3aA"/>

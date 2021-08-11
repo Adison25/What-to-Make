@@ -17,15 +17,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aep-Sq-IPA">
-                        <rect key="frame" x="20" y="15" width="290" height="118"/>
+                        <rect key="frame" x="20" y="20" width="290" height="103"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Aep-Sq-IPA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="2lB-25-Wtu"/>
-                    <constraint firstAttribute="bottom" secondItem="Aep-Sq-IPA" secondAttribute="bottom" constant="10" id="cbb-aF-2rj"/>
+                    <constraint firstItem="Aep-Sq-IPA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="2lB-25-Wtu"/>
+                    <constraint firstAttribute="bottom" secondItem="Aep-Sq-IPA" secondAttribute="bottom" constant="20" id="cbb-aF-2rj"/>
                     <constraint firstAttribute="trailing" secondItem="Aep-Sq-IPA" secondAttribute="trailing" constant="10" id="ecF-UL-PTh"/>
                     <constraint firstItem="Aep-Sq-IPA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="y3Y-cc-Hp7"/>
                 </constraints>

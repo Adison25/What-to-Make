@@ -21,11 +21,11 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private let tableView = DynamicSizeTableView()
     private var prevScrollDirection: CGFloat = 0
     
-    var models = [Model]()
+//    var models = [Model]()
     var buttonArray = [
-        ["Under 15 Min","Under 30 Min","Under 45 Min"],
+        ["Under 15 Min","Under 30 Min","Under 45 Min","Under 45 Min"],
         ["Breakfast","Lunch","Dinner"],
-        ["Vegan","Gluten Free","Vegetarian", "Mediterranean", "Pescatarian", "Kosher","Nut Free"]
+        ["Gluten Free","Vegetarian", "Mediterranean", "Pescatarian", "Vegan","Kosher","Nut Free"]
     ]
 //    var timeArray = ["Under 15 Min", "Under 30 Min", "Under 45 Min"]
     var header = ["Time","Dish Type","Dietary"]
@@ -36,9 +36,9 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        models.append(Model(text: "Under 15 Min"))
-        models.append(Model(text: "Under 30 Min"))
-        models.append(Model(text: "Under 45"))
+//        models.append(Model(text: "Under 15 Min"))
+//        models.append(Model(text: "Under 30 Min"))
+//        models.append(Model(text: "Under 45"))
         
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)

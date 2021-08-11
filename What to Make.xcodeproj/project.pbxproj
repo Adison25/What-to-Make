@@ -202,11 +202,11 @@
 		75A25C6626AC65DB00A6643F /* pageViews */ = {
 			isa = PBXGroup;
 			children = (
+				75A25C7826AE75C800A6643F /* WebViewViewController.swift */,
 				753AF07026AA1CB300AE1D54 /* RecipeInfoViewController.swift */,
+				753AF06326A9D16000AE1D54 /* FeedViewController.swift */,
 				753AF06526A9D16000AE1D54 /* FilterViewController.swift */,
 				753AF06626A9D16000AE1D54 /* FolderViewController.swift */,
-				753AF06326A9D16000AE1D54 /* FeedViewController.swift */,
-				75A25C7826AE75C800A6643F /* WebViewViewController.swift */,
 			);
 			path = pageViews;
 			sourceTree = "<group>";

@@ -17,7 +17,6 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     @IBOutlet var collectionView: UICollectionView!
     
     var models = [String]()
-    var totalWidth : CGFloat = 0.0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,49 +49,21 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         return cell
     }
     
+    // When this function is not overriden the "table view cell height zero" warning is displayed.
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        // `collectionView.contentSize` has a wrong width because in this nested example, the sizing pass occurs before te layout pass,
+        // so we need to force a force a  layout pass with the corredt width.
+        self.contentView.frame = self.bounds
+        self.contentView.layoutIfNeeded()
+        // Returns `collectionView.contentSize` in order to set the UITableVieweCell height a value greater than 0.
+        return self.collectionView.contentSize
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let aWidth : CGFloat = models[indexPath.row].width(withConstraintedHeight: 0, font: UIFont.systemFont(ofSize: 17.0))
-        totalWidth += aWidth
-//        print(aWidth)
-//        print(contentView.frame.size.width)
-//        let aHeight = aWidth/contentView.frame.size.width
-//        print(aHeight)
-//        let height = aHeight * 20
-//        print(height)
-//        print(totalWidth)
-//        print(indexPath.row)
         return CGSize(width: aWidth + 15 , height: 30)
     }
 
-    func getHeight() -> CGFloat {
-        return 20 * ceil( totalWidth / contentView.frame.size.height)
-    }
-    
-    // THIS IS THE MOST IMPORTANT METHOD
-    //
-    // This method tells the auto layout
-    // You cannot calculate the collectionView content size in any other place,
-    // because you run into race condition issues.
-
-    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
-
-        // If the cell's size has to be exactly the content
-        // Size of the collection View, just return the
-        // collectionViewLayout's collectionViewContentSize.
-//        print("ere")
-
-        self.collectionView.frame = CGRect(x: 0, y: 0,
-                                       width: targetSize.width, height: 600)
-        self.collectionView.layoutIfNeeded()
-
-        // It Tells what size is required for the CollectionView
-        return self.collectionView.collectionViewLayout.collectionViewContentSize
-
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("im here bud")
-    }
 
 }
 

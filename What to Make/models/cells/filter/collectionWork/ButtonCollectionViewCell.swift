@@ -27,31 +27,65 @@ class ButtonCollectionViewCell: UICollectionViewCell {
         filterButton.titleLabel?.font = buttonFont()
         filterButton.setTitleColor(dynamicColorText, for: .normal)
         filterButton.backgroundColor = dynamicColorBackground
+//        filterButton.layer.borderColor = UIColor(named: "buttonBorder")!.cgColor
         filterButton.layer.cornerRadius = 15
         filterButton.layer.borderWidth = 1
         filterButton.layer.borderColor = dynamicBorderColor() //dynamic color
         filterButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
+        filterButton.tag = 0
     }
     
     @objc func buttonTap(){
-//        filterButton.backgroundColor = dynamicColorBackgroud
-        //dynamic color changing
+        if traitCollection.userInterfaceStyle == .light {
+            if filterButton.tag == 0 {
+                setDark()
+                filterButton.tag = 1
+            }
+            else if filterButton.tag == 1 {
+                setLight()
+                filterButton.tag = 0
+            }
+        } else if traitCollection.userInterfaceStyle == .dark {
+            if filterButton.tag == 0 {
+                setLight()
+                filterButton.tag = 1
+            }
+            else if filterButton.tag == 1 {
+                setDark()
+                filterButton.tag = 0
+            }
+        }
+    }
+    
+    func setDark() {
+        filterButton.setTitleColor(.white, for: .normal)
+        filterButton.backgroundColor = .black
+        filterButton.layer.borderColor = UIColor.white.cgColor
+    }
+    
+    func setLight() {
+        filterButton.setTitleColor(.black, for: .normal)
+        filterButton.backgroundColor = .white
+        filterButton.layer.borderColor = UIColor.black.cgColor
     }
     
     func dynamicBorderColor() -> CGColor {
         if UITraitCollection.current.userInterfaceStyle == .dark {
             return UIColor.white.cgColor
-            
         }
         else {
             return UIColor.black.cgColor
-            
         }
     }
-    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
             filterButton.layer.borderColor = UIColor(named: "buttonBorder")!.cgColor
+            
+            if previousTraitCollection?.userInterfaceStyle == .light && filterButton.tag == 1 {
+                setLight()
+            }else if previousTraitCollection?.userInterfaceStyle == .dark && filterButton.tag == 1  {
+                setDark()
+            }
         }
     }
 
