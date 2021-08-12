@@ -47,8 +47,7 @@ extension TabBarController {
          let viewOne = templateNavController(unselectedImage: UIImage.init(systemName: "folder.fill"), selectedImage: UIImage.init(systemName: "folder.fill"), rootViewController: ViewFolders)
         let viewTwo = templateNavController(unselectedImage: UIImage.init(systemName: "house.fill"), selectedImage: UIImage.init(systemName: "house.fill"), rootViewController: viewFeed)
          let viewThree = templateNavController(unselectedImage: UIImage.init(systemName: "line.horizontal.3.decrease.circle.fill"), selectedImage: UIImage.init(systemName: "line.horizontal.3.decrease.circle.fill"), rootViewController: viewFilters)
-         viewControllers = //[viewOne,viewTwo ,viewThree] //normal format
-        [viewOne,viewThree,viewTwo]
+         viewControllers = [viewOne,viewTwo ,viewThree] //normal format
      }
     
     fileprivate func templateNavController(unselectedImage: UIImage?, selectedImage: UIImage?, rootViewController: UIViewController = UIViewController()) -> UINavigationController {

@@ -23,7 +23,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
 //    var models = [Model]()
     var buttonArray = [
-        ["Under 15 Min","Under 30 Min","Under 45 Min","Under 45 Min"],
+        ["Under 15 Min","Under 30 Min","Under 45 Min"],
         ["Breakfast","Lunch","Dinner"],
         ["Gluten Free","Vegetarian", "Mediterranean", "Pescatarian", "Vegan","Kosher","Nut Free"]
     ]
