@@ -11,18 +11,18 @@ import UIKit
 public let tabBarNotificationKey = Notification.Name(rawValue: "tabBarNotificationKey")
 
 struct PhotoModel {
-    let title: String
-    //let description: String
+    let name: String
     let ingredients: [String]
     let directions: [String]
-    //let nutritionFacts: [String]
-    let url: String
-    let photoFileName: String
+    let sourceURL: String
+    let photoURL: String
+    let tags: [String]
 }
 
 private var data = fetchData() 
 
 class FeedViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
     private let cellId = "PhotoCollectionViewCell"
     private var prevScrollDirection: CGFloat = 0
 
@@ -35,11 +35,7 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout) //UICollectionView(frame: CGRect(x: 0 , y: 0, width: view.frame.size.width , height: view.frame.size.height), collectionViewLayout: layout)
-//            UICollectionView()
-//        collectionView.collectionViewLayout = layout
-//        collectionView.frame.size.width = view.frame.size.width
-//        collectionView.frame.size.height = view.frame.size.height
+        let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isPagingEnabled = false
@@ -52,34 +48,14 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         return collectionView
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupCollectionView()
-        
-//        setupClearNavBar()
-//        setupNavBarUI()
-        //setupGradient()
-
     }
 }
 
 extension FeedViewController {
-//    fileprivate func setupNavBarUI() {
-//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: recipeTitleFont()]
-//
-//        navigationItem.title = "Recipes"
-//
-//        navigationItem.title
-//        let label = UILabel()
-//        label.text = "Recipes"
-//        label.font = recipeTitleFont()
-//        label.frame = CGRect(x: 0, y: 0, width: 60, height: 40)
-//        let view = UIView()
-//        view.addSubview(label)
-//        navigationItem.titleView = view
-//    }
     
     fileprivate func setupCollectionView() {
         view.addSubview(collectionView)
@@ -90,25 +66,10 @@ extension FeedViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-    
-    
-//    fileprivate func setupGradient() {
-//        let height : CGFloat = 90 // Height of the nav bar
-//        let color = UIColor.white.withAlphaComponent(0.7).cgColor // You can mess with opacity to your liking
-//        let clear = UIColor.white.withAlphaComponent(0.0).cgColor
-//        gradient = view.setupGradient(height: height, topColor: color, bottomColor: clear)
-//        view.addSubview(gradientView)
-//        NSLayoutConstraint.activate([
-//            gradientView.topAnchor.constraint(equalTo: view.topAnchor),
-//            gradientView.leftAnchor.constraint(equalTo: view.leftAnchor),
-//        ])
-//        gradientView.layer.insertSublayer(gradient!, at: 0)
-//    }
 }
 
 
 extension FeedViewController {
-    
     //on cell tap
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = RecipeInfoViewController()
@@ -129,6 +90,7 @@ extension FeedViewController {
         
         let model = data[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
+
         cell.configure(with: model)
         //print(cell.frame.size.height)
         return cell

@@ -33,7 +33,7 @@
 		753AF07326AA200200AE1D54 /* TSBlurEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF07226AA200200AE1D54 /* TSBlurEffectView.swift */; };
 		75A25C7726AE575C00A6643F /* dynamicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A25C7626AE575C00A6643F /* dynamicColor.swift */; };
 		75A25C7926AE75C800A6643F /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A25C7826AE75C800A6643F /* WebViewViewController.swift */; };
-		75DA0A4126C591F500A2CF1F /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = 75DA0A4026C591F500A2CF1F /* GoogleService-Info (1).plist */; };
+		75DA0A4126C591F500A2CF1F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75DA0A4026C591F500A2CF1F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,7 +66,7 @@
 		753AF07226AA200200AE1D54 /* TSBlurEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSBlurEffectView.swift; sourceTree = "<group>"; };
 		75A25C7626AE575C00A6643F /* dynamicColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dynamicColor.swift; sourceTree = "<group>"; };
 		75A25C7826AE75C800A6643F /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
-		75DA0A4026C591F500A2CF1F /* GoogleService-Info (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (1).plist"; sourceTree = "<group>"; };
+		75DA0A4026C591F500A2CF1F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CC378A188847D5AB1E6B8E91 /* Pods_What_to_Make.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_to_Make.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -161,7 +161,7 @@
 		753AF04C26A9D06200AE1D54 /* What to Make */ = {
 			isa = PBXGroup;
 			children = (
-				75DA0A4026C591F500A2CF1F /* GoogleService-Info (1).plist */,
+				75DA0A4026C591F500A2CF1F /* GoogleService-Info.plist */,
 				75A25C7326AC8A8100A6643F /* misc */,
 				753AF06D26A9D91700AE1D54 /* models */,
 				753AF06C26A9D91100AE1D54 /* views */,
@@ -291,7 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				751664C826C1EACF00CBACCC /* ButtonCollectionViewCell.xib in Resources */,
-				75DA0A4126C591F500A2CF1F /* GoogleService-Info (1).plist in Resources */,
+				75DA0A4126C591F500A2CF1F /* GoogleService-Info.plist in Resources */,
 				751664C126C1AD8900CBACCC /* FilterCollectionTableViewCell.xib in Resources */,
 				751664B026BB3FD000CBACCC /* IngredientTableViewCell.xib in Resources */,
 				753AF05A26A9D06300AE1D54 /* LaunchScreen.storyboard in Resources */,
