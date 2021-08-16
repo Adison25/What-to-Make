@@ -128,10 +128,10 @@ extension FeedViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let model = data[indexPath.row]
+//        let model = data[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
-        cell.configure(with: model)
-//        cell.configure(with: items[indexPath.row])
+//        cell.configure(with: model)
+        cell.configure(with: items[indexPath.row])
         //print(cell.frame.size.height)
         return cell
     }

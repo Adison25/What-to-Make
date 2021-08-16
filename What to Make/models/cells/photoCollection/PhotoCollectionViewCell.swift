@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     
@@ -21,10 +22,11 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(with model: PhotoModel) {
-        let imageName = model.photoFileName
-        let image = UIImage(named: imageName)
-        let imageView = UIImageView(image: image!)
+    public func configure(with model: RecipeItem) {
+//        let imageName = model.photoFileName
+//        let image = UIImage(named: imageName)
+        let imageView = UIImageView() //UIImageView(image: image!)
+        imageView.sd_setImage(with: URL(string: model.photoURL), completed: nil)
         imageView.frame = CGRect(x: 0 , y: 0, width: contentView.frame.size.height, height: contentView.frame.size.height)
         //print(contentView.frame.size.height)
         imageView.contentMode = .scaleAspectFit
