@@ -7,31 +7,46 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import CodableFirebase
 
 public let tabBarNotificationKey = Notification.Name(rawValue: "tabBarNotificationKey")
 
 struct PhotoModel {
-    let name: String
+    let title: String
     let ingredients: [String]
     let directions: [String]
-    let sourceURL: String
+    let url: String
+    let photoFileName: String
+}
+
+struct model: Codable {
+    let recipes: [RecipeModel]
+}
+
+struct RecipeModel: Codable {
+    let directions: [String]
+    let ingredients: [String]
+    let name: String
     let photoURL: String
     let tags: [String]
 }
 
-private var data = fetchData() 
+private var data = fetchDataEasy() 
 
 class FeedViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     private let cellId = "PhotoCollectionViewCell"
+    private let recipesRef = Database.database().reference(withPath: "recipes")
+    var items: [RecipeItem] = []
     private var prevScrollDirection: CGFloat = 0
-
+    
     var gradient : CAGradientLayer?
     let gradientView : UIView = {
         let view = UIView()
         return view
     }()
-
+    
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -48,10 +63,38 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         return collectionView
     }()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        recipesRef.getData { (error, snapshot) in
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                var newItems: [RecipeItem] = []
+                for child in snapshot.children {
+                    if
+                        let snapshot = child as? DataSnapshot,
+                        let recipeItem = RecipeItem(snapshot: snapshot) {
+                        newItems.append(recipeItem)
+                    }
+                }
+                self.items = newItems
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+            else {
+                print("No data available")
+            }
+        }
+        
     }
 }
 
@@ -70,7 +113,7 @@ extension FeedViewController {
 
 
 extension FeedViewController {
-    //on cell tap
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = RecipeInfoViewController()
         let model = data[indexPath.row]
@@ -83,15 +126,14 @@ extension FeedViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let model = data[indexPath.row]
+//        let model = data[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
-
-        cell.configure(with: model)
+//        cell.configure(with: model)
+        cell.configure(with: items[indexPath.row])
         //print(cell.frame.size.height)
         return cell
     }
@@ -106,13 +148,13 @@ extension FeedViewController {
         let scrollFrameHeight = scrollView.frame.height
         let scrollHeight = scrollSizeHeight - scrollFrameHeight
         var isHidden = false
-
+        
         if prevScrollDirection > scrollViewY && prevScrollDirection < scrollHeight {
             isHidden = false
-           // print("Scroll Up")
+            // print("Scroll Up")
         } else if prevScrollDirection < scrollViewY && scrollViewY > 0 {
             isHidden = true
-           // print("Scroll Down")
+            // print("Scroll Down")
         }
         let userInfo : [String : Bool] = [ "isHidden" : isHidden ]
         NotificationCenter.default.post(name: tabBarNotificationKey, object: nil, userInfo: userInfo)

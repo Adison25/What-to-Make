@@ -8,8 +8,10 @@ target 'What to Make' do
   # Pods for What to Make
 pod 'BEMCheckBox'
 
-pod 'Firebase/Core'
-pod 'Firebase/Firestore'
 pod 'Firebase/Analytics'
+pod 'Firebase/Core'
+pod 'Firebase/Database'
+
+pod 'CodableFirebase'
 
 end

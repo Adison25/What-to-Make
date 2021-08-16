@@ -21,14 +21,25 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(with model: PhotoModel) {
-        let imageName = model.photoFileName
+    public func configure(with model: RecipeItem) {
+        let imageName = model.photoURL
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
         imageView.frame = CGRect(x: 0 , y: 0, width: contentView.frame.size.height, height: contentView.frame.size.height)
         //print(contentView.frame.size.height)
         imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
         contentView.addSubview(imageView)
     }
  
 }
+
+//extension UIImageView {
+//    func load(url: URL) {
+//        DispatchQueue.global().async { [weak self] in
+//            if let data = try? Data(contentsOf: url) {
+//
+//            }
+//        }
+//    }
+//}

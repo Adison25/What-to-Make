@@ -17,11 +17,11 @@ class ChecklistItem {
 }
 
 class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    struct Cells {
-        static let ingredientCell = "ingredientsCell"
-        static let directionCell = "directionsCell"
-    }
+    
+//    struct Cells {
+//        static let ingredientCell = "ingredientsCell"
+//        static let directionCell = "directionsCell"
+//    }
 
     private var urlString: String = ""
     private let ingredientsTableView = DynamicSizeTableView()
@@ -36,12 +36,9 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         view.backgroundColor = dynamicColorBackground
         
-//        ingredientsTableView.register(UITableViewCell.self, forCellReuseIdentifier: Cells.ingredientCell)
         ingredientsTableView.register(IngredientTableViewCell.nib(), forCellReuseIdentifier: IngredientTableViewCell.identifier)
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
-        
-//        directionsTableView.register(UITableViewCell.self, forCellReuseIdentifier: Cells.directionCell)
         directionsTableView.register(DirectionTableViewCell.nib(), forCellReuseIdentifier: DirectionTableViewCell.identifier)
         directionsTableView.delegate = self
         directionsTableView.dataSource = self
