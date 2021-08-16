@@ -122,8 +122,7 @@ func buttonFont() -> UIFont {
     return UIFont(name: "Optima Regular", size: 15)!
 }
 
-
-func fetchDataEasy() -> [PhotoModel]{
+func fetchData() -> [PhotoModel]{
     return [
         PhotoModel(title: "Cupcake",
                    ingredients: ["5 ounces white chocolate (finely chopped)",

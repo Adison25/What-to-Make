@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>510270869039-ug0p1m766f7ur7v568ckcbl5sqo86115.apps.googleusercontent.com</string>
+	<string>891254528527-u3eojsde8oea4rajk864q9eolsn2qk1j.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.510270869039-ug0p1m766f7ur7v568ckcbl5sqo86115</string>
+	<string>com.googleusercontent.apps.891254528527-u3eojsde8oea4rajk864q9eolsn2qk1j</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBQAjwOS2msJ6ziRRsLclHQIdrZ9Od5pL4</string>
+	<string>AIzaSyAeNt1MQaYbq8AbO13Rd7tByARxBKRO6A0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>510270869039</string>
+	<string>891254528527</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.adisonEmerick.What-to-Make</string>
 	<key>PROJECT_ID</key>
-	<string>what-to-make-5d71f</string>
+	<string>what-to-make-8aab4</string>
 	<key>STORAGE_BUCKET</key>
-	<string>what-to-make-5d71f.appspot.com</string>
+	<string>what-to-make-8aab4.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:510270869039:ios:b41a6f3ca47a034ea800da</string>
-	<key>DATABASE_URL</key>
-	<string>https://what-to-make-5d71f-default-rtdb.firebaseio.com</string>
+	<string>1:891254528527:ios:f6365059fb5d6df756217a</string>
 </dict>
 </plist>

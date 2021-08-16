@@ -176,7 +176,6 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/CodableFirebase/CodableFirebase.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseDatabase/FirebaseDatabase.framework"
@@ -189,7 +188,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/CodableFirebase/CodableFirebase.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FirebaseDatabase/FirebaseDatabase.framework"

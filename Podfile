@@ -12,6 +12,4 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Core'
 pod 'Firebase/Database'
 
-pod 'CodableFirebase'
-
 end

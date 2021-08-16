@@ -5,10 +5,8 @@
 //  Created by Diego Bustamante on 7/15/20.
 //  Copyright © 2020 Diego Bustamante. All rights reserved.
 //
-
 import UIKit
 import FirebaseDatabase
-import CodableFirebase
 
 public let tabBarNotificationKey = Notification.Name(rawValue: "tabBarNotificationKey")
 
@@ -32,7 +30,7 @@ struct RecipeModel: Codable {
     let tags: [String]
 }
 
-private var data = fetchDataEasy() 
+private var data = fetchData()
 
 class FeedViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -130,10 +128,10 @@ extension FeedViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let model = data[indexPath.row]
+        let model = data[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
-//        cell.configure(with: model)
-        cell.configure(with: items[indexPath.row])
+        cell.configure(with: model)
+//        cell.configure(with: items[indexPath.row])
         //print(cell.frame.size.height)
         return cell
     }

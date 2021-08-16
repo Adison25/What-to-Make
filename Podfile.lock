@@ -1,6 +1,5 @@
 PODS:
   - BEMCheckBox (1.4.1)
-  - CodableFirebase (0.2.1)
   - Firebase/Analytics (8.3.0):
     - Firebase/Core
   - Firebase/Core (8.3.0):
@@ -92,7 +91,6 @@ PODS:
 
 DEPENDENCIES:
   - BEMCheckBox
-  - CodableFirebase
   - Firebase/Analytics
   - Firebase/Core
   - Firebase/Database
@@ -100,7 +98,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - BEMCheckBox
-    - CodableFirebase
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -116,7 +113,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
-  CodableFirebase: 0bf201991eeec35eb9fcd987d271ea463cf34a80
   Firebase: 817b9171d0d51dccc458b94a5e8edff6b1dd323d
   FirebaseAnalytics: 456f2c51599870a15ded4548d1f1f7b2cabf65a7
   FirebaseCore: a6dba751680d7033b9d3831e1cfc95ead0605118
@@ -130,6 +126,6 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: dbe7888f759b1546db8cbac0daa42d487f22a0bc
+PODFILE CHECKSUM: d6604acbec347a90cbd8605d6e77a089cfbb96d2
 
 COCOAPODS: 1.10.1
