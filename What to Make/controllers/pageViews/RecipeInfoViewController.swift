@@ -68,7 +68,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     //appens the information from the model (will change when I work on json stuff
-    func fillArrays(with model: PhotoModel){
+    func fillArrays(with model: RecipeItem){
         
         for x in 0..<model.ingredients.count {
             ingredientsArray.append(ChecklistItem(title: model.ingredients[x]))
@@ -87,11 +87,10 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         return scrollView
     }
     
-    private func createRecipeImageView(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) -> UIImageView {
+    private func createRecipeImageView(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat) -> UIImageView {
         //imageView
-        let imageName = model.photoFileName
-        let image = UIImage(named: imageName)
-        let imageView = UIImageView(image: image!)
+        let imageView = UIImageView()
+        imageView.sd_setImage(with: URL(string: model.photoURL), completed: nil)
         //imageView.frame = CGRect(x: 0 , y: 0, width: size, height: size)
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .red
@@ -100,10 +99,10 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         return imageView
     }
 
-    private func createTitleLabel(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) -> UIButton{
+    private func createTitleLabel(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat) -> UIButton{
         //title
         let titleLabel = UIButton()
-        titleLabel.setTitle("\(model.title)",for: .normal)
+        titleLabel.setTitle("\(model.name)",for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
         titleLabel.titleLabel?.font = recipeTitleFont()
         titleLabel.titleLabel?.numberOfLines = 0
@@ -119,7 +118,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         return titleLabel
     }
 
-    private func createSourceButton(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) -> UIButton {
+    private func createSourceButton(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat) -> UIButton {
         //source
         let sourceButton = UIButton()
         sourceButton.setTitle("i", for: .normal)
@@ -137,7 +136,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         return sourceButton
     }
 
-    private func createBackButton(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) -> UIButton {
+    private func createBackButton(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat) -> UIButton {
         //backButton
         let backButton = UIButton()
         backButton.setTitle("X", for: .normal)
@@ -155,7 +154,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         return backButton
     }
 
-    private func createIngredientHeader(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat)  -> UIButton{
+    private func createIngredientHeader(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat)  -> UIButton{
         //ingredientsTitle
         let ingredientHeader = UIButton()
         ingredientHeader.setTitle("Ingredients:",for: .normal)
@@ -182,7 +181,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         ingredientsTableView.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    private func createDirectionHeader(with model: PhotoModel, scrollView: UIScrollView, size: CGFloat) -> UIButton{
+    private func createDirectionHeader(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat) -> UIButton{
         //ingredientsTitle
         let directionsHeader = UIButton()
         directionsHeader.setTitle("Directions:",for: .normal)
@@ -210,9 +209,9 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     //home func that calls all the other functions
-    func configureInfoView(with model: PhotoModel, size: CGFloat) {
+    func configureInfoView(with model: RecipeItem, size: CGFloat) {
         
-        urlString = model.url
+        urlString = model.sourceURL
         fillArrays(with: model)
         
         let scrollView = createScrollView()

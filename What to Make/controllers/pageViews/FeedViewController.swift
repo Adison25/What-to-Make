@@ -61,7 +61,6 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         return collectionView
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -70,6 +69,16 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let ref = Database.database().reference()
+        ref.child("recipes/2").observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists(){
+                print("true rooms exist")
+            }else{
+                print("false room doesn't exist")
+            }
+        })
+        
         recipesRef.getData { (error, snapshot) in
             if let error = error {
                 print("Error getting data \(error)")
@@ -81,6 +90,7 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
                         let snapshot = child as? DataSnapshot,
                         let recipeItem = RecipeItem(snapshot: snapshot) {
                         newItems.append(recipeItem)
+//                        print("here")
                     }
                 }
                 self.items = newItems
@@ -92,7 +102,6 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
                 print("No data available")
             }
         }
-        
     }
 }
 
@@ -114,10 +123,10 @@ extension FeedViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = RecipeInfoViewController()
-        let model = data[indexPath.row]
+//        let model = data[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
         let size =  cell.frame.size.height
-        vc.configureInfoView(with: model, size: size)
+        vc.configureInfoView(with: items[indexPath.row], size: size)
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
@@ -128,11 +137,8 @@ extension FeedViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let model = data[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
-//        cell.configure(with: model)
         cell.configure(with: items[indexPath.row])
-        //print(cell.frame.size.height)
         return cell
     }
     

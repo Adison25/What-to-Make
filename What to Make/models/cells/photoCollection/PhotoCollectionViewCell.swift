@@ -23,14 +23,10 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with model: RecipeItem) {
-//        let imageName = model.photoFileName
-//        let image = UIImage(named: imageName)
-        let imageView = UIImageView() //UIImageView(image: image!)
+        let imageView = UIImageView()
         imageView.sd_setImage(with: URL(string: model.photoURL), completed: nil)
         imageView.frame = CGRect(x: 0 , y: 0, width: contentView.frame.size.height, height: contentView.frame.size.height)
-        //print(contentView.frame.size.height)
         imageView.contentMode = .scaleAspectFit
         contentView.addSubview(imageView)
     }
- 
 }
