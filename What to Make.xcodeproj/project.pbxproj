@@ -163,6 +163,7 @@
 		753AF04C26A9D06200AE1D54 /* What to Make */ = {
 			isa = PBXGroup;
 			children = (
+				75DA0A4826CBFA4E00A2CF1F /* GoogleService-Info.plist */,
 				75A25C7326AC8A8100A6643F /* misc */,
 				753AF06D26A9D91700AE1D54 /* models */,
 				753AF06C26A9D91100AE1D54 /* views */,
@@ -219,7 +220,6 @@
 		75A25C7326AC8A8100A6643F /* misc */ = {
 			isa = PBXGroup;
 			children = (
-				75DA0A4826CBFA4E00A2CF1F /* GoogleService-Info.plist */,
 				75A25C7626AE575C00A6643F /* dynamicColor.swift */,
 			);
 			path = misc;
