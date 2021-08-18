@@ -35,6 +35,11 @@
 		75A25C7926AE75C800A6643F /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A25C7826AE75C800A6643F /* WebViewViewController.swift */; };
 		75DA0A4726CAF2E500A2CF1F /* RecipeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A4626CAF2E500A2CF1F /* RecipeItem.swift */; };
 		75DA0A4926CBFA4E00A2CF1F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75DA0A4826CBFA4E00A2CF1F /* GoogleService-Info.plist */; };
+		75DA0A4B26CC02D800A2CF1F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A4A26CC02D800A2CF1F /* SignUpViewController.swift */; };
+		75DA0A4F26CC032D00A2CF1F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A4E26CC032D00A2CF1F /* LoginViewController.swift */; };
+		75DA0A5126CC03EC00A2CF1F /* IntialFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A5026CC03EC00A2CF1F /* IntialFilterViewController.swift */; };
+		75DA0A5326CC7AE600A2CF1F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A5226CC7AE600A2CF1F /* Utilities.swift */; };
+		75DA0A5626CC7D3C00A2CF1F /* IntialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A5526CC7D3C00A2CF1F /* IntialViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +74,11 @@
 		75A25C7826AE75C800A6643F /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 		75DA0A4626CAF2E500A2CF1F /* RecipeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeItem.swift; sourceTree = "<group>"; };
 		75DA0A4826CBFA4E00A2CF1F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		75DA0A4A26CC02D800A2CF1F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		75DA0A4E26CC032D00A2CF1F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		75DA0A5026CC03EC00A2CF1F /* IntialFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntialFilterViewController.swift; sourceTree = "<group>"; };
+		75DA0A5226CC7AE600A2CF1F /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		75DA0A5526CC7D3C00A2CF1F /* IntialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntialViewController.swift; sourceTree = "<group>"; };
 		CC378A188847D5AB1E6B8E91 /* Pods_What_to_Make.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_to_Make.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -164,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				75DA0A4826CBFA4E00A2CF1F /* GoogleService-Info.plist */,
+				75DA0A5426CC7BF400A2CF1F /* helpers */,
 				75A25C7326AC8A8100A6643F /* misc */,
 				753AF06D26A9D91700AE1D54 /* models */,
 				753AF06C26A9D91100AE1D54 /* views */,
@@ -178,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				75A25C6626AC65DB00A6643F /* pageViews */,
-				753AF06126A9D13800AE1D54 /* TabBarController.swift */,
 				753AF07226AA200200AE1D54 /* TSBlurEffectView.swift */,
 			);
 			path = controllers;
@@ -198,7 +208,6 @@
 			children = (
 				753AF04D26A9D06200AE1D54 /* AppDelegate.swift */,
 				753AF04F26A9D06200AE1D54 /* SceneDelegate.swift */,
-				753AF06426A9D16000AE1D54 /* Extensions.swift */,
 				75DA0A4626CAF2E500A2CF1F /* RecipeItem.swift */,
 				751664A826B83A7900CBACCC /* cells */,
 			);
@@ -208,11 +217,11 @@
 		75A25C6626AC65DB00A6643F /* pageViews */ = {
 			isa = PBXGroup;
 			children = (
-				75A25C7826AE75C800A6643F /* WebViewViewController.swift */,
-				753AF07026AA1CB300AE1D54 /* RecipeInfoViewController.swift */,
-				753AF06326A9D16000AE1D54 /* FeedViewController.swift */,
+				753AF06126A9D13800AE1D54 /* TabBarController.swift */,
+				75DA0A4C26CC02E100A2CF1F /* feed */,
 				753AF06526A9D16000AE1D54 /* FilterViewController.swift */,
 				753AF06626A9D16000AE1D54 /* FolderViewController.swift */,
+				75DA0A4D26CC02F500A2CF1F /* preliminary */,
 			);
 			path = pageViews;
 			sourceTree = "<group>";
@@ -223,6 +232,36 @@
 				75A25C7626AE575C00A6643F /* dynamicColor.swift */,
 			);
 			path = misc;
+			sourceTree = "<group>";
+		};
+		75DA0A4C26CC02E100A2CF1F /* feed */ = {
+			isa = PBXGroup;
+			children = (
+				753AF06326A9D16000AE1D54 /* FeedViewController.swift */,
+				753AF07026AA1CB300AE1D54 /* RecipeInfoViewController.swift */,
+				75A25C7826AE75C800A6643F /* WebViewViewController.swift */,
+			);
+			path = feed;
+			sourceTree = "<group>";
+		};
+		75DA0A4D26CC02F500A2CF1F /* preliminary */ = {
+			isa = PBXGroup;
+			children = (
+				75DA0A5526CC7D3C00A2CF1F /* IntialViewController.swift */,
+				75DA0A4A26CC02D800A2CF1F /* SignUpViewController.swift */,
+				75DA0A4E26CC032D00A2CF1F /* LoginViewController.swift */,
+				75DA0A5026CC03EC00A2CF1F /* IntialFilterViewController.swift */,
+			);
+			path = preliminary;
+			sourceTree = "<group>";
+		};
+		75DA0A5426CC7BF400A2CF1F /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				753AF06426A9D16000AE1D54 /* Extensions.swift */,
+				75DA0A5226CC7AE600A2CF1F /* Utilities.swift */,
+			);
+			path = helpers;
 			sourceTree = "<group>";
 		};
 		C3834E5D740733EEB36BD820 /* Pods */ = {
@@ -356,11 +395,15 @@
 			files = (
 				753AF06726A9D16000AE1D54 /* FeedViewController.swift in Sources */,
 				753AF06F26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift in Sources */,
+				75DA0A5326CC7AE600A2CF1F /* Utilities.swift in Sources */,
 				75DA0A4726CAF2E500A2CF1F /* RecipeItem.swift in Sources */,
 				753AF07126AA1CB300AE1D54 /* RecipeInfoViewController.swift in Sources */,
 				753AF06826A9D16000AE1D54 /* Extensions.swift in Sources */,
 				753AF06926A9D16000AE1D54 /* FilterViewController.swift in Sources */,
 				753AF07326AA200200AE1D54 /* TSBlurEffectView.swift in Sources */,
+				75DA0A4B26CC02D800A2CF1F /* SignUpViewController.swift in Sources */,
+				75DA0A4F26CC032D00A2CF1F /* LoginViewController.swift in Sources */,
+				75DA0A5126CC03EC00A2CF1F /* IntialFilterViewController.swift in Sources */,
 				751664AF26BB3FD000CBACCC /* IngredientTableViewCell.swift in Sources */,
 				753AF06226A9D13800AE1D54 /* TabBarController.swift in Sources */,
 				753AF04E26A9D06200AE1D54 /* AppDelegate.swift in Sources */,
@@ -369,6 +412,7 @@
 				751664C026C1AD8900CBACCC /* FilterCollectionTableViewCell.swift in Sources */,
 				75A25C7926AE75C800A6643F /* WebViewViewController.swift in Sources */,
 				751664BC26C1AA0700CBACCC /* FilterHeaderTableViewCell.swift in Sources */,
+				75DA0A5626CC7D3C00A2CF1F /* IntialViewController.swift in Sources */,
 				751664C726C1EACF00CBACCC /* ButtonCollectionViewCell.swift in Sources */,
 				753AF05026A9D06200AE1D54 /* SceneDelegate.swift in Sources */,
 				751664B326BC4A5D00CBACCC /* DirectionTableViewCell.swift in Sources */,

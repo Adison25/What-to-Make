@@ -19,5 +19,14 @@
             "directions": ["Preheat the oven to 350°F (176°C). Position an oven rack in the center position and line a pan of twelve 3-by-1 1/2-inch muffin cups with paper liners.", "In a heatproof bowl, dump the chocolate. Bring a wide saucepan of water to a simmer over medium heat. Turn off the heat and place the bowl in the hot water. Let it stand, stirring occasionally, until the chocolate is completely melted and smooth. Be careful not to let any water get in the bowl or the chocolate will seize and clump. Remove the bowl from the water and let cool until tepid","In a small bowl, whisk together the all-purpose flour, cake flour, baking powder, and salt.","In a glass measuring cup, stir together the milk and vanilla.","Using a 2-inch diameter ice cream scoop or a 1/3 cup measuring cup, scoop the batter into the prepared cups. The cups shouldn’t be more than 2/3 full. (If you overfill the cups, they’ll end up flat rather than domed.)" ],
             "tags": ["quick", "dessert", "gf"]
         }
+    },
+    "users":
+    {
+        "1":
+        {
+            "email": "test@t.com",
+            "password": "Password!123"
+        }
     }
+    
 }
