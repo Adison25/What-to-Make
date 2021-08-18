@@ -30,8 +30,6 @@ struct RecipeModel: Codable {
     let tags: [String]
 }
 
-private var data = fetchData()
-
 class FeedViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     private let cellId = "PhotoCollectionViewCell"
