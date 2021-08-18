@@ -106,9 +106,9 @@ class SignUpViewController: UIViewController {
     
     func transitionToFilterView() {
         
-        let intialFilterVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.intialFilterVC) as? IntialFilterViewController
+        let tabBarVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? TabBarController
         
-        view.window?.rootViewController = intialFilterVC
+        view.window?.rootViewController = tabBarVC
         view.window?.makeKeyAndVisible()
     }
     

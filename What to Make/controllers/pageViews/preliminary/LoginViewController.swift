@@ -61,9 +61,9 @@ class LoginViewController: UIViewController {
                     self.errorLabel.alpha = 1
                 }
                 else {
-                    let intialFilterVC = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.intialFilterVC) as? IntialFilterViewController
+                    let tabBarVC = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? TabBarController
                     
-                    self.view.window?.rootViewController = intialFilterVC
+                    self.view.window?.rootViewController = tabBarVC
                     self.view.window?.makeKeyAndVisible()
                 }
             }

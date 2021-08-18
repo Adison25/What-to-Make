@@ -36,13 +36,17 @@ class ButtonCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func buttonTap(){
+        changeColor()
+    }
+    
+    func changeColor() {
         if traitCollection.userInterfaceStyle == .light {
             if filterButton.tag == 0 {
                 setDark()
                 filterButton.tag = 1
             }
             else if filterButton.tag == 1 {
-                setLight()
+                setNormal()
                 filterButton.tag = 0
             }
         } else if traitCollection.userInterfaceStyle == .dark {
@@ -51,7 +55,7 @@ class ButtonCollectionViewCell: UICollectionViewCell {
                 filterButton.tag = 1
             }
             else if filterButton.tag == 1 {
-                setDark()
+                setNormal()
                 filterButton.tag = 0
             }
         }
@@ -67,6 +71,12 @@ class ButtonCollectionViewCell: UICollectionViewCell {
         filterButton.setTitleColor(.black, for: .normal)
         filterButton.backgroundColor = .white
         filterButton.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    func setNormal() {
+        filterButton.setTitleColor(dynamicColorText, for: .normal)
+        filterButton.backgroundColor = dynamicColorBackground
+        filterButton.layer.borderColor = dynamicBorderColor()
     }
     
     func dynamicBorderColor() -> CGColor {

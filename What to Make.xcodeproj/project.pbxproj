@@ -37,7 +37,6 @@
 		75DA0A4926CBFA4E00A2CF1F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75DA0A4826CBFA4E00A2CF1F /* GoogleService-Info.plist */; };
 		75DA0A4B26CC02D800A2CF1F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A4A26CC02D800A2CF1F /* SignUpViewController.swift */; };
 		75DA0A4F26CC032D00A2CF1F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A4E26CC032D00A2CF1F /* LoginViewController.swift */; };
-		75DA0A5126CC03EC00A2CF1F /* IntialFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A5026CC03EC00A2CF1F /* IntialFilterViewController.swift */; };
 		75DA0A5326CC7AE600A2CF1F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A5226CC7AE600A2CF1F /* Utilities.swift */; };
 		75DA0A5626CC7D3C00A2CF1F /* IntialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A5526CC7D3C00A2CF1F /* IntialViewController.swift */; };
 		75DA0A5826CD52CB00A2CF1F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A5726CD52CB00A2CF1F /* Constants.swift */; };
@@ -77,7 +76,6 @@
 		75DA0A4826CBFA4E00A2CF1F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75DA0A4A26CC02D800A2CF1F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		75DA0A4E26CC032D00A2CF1F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		75DA0A5026CC03EC00A2CF1F /* IntialFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntialFilterViewController.swift; sourceTree = "<group>"; };
 		75DA0A5226CC7AE600A2CF1F /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		75DA0A5526CC7D3C00A2CF1F /* IntialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntialViewController.swift; sourceTree = "<group>"; };
 		75DA0A5726CD52CB00A2CF1F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -138,12 +136,12 @@
 			children = (
 				751664BA26C1AA0700CBACCC /* FilterHeaderTableViewCell.swift */,
 				751664BB26C1AA0700CBACCC /* FilterHeaderTableViewCell.xib */,
-				751664C226C1EA8900CBACCC /* collectionWork */,
+				751664C226C1EA8900CBACCC /* filterCollection */,
 			);
 			path = filter;
 			sourceTree = "<group>";
 		};
-		751664C226C1EA8900CBACCC /* collectionWork */ = {
+		751664C226C1EA8900CBACCC /* filterCollection */ = {
 			isa = PBXGroup;
 			children = (
 				751664BE26C1AD8900CBACCC /* FilterCollectionTableViewCell.swift */,
@@ -151,7 +149,7 @@
 				751664C526C1EACF00CBACCC /* ButtonCollectionViewCell.swift */,
 				751664C626C1EACF00CBACCC /* ButtonCollectionViewCell.xib */,
 			);
-			path = collectionWork;
+			path = filterCollection;
 			sourceTree = "<group>";
 		};
 		753AF04126A9D06200AE1D54 = {
@@ -252,7 +250,6 @@
 				75DA0A5526CC7D3C00A2CF1F /* IntialViewController.swift */,
 				75DA0A4A26CC02D800A2CF1F /* SignUpViewController.swift */,
 				75DA0A4E26CC032D00A2CF1F /* LoginViewController.swift */,
-				75DA0A5026CC03EC00A2CF1F /* IntialFilterViewController.swift */,
 			);
 			path = preliminary;
 			sourceTree = "<group>";
@@ -406,7 +403,6 @@
 				753AF07326AA200200AE1D54 /* TSBlurEffectView.swift in Sources */,
 				75DA0A4B26CC02D800A2CF1F /* SignUpViewController.swift in Sources */,
 				75DA0A4F26CC032D00A2CF1F /* LoginViewController.swift in Sources */,
-				75DA0A5126CC03EC00A2CF1F /* IntialFilterViewController.swift in Sources */,
 				751664AF26BB3FD000CBACCC /* IngredientTableViewCell.swift in Sources */,
 				753AF06226A9D13800AE1D54 /* TabBarController.swift in Sources */,
 				753AF04E26A9D06200AE1D54 /* AppDelegate.swift in Sources */,

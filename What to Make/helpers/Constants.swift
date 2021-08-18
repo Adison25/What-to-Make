@@ -11,7 +11,7 @@ struct Constants {
     
     struct Storyboard {
         
-        static let intialFilterVC = "intialFilterVC"
+        static let tabBarVC = "tabBarVC"
         
     }
     
