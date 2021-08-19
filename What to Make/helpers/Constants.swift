@@ -62,17 +62,41 @@ var filterArr: [String] = []
 
 func addFilter(filter: String) {
     filterArr.append(filter)
-//    print(filterArr)
+    //recipesArr needs to be modified
+    filterRecipesArr()
+    
 }
 
 func removeFilter(filter: String) {
     let modifiedArray = filterArr.filter { $0 != filter }
     filterArr = modifiedArray
 //    print(filterArr)
+    filterRecipesArr()
+}
+
+func filterRecipesArr(){
+    modifiedRecipesArr = allRecipes
+    var idx = 0
+    var hasIt = 0
+    for item in allRecipes {
+        for filter in item.tags {
+            if filterArr.contains(filter) {
+                hasIt = 1
+            }
+        }
+        if hasIt == 0 && filterArr.count > 0{
+            modifiedRecipesArr.remove(at: idx)
+        }else {
+            idx += 1
+        }
+        hasIt = 0
+        
+    }
 }
 
 let recipesRef = Database.database().reference(withPath: "recipes")
 var allRecipes: [RecipeItem] = []
+var modifiedRecipesArr: [RecipeItem] = []
 
 func fetchData() {
     recipesRef.getData { (error, snapshot) in
@@ -89,6 +113,7 @@ func fetchData() {
                 }
             }
             allRecipes = newItems
+            modifiedRecipesArr = allRecipes
         }
         else {
             print("No data available")

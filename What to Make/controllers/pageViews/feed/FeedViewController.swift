@@ -64,6 +64,10 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("Here")
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 
@@ -88,19 +92,19 @@ extension FeedViewController {
         //        let model = data[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
         let size =  cell.frame.size.height
-        vc.configureInfoView(with: allRecipes[indexPath.row], size: size)
+        vc.configureInfoView(with: modifiedRecipesArr[indexPath.row], size: size)
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allRecipes.count
+        return modifiedRecipesArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
-        cell.configure(with: allRecipes[indexPath.row])
+        cell.configure(with: modifiedRecipesArr[indexPath.row])
         return cell
     }
     
