@@ -56,3 +56,17 @@ func tableViewHeaderFont() -> UIFont {
 func buttonFont() -> UIFont {
     return UIFont(name: "Optima Regular", size: 15)!
 }
+
+var filterArr: [String] = []
+
+func addFilter(filter: String) {
+    filterArr.append(filter)
+//    print(filterArr)
+}
+
+func removeFilter(filter: String) {
+    let modifiedArray = filterArr.filter { $0 != filter }
+    filterArr = modifiedArray
+//    print(filterArr)
+}
+

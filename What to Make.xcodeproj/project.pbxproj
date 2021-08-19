@@ -175,7 +175,6 @@
 			children = (
 				75DA0A4826CBFA4E00A2CF1F /* GoogleService-Info.plist */,
 				75DA0A5426CC7BF400A2CF1F /* helpers */,
-				75A25C7326AC8A8100A6643F /* misc */,
 				753AF06D26A9D91700AE1D54 /* models */,
 				753AF06C26A9D91100AE1D54 /* views */,
 				753AF06B26A9D90A00AE1D54 /* controllers */,
@@ -226,14 +225,6 @@
 			path = pageViews;
 			sourceTree = "<group>";
 		};
-		75A25C7326AC8A8100A6643F /* misc */ = {
-			isa = PBXGroup;
-			children = (
-				75A25C7626AE575C00A6643F /* dynamicColor.swift */,
-			);
-			path = misc;
-			sourceTree = "<group>";
-		};
 		75DA0A4C26CC02E100A2CF1F /* feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +251,7 @@
 				753AF06426A9D16000AE1D54 /* Extensions.swift */,
 				75DA0A5226CC7AE600A2CF1F /* Utilities.swift */,
 				75DA0A5726CD52CB00A2CF1F /* Constants.swift */,
+				75A25C7626AE575C00A6643F /* dynamicColor.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";

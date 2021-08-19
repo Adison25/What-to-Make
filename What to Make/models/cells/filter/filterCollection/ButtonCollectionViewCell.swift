@@ -43,19 +43,23 @@ class ButtonCollectionViewCell: UICollectionViewCell {
         if traitCollection.userInterfaceStyle == .light {
             if filterButton.tag == 0 {
                 setDark()
+                addFilter(filter: (filterButton.titleLabel?.text)!)
                 filterButton.tag = 1
             }
             else if filterButton.tag == 1 {
                 setNormal()
+                removeFilter(filter: (filterButton.titleLabel?.text)!)
                 filterButton.tag = 0
             }
         } else if traitCollection.userInterfaceStyle == .dark {
             if filterButton.tag == 0 {
                 setLight()
+                addFilter(filter: (filterButton.titleLabel?.text)!)
                 filterButton.tag = 1
             }
             else if filterButton.tag == 1 {
                 setNormal()
+                removeFilter(filter: (filterButton.titleLabel?.text)!)
                 filterButton.tag = 0
             }
         }

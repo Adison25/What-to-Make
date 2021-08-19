@@ -23,8 +23,8 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
 //    var models = [Model]()
     var buttonArray = [
-        ["Under 15 Min","Under 30 Min","Under 45 Min"],
-        ["Breakfast","Lunch","Dinner"],
+        ["Under 30 Min","Over 30 Min"],
+        ["Breakfast","Lunch","Dinner","Dessert"],
         ["Gluten Free","Vegetarian", "Mediterranean", "Pescatarian", "Vegan","Kosher","Nut Free"]
     ]
 //    var timeArray = ["Under 15 Min", "Under 30 Min", "Under 45 Min"]
@@ -32,14 +32,9 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var indexHeader = 0
     var indexButton = 0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        models.append(Model(text: "Under 15 Min"))
-//        models.append(Model(text: "Under 30 Min"))
-//        models.append(Model(text: "Under 45"))
-        
+            
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
             

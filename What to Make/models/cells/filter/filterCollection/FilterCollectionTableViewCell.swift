@@ -10,6 +10,7 @@ import UIKit
 class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
 
     static let identifier = "FilterCollectionTableViewCell"
+    var filterArr: [String] = []
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
@@ -20,7 +21,7 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    
+            
         collectionView.register(ButtonCollectionViewCell.nib(), forCellWithReuseIdentifier: ButtonCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -63,7 +64,7 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         let aWidth : CGFloat = models[indexPath.row].width(withConstraintedHeight: 0, font: UIFont.systemFont(ofSize: 17.0))
         return CGSize(width: aWidth + 15 , height: 30)
     }
-
+    
 
 }
 
