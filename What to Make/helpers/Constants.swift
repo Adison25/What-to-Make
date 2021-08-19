@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 struct Constants {
     
@@ -70,3 +71,56 @@ func removeFilter(filter: String) {
 //    print(filterArr)
 }
 
+let recipesRef = Database.database().reference(withPath: "recipes")
+var allRecipes: [RecipeItem] = []
+
+func fetchData() {
+    recipesRef.getData { (error, snapshot) in
+        if let error = error {
+            print("Error getting data \(error)")
+        }
+        else if snapshot.exists() {
+            var newItems: [RecipeItem] = []
+            for child in snapshot.children {
+                if
+                    let snapshot = child as? DataSnapshot,
+                    let recipeItem = RecipeItem(snapshot: snapshot) {
+                    newItems.append(recipeItem)
+                }
+            }
+            allRecipes = newItems
+        }
+        else {
+            print("No data available")
+        }
+    }
+}
+
+
+//private let recipesRef = Database.database().reference(withPath: "recipes")
+//var items: [RecipeItem] = []
+//
+//func fetchData() {
+//    recipesRef.getData { (error, snapshot) in
+//        if let error = error {
+//            print("Error getting data \(error)")
+//        }
+//        else if snapshot.exists() {
+//            var newItems: [RecipeItem] = []
+//            for child in snapshot.children {
+//                if
+//                    let snapshot = child as? DataSnapshot,
+//                    let recipeItem = RecipeItem(snapshot: snapshot) {
+//                    newItems.append(recipeItem)
+//                }
+//            }
+//            self.items = newItems
+//            DispatchQueue.main.async {
+//                self.collectionView.reloadData()
+//            }
+//        }
+//        else {
+//            print("No data available")
+//        }
+//    }
+//}
