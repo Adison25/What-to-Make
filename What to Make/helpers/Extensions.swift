@@ -9,6 +9,16 @@
 import UIKit
 
 extension UIViewController {
+    func setupClearNavBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+    }
     func hideKeyboardOnTap() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tap.cancelsTouchesInView = false
@@ -19,51 +29,6 @@ extension UIViewController {
         self.view.endEditing(true)
     }
 }
-
-extension CATransition {
-
-//New viewController will appear from bottom of screen.
-func segueFromBottom() -> CATransition {
-    self.duration = 0.375 //set the duration to whatever you'd like.
-    self.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-    self.type = CATransitionType.moveIn
-    self.subtype = CATransitionSubtype.fromTop
-    return self
-}
-//New viewController will appear from top of screen.
-func segueFromTop() -> CATransition {
-    self.duration = 0.375 //set the duration to whatever you'd like.
-    self.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-    self.type = CATransitionType.moveIn
-    self.subtype = CATransitionSubtype.fromBottom
-    return self
-}
- //New viewController will appear from left side of screen.
-func segueFromLeft() -> CATransition {
-    self.duration = 0.1 //set the duration to whatever you'd like.
-    self.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-    self.type = CATransitionType.moveIn
-    self.subtype = CATransitionSubtype.fromLeft
-    return self
-}
-//New viewController will pop from right side of screen.
-func popFromRight() -> CATransition {
-    self.duration = 0.1 //set the duration to whatever you'd like.
-    self.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-    self.type = CATransitionType.reveal
-    self.subtype = CATransitionSubtype.fromRight
-    return self
-}
-//New viewController will appear from left side of screen.
-func popFromLeft() -> CATransition {
-    self.duration = 0.1 //set the duration to whatever you'd like.
-    self.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-    self.type = CATransitionType.reveal
-    self.subtype = CATransitionSubtype.fromLeft
-    return self
-   }
-}
-
 
 extension UIView {
     func setupGradient(height: CGFloat, topColor: CGColor, bottomColor: CGColor) ->  CAGradientLayer {

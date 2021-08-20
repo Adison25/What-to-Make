@@ -34,7 +34,8 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        setupClearNavBar()
+        navigationItem.title = "Filters"
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
             
@@ -48,6 +49,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
+//        tableView.backgroundColor = .red
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

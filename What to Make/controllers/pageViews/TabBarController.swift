@@ -43,11 +43,13 @@ extension TabBarController {
         let viewFeed = FeedViewController()
         let ViewFolders = FolderViewController()
         let viewFilters = FilterViewController()
+        let viewSetting = SettingsViewController()
         
          let viewOne = templateNavController(unselectedImage: UIImage.init(systemName: "folder.fill"), selectedImage: UIImage.init(systemName: "folder.fill"), rootViewController: ViewFolders)
         let viewTwo = templateNavController(unselectedImage: UIImage.init(systemName: "house.fill"), selectedImage: UIImage.init(systemName: "house.fill"), rootViewController: viewFeed)
          let viewThree = templateNavController(unselectedImage: UIImage.init(systemName: "line.horizontal.3.decrease.circle.fill"), selectedImage: UIImage.init(systemName: "line.horizontal.3.decrease.circle.fill"), rootViewController: viewFilters)
-         viewControllers = [viewOne,viewTwo ,viewThree] //normal format
+        let viewFour = templateNavController(unselectedImage: UIImage.init(systemName: "gearshape.fill"), selectedImage: UIImage.init(systemName: "gearshape.fill"), rootViewController: viewSetting)
+         viewControllers = [viewOne,viewTwo ,viewThree, viewFour] //normal format
      }
     
     fileprivate func templateNavController(unselectedImage: UIImage?, selectedImage: UIImage?, rootViewController: UIViewController = UIViewController()) -> UINavigationController {
@@ -55,7 +57,7 @@ extension TabBarController {
         let viewNavController = UINavigationController(rootViewController: viewController)
         viewNavController.tabBarItem.image = unselectedImage
         viewNavController.tabBarItem.selectedImage = selectedImage
-        viewNavController.navigationBar.isHidden = true
+//        viewNavController.navigationBar.isHidden = true this makes it so the filter, recipes, etc are hidden
         return viewNavController
     }
 }

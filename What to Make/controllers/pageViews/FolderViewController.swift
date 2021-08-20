@@ -13,7 +13,7 @@ class FolderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-//        setupClearNavBar()
+        setupClearNavBar()
         navigationItem.title = "Folders"
 
         

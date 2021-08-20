@@ -38,6 +38,8 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupClearNavBar()
+        navigationItem.title = "Recipes"
         view.backgroundColor = .systemBackground
         setupCollectionView()
     }

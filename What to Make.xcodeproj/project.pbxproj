@@ -40,6 +40,7 @@
 		75DA0A5326CC7AE600A2CF1F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A5226CC7AE600A2CF1F /* Utilities.swift */; };
 		75DA0A5626CC7D3C00A2CF1F /* IntialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A5526CC7D3C00A2CF1F /* IntialViewController.swift */; };
 		75DA0A5826CD52CB00A2CF1F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A5726CD52CB00A2CF1F /* Constants.swift */; };
+		75DA0A8A26D0253600A2CF1F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A8926D0253600A2CF1F /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		75DA0A5226CC7AE600A2CF1F /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		75DA0A5526CC7D3C00A2CF1F /* IntialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntialViewController.swift; sourceTree = "<group>"; };
 		75DA0A5726CD52CB00A2CF1F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		75DA0A8926D0253600A2CF1F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CC378A188847D5AB1E6B8E91 /* Pods_What_to_Make.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_to_Make.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -220,6 +222,7 @@
 				75DA0A4C26CC02E100A2CF1F /* feed */,
 				753AF06526A9D16000AE1D54 /* FilterViewController.swift */,
 				753AF06626A9D16000AE1D54 /* FolderViewController.swift */,
+				75DA0A8926D0253600A2CF1F /* SettingsViewController.swift */,
 				75DA0A4D26CC02F500A2CF1F /* preliminary */,
 			);
 			path = pageViews;
@@ -408,6 +411,7 @@
 				753AF05026A9D06200AE1D54 /* SceneDelegate.swift in Sources */,
 				751664B326BC4A5D00CBACCC /* DirectionTableViewCell.swift in Sources */,
 				75DA0A5826CD52CB00A2CF1F /* Constants.swift in Sources */,
+				75DA0A8A26D0253600A2CF1F /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
