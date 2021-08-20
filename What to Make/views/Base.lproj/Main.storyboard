@@ -11,7 +11,7 @@
         <!--Intial View Controller-->
         <scene sceneID="Qbp-gx-8Zq">
             <objects>
-                <viewController id="mhS-lx-dMi" customClass="IntialViewController" customModule="What_to_Make" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="intialVC" id="mhS-lx-dMi" customClass="IntialViewController" customModule="What_to_Make" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QKe-ZR-hNV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

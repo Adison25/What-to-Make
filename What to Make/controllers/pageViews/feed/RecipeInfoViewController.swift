@@ -237,13 +237,13 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         let sourceButton = createSourceButton(with: model, scrollView: scrollView, size: size)
         NSLayoutConstraint.activate([
             sourceButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 25),
-            sourceButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.09),
+            sourceButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10),
             sourceButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -10)
         ])
         let backButton = createBackButton(with: model, scrollView: scrollView, size: size)
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 25),
-            backButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.09), //or 0.25 can change depending on what i want it to look like
+            backButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10), //or 0.25 can change depending on what i want it to look like
             backButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 10)
         ])
         //ingredient views

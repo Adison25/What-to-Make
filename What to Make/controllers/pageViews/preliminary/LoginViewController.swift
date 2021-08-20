@@ -61,8 +61,11 @@ class LoginViewController: UIViewController {
                     self.errorLabel.alpha = 1
                 }
                 else {
+                    //set user default
+                    defaults.set(true, forKey: "LoggedIn")
                     let tabBarVC = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? TabBarController
-                    
+                    let appDelegate = UIApplication.shared.delegate
+                    appDelegate?.window??.rootViewController = tabBarVC
                     self.view.window?.rootViewController = tabBarVC
                     self.view.window?.makeKeyAndVisible()
                 }
