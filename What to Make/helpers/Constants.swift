@@ -92,19 +92,19 @@ func fetchData() {
         if let error = error {
             print("Error getting data \(error)")
         }
-        else if snapshot.exists() {
-            var newItems: [RecipeItem] = []
-            for child in snapshot.children {
-                if
-                    let snapshot = child as? DataSnapshot,
-                    let recipeItem = RecipeItem(snapshot: snapshot) {
-                    newItems.append(recipeItem)
-                }
-            }
-            
-            Constants.allRecipes = newItems
-            Constants.modifiedRecipesArr = Constants.allRecipes
-        }
+//        else if snapshot.exists() {
+//            var newItems: [RecipeItem] = []
+//            for child in snapshot.children {
+//                if
+//                    let snapshot = child as? DataSnapshot,
+//                    let recipeItem = RecipeItem(snapshot: snapshot) {
+//                    newItems.append(recipeItem)
+//                }
+//            }
+//            
+//            Constants.allRecipes = newItems
+//            Constants.modifiedRecipesArr = Constants.allRecipes
+//        }
         else {
             print("No data available")
         }

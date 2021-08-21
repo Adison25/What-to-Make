@@ -15,7 +15,6 @@ class IntialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUpElements()
         setBackgroundImage()
     }

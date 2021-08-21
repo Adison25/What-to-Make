@@ -108,11 +108,15 @@ class SignUpViewController: UIViewController {
         
         //set user default
         defaults.set(true, forKey: "LoggedIn")
-        let tabBarVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? TabBarController
-        let appDelegate = UIApplication.shared.delegate
-        appDelegate?.window??.rootViewController = tabBarVC
-        view.window?.rootViewController = tabBarVC
-        view.window?.makeKeyAndVisible()
+        let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarVC) as! TabBarController)
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+//        let tabBarVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? TabBarController
+//        let appDelegate = UIApplication.shared.delegate
+//        appDelegate?.window??.rootViewController = tabBarVC
+//        view.window?.rootViewController = tabBarVC
+//        view.window?.makeKeyAndVisible()
 //        let signInPage = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! TabBarController
         
     }

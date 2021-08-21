@@ -23,7 +23,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
-//        table.backgroundColor = .systemBackground
+        //        table.backgroundColor = .systemBackground
         table.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
         return table
     }()
@@ -45,9 +45,30 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func configure() {
         models.append(Section(title: "Profile", options: [
             SettingsOption(title: "Sign Out", icon: UIImage(systemName: "person.crop.circle.fill"), iconBackgroundColor: .systemRed, handler: {
-                print("tapped first cell")
+                
+                //alert
+                let alert = UIAlertController(title: "Logging Out", message: "Are you sure? Rember your login info", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { action in
+                    defaults.set(false, forKey: "LoggedIn")
+                    
+                    let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.intialVC) as! IntialViewController)
+                    vc.modalTransitionStyle = .crossDissolve
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true)
+
+//                    let vc = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.intialVC) as? IntialViewController
+//                    let appDelegate = UIApplication.shared.delegate
+//                    appDelegate?.window??.rootViewController = vc
+//                    self.view.window?.rootViewController = vc
+//                    self.view.window?.makeKeyAndVisible()
+                }))
+                self.present(alert, animated: true)
+                
             }),
             SettingsOption(title: "Add Acount", icon: UIImage(systemName: "person.fill.badge.plus"), iconBackgroundColor: .systemGreen, handler: {
+                
+                //action sheet
                 
             })
         ]))
@@ -68,6 +89,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 
             })
         ]))        
+    }
+    
+    func showAlert() {
+        
+    }
+    
+    func showActionSheet() {
+        
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

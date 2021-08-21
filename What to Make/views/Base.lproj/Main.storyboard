@@ -59,9 +59,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="y0H-sx-L4n"/>
                     <connections>
-                        <outlet property="loginButton" destination="Pi0-A5-f2d" id="iz3-6m-nnY"/>
-                        <outlet property="signUpButton" destination="Fi8-Sy-jz6" id="OKq-B6-tgr"/>
-                        <outlet property="titleLabel" destination="cYA-Gq-icU" id="lxy-si-0rg"/>
+                        <outlet property="loginButton" destination="Pi0-A5-f2d" id="BYY-Oi-f3a"/>
+                        <outlet property="signUpButton" destination="Fi8-Sy-jz6" id="Fb8-XK-lZ8"/>
+                        <outlet property="titleLabel" destination="cYA-Gq-icU" id="Rmw-II-Hj3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pXG-3K-xw6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
