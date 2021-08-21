@@ -26,14 +26,14 @@
                                         </constraints>
                                         <state key="normal" title="Sign Up"/>
                                         <connections>
-                                            <segue destination="vkF-1a-F6h" kind="show" id="3Ph-eG-UGd"/>
+                                            <action selector="pressedSignUp:" destination="mhS-lx-dMi" eventType="touchUpInside" id="9Wn-n4-rp7"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pi0-A5-f2d">
                                         <rect key="frame" x="0.0" y="70" width="334" height="50"/>
                                         <state key="normal" title="Login"/>
                                         <connections>
-                                            <segue destination="KqG-gq-W9C" kind="show" id="5Lg-7y-Mws"/>
+                                            <action selector="pressedLogin:" destination="mhS-lx-dMi" eventType="touchUpInside" id="a7L-s5-YA9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -71,7 +71,7 @@
         <!--Login View Controller-->
         <scene sceneID="L2B-HQ-fXe">
             <objects>
-                <viewController id="KqG-gq-W9C" customClass="LoginViewController" customModule="What_to_Make" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" id="KqG-gq-W9C" customClass="LoginViewController" customModule="What_to_Make" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MO7-Ts-rkK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -148,7 +148,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="5ec-a0-3tb">
             <objects>
-                <viewController id="vkF-1a-F6h" customClass="SignUpViewController" customModule="What_to_Make" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUp" id="vkF-1a-F6h" customClass="SignUpViewController" customModule="What_to_Make" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l2l-Tk-tKs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

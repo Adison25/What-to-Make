@@ -14,6 +14,8 @@ struct Constants {
         
         static let tabBarVC = "tabBarVC"
         static let intialVC = "intialVC"
+        static let signUpVC = "SignUp"
+        static let loginVC = "loginVC"
         
     }
     
@@ -101,7 +103,7 @@ func fetchData() {
 //                    newItems.append(recipeItem)
 //                }
 //            }
-//            
+//
 //            Constants.allRecipes = newItems
 //            Constants.modifiedRecipesArr = Constants.allRecipes
 //        }
