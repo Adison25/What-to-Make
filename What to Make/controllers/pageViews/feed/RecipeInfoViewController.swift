@@ -34,7 +34,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = dynamicColorBackground
+        view.backgroundColor = .systemGray6//dynamicColorBackground
         
 //        ingredientsTableView.register(UITableViewCell.self, forCellReuseIdentifier: Cells.ingredientCell)
         ingredientsTableView.register(IngredientTableViewCell.nib(), forCellReuseIdentifier: IngredientTableViewCell.identifier)
@@ -81,7 +81,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     private func createScrollView() -> UIScrollView{
         let scrollView = UIScrollView(frame: view.bounds)
         scrollView.contentSize = scrollContentViewSize
-        scrollView.backgroundColor = .clear
+        scrollView.backgroundColor = .systemGray6//.clear
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false //if we dont specify this then our constraints wont be used properly
         return scrollView
@@ -91,9 +91,8 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         //imageView
         let imageView = UIImageView()
         imageView.sd_setImage(with: URL(string: model.photoURL), completed: nil)
-        //imageView.frame = CGRect(x: 0 , y: 0, width: size, height: size)
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .red
+//        imageView.backgroundColor = .red
         scrollView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -104,28 +103,21 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         let titleLabel = UIButton()
         titleLabel.setTitle("\(model.name)",for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
-        titleLabel.titleLabel?.font = recipeTitleFont()
+        titleLabel.titleLabel?.font = titleLabel.titleLabel?.font.withSize(50)//recipeTitleFont()
         titleLabel.titleLabel?.numberOfLines = 0
         titleLabel.titleLabel?.lineBreakMode = .byWordWrapping
-        //titleLabel.font = UIFont.boldSystemFont(ofSize: 40)
         titleLabel.setTitleColor(dynamicColorText, for: .normal)
         titleLabel.titleLabel?.textAlignment = .center
-        //titleLabel.frame = CGRect(x: 0, y: size, width: size, height: 80)
-        //titleLabel.addTarget(self, action: #selector(hi), for: .touchUpInside)
-        //titleLabel.backgroundColor = .red
         scrollView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         return titleLabel
     }
 
     private func createSourceButton(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat) -> UIButton {
-        //source
         let sourceButton = UIButton()
         sourceButton.setTitle("i", for: .normal)
-//        sourceButton.backgroundColor = .red
         //call some func that makes the size fit perfectly to how many characterrs are in the string
         sourceButton.titleLabel?.font = UIFont(name: "Apple Color Emoji", size: 18)
-//        sourceButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         sourceButton.setTitleColor(dynamicColorText, for: .normal)
         sourceButton.titleLabel?.textAlignment = .center
         sourceButton.backgroundColor = dynamicColorBackground
@@ -137,44 +129,34 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     private func createBackButton(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat) -> UIButton {
-        //backButton
         let backButton = UIButton()
         backButton.setTitle("X", for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
         backButton.titleLabel?.font = UIFont(name: "Apple Color Emoji", size: 18)
-//        backButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         backButton.setTitleColor(dynamicColorText, for: .normal)
         backButton.titleLabel?.textAlignment = .center
         backButton.addTarget(self, action: #selector(didTapDone), for: .touchUpInside)
         backButton.backgroundColor = dynamicColorBackground
         backButton.layer.cornerRadius = 20
-//        backButton.layer.borderWidth = 3
         scrollView.addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         return backButton
     }
 
     private func createIngredientHeader(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat)  -> UIButton{
-        //ingredientsTitle
         let ingredientHeader = UIButton()
         ingredientHeader.setTitle("Ingredients:",for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
-        ingredientHeader.titleLabel?.font = tableViewHeaderFont()
-        //titleLabel.font = UIFont.boldSystemFont(ofSize: 40)
+        ingredientHeader.titleLabel?.font = ingredientHeader.titleLabel?.font.withSize(30)//tableViewHeaderFont()
         ingredientHeader.setTitleColor(dynamicColorText, for: .normal)
         ingredientHeader.contentHorizontalAlignment =  UIControl.ContentHorizontalAlignment.center
-        //ingredienHeader.contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
-//        ingredientHeader.frame = CGRect(x: 20, y: size + 80, width: 200, height: 80)
-        //ingredienHeader.backgroundColor = .red
         scrollView.addSubview(ingredientHeader)
         ingredientHeader.translatesAutoresizingMaskIntoConstraints = false
         return ingredientHeader
     }
 
     private func createIngredientTableView(scrollView: UIScrollView, size: CGFloat){
-        //ingredientsList
-        //ingredientsTableView.frame = CGRect(x: 0, y: size + 80 + 80 , width: size, height: size * 1.3)
-        ingredientsTableView.backgroundColor = .clear//dynamicColorBackground
+        ingredientsTableView.backgroundColor = .systemGray6//.clear//dynamicColorBackground
         ingredientsTableView.estimatedRowHeight = UITableView.automaticDimension
         ingredientsTableView.separatorStyle = .none
         scrollView.addSubview(ingredientsTableView)
@@ -182,17 +164,12 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     private func createDirectionHeader(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat) -> UIButton{
-        //ingredientsTitle
         let directionsHeader = UIButton()
         directionsHeader.setTitle("Directions:",for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
-        directionsHeader.titleLabel?.font = UIFont(name: "Optima Regular", size: 30)
-        //titleLabel.font = UIFont.boldSystemFont(ofSize: 40)
+        directionsHeader.titleLabel?.font = directionsHeader.titleLabel?.font.withSize(30)
         directionsHeader.setTitleColor(dynamicColorText, for: .normal)
         directionsHeader.contentHorizontalAlignment =  UIControl.ContentHorizontalAlignment.center
-        //ingredienHeader.contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
-//        directionsHeader.frame = CGRect(x: 20, y: size + 80 + 80 + 550, width: 200, height: 80)
-        //ingredienHeader.backgroundColor = .red
         scrollView.addSubview(directionsHeader)
         directionsHeader.translatesAutoresizingMaskIntoConstraints = false
         return directionsHeader
@@ -200,8 +177,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
 
     private func createDirectionTableView(scrollView: UIScrollView, size: CGFloat) {
         //ingredientsList
-//        directionsTableView.frame = CGRect(x: 0, y: size + 80 + 80 + 640, width: size, height: size * 1.3)
-        directionsTableView.backgroundColor = .clear//dynamicColorBackground
+        directionsTableView.backgroundColor = .systemGray6//.clear//dynamicColorBackground
         directionsTableView.estimatedRowHeight = UITableView.automaticDimension
         directionsTableView.separatorStyle = .none
         scrollView.addSubview(directionsTableView)
@@ -295,9 +271,6 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.selectionStyle = .none
             return cell
         }
-//        var cell:UITableViewCell?
-
-//        if tableView == self.directionsTableView {
         else {
             let item = directionsArray[indexPath.row]
             let cell = directionsTableView.dequeueReusableCell(withIdentifier: DirectionTableViewCell.identifier, for: indexPath) as! DirectionTableViewCell
@@ -305,22 +278,6 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.selectionStyle = .none
             return cell
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-//        if tableView == self.ingredientsTableView {
-//            let  item  = ingredientsArray[indexPath.row]
-//            item.isChecked = !item.isChecked
-//        }
-//
-//        if tableView == self.directionsTableView {
-//            let  item  = directionsArray[indexPath.row]
-//            item.isChecked = !item.isChecked
-//        }
-//
-//        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -348,17 +305,4 @@ extension UIView {
             }
         }
     }
-    
-//    func roundCorners(corners:UIRectCorner, radius: CGFloat) {
-//
-//        DispatchQueue.main.async {
-//            let path = UIBezierPath(roundedRect: self.bounds,
-//                                    byRoundingCorners: corners,
-//                                    cornerRadii: CGSize(width: radius, height: radius))
-//            let maskLayer = CAShapeLayer()
-//            maskLayer.frame = self.bounds
-//            maskLayer.path = path.cgPath
-//            self.layer.mask = maskLayer
-//        }
-//    }
 }

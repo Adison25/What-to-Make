@@ -27,7 +27,7 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isPagingEnabled = false
-        collectionView.backgroundColor = .clear//dynamicColorBackground//.clear
+        collectionView.backgroundColor = .systemGray6//dynamicColorBackground//.clear
         collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.alwaysBounceVertical = true

@@ -49,18 +49,6 @@ public class DynamicSizeTableView: UITableView {
     }
 }
 
-func recipeTitleFont() -> UIFont {
-    return UIFont(name: "Optima Regular", size: 40)!
-}
-
-func tableViewHeaderFont() -> UIFont {
-    return UIFont(name: "Optima Regular", size: 30)!
-}
-
-func buttonFont() -> UIFont {
-    return UIFont(name: "Optima Regular", size: 15)!
-}
-
 let defaults = UserDefaults.standard
 
 var filterArr: [String] = []

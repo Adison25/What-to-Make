@@ -25,7 +25,6 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         collectionView.register(ButtonCollectionViewCell.nib(), forCellWithReuseIdentifier: ButtonCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
-//        collectionView.backgroundColor = .red
 //        collectionView.allowsMultipleSelection = false
     }
     

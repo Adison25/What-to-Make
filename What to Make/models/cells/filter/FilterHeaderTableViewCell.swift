@@ -19,13 +19,14 @@ class FilterHeaderTableViewCell: UITableViewCell {
     
     public func configure(with title: String) {
         filterHeaderLabel.text = title
-        filterHeaderLabel.font = tableViewHeaderFont()
+        filterHeaderLabel.font = filterHeaderLabel.font.withSize(25)//tableViewHeaderFont()
     }
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        contentView.backgroundColor = .systemGray6
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -9,16 +9,16 @@
 import UIKit
 
 extension UIViewController {
-    func setupClearNavBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.tintColor = .black
-        navigationController?.navigationBar.barTintColor = .black
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-    }
+        func setupClearNavBar() {
+            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationController?.navigationBar.shadowImage = UIImage()
+            navigationController?.navigationBar.tintColor = .white
+            navigationController?.navigationBar.barTintColor = .white
+            navigationController?.navigationBar.barStyle = .default
+            navigationController?.navigationBar.isTranslucent = true
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: dynamicColorText]
+        }
     func hideKeyboardOnTap() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tap.cancelsTouchesInView = false

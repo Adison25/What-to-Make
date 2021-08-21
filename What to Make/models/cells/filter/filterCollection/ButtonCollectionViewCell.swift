@@ -24,7 +24,7 @@ class ButtonCollectionViewCell: UICollectionViewCell {
     
     public func configure(with title: String) {
         filterButton.setTitle(title, for: .normal)
-        filterButton.titleLabel?.font = buttonFont()
+        filterButton.titleLabel?.font = filterButton.titleLabel?.font.withSize(15)//buttonFont()
         filterButton.setTitleColor(dynamicColorText, for: .normal)
         filterButton.backgroundColor = dynamicColorBackground
 //        filterButton.layer.borderColor = UIColor(named: "buttonBorder")!.cgColor

@@ -41,6 +41,7 @@
 		75DA0A5626CC7D3C00A2CF1F /* IntialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A5526CC7D3C00A2CF1F /* IntialViewController.swift */; };
 		75DA0A5826CD52CB00A2CF1F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A5726CD52CB00A2CF1F /* Constants.swift */; };
 		75DA0A8A26D0253600A2CF1F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A8926D0253600A2CF1F /* SettingsViewController.swift */; };
+		75DA0A8D26D060BF00A2CF1F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A8C26D060BF00A2CF1F /* SettingsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		75DA0A5526CC7D3C00A2CF1F /* IntialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntialViewController.swift; sourceTree = "<group>"; };
 		75DA0A5726CD52CB00A2CF1F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		75DA0A8926D0253600A2CF1F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		75DA0A8C26D060BF00A2CF1F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		CC378A188847D5AB1E6B8E91 /* Pods_What_to_Make.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_to_Make.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,7 @@
 		751664A826B83A7900CBACCC /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				75DA0A8B26D0609F00A2CF1F /* settings */,
 				751664B726C1A63000CBACCC /* filter */,
 				751664B626C1A62600CBACCC /* photoCollection */,
 				751664B526C1A61300CBACCC /* recipeInfo */,
@@ -259,6 +262,14 @@
 			path = helpers;
 			sourceTree = "<group>";
 		};
+		75DA0A8B26D0609F00A2CF1F /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				75DA0A8C26D060BF00A2CF1F /* SettingsTableViewCell.swift */,
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
 		C3834E5D740733EEB36BD820 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +412,7 @@
 				751664AF26BB3FD000CBACCC /* IngredientTableViewCell.swift in Sources */,
 				753AF06226A9D13800AE1D54 /* TabBarController.swift in Sources */,
 				753AF04E26A9D06200AE1D54 /* AppDelegate.swift in Sources */,
+				75DA0A8D26D060BF00A2CF1F /* SettingsTableViewCell.swift in Sources */,
 				753AF06A26A9D16000AE1D54 /* FolderViewController.swift in Sources */,
 				75A25C7726AE575C00A6643F /* dynamicColor.swift in Sources */,
 				751664C026C1AD8900CBACCC /* FilterCollectionTableViewCell.swift in Sources */,

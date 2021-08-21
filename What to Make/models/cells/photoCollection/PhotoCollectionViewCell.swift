@@ -28,5 +28,6 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         imageView.frame = CGRect(x: 0 , y: 0, width: contentView.frame.size.height, height: contentView.frame.size.height)
         imageView.contentMode = .scaleAspectFit
         contentView.addSubview(imageView)
+        //add some labels
     }
 }

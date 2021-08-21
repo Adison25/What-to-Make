@@ -36,9 +36,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         setupClearNavBar()
         navigationItem.title = "Filters"
-        view.backgroundColor = .systemBackground
         view.addSubview(tableView)
-            
         tableView.register(FilterHeaderTableViewCell.nib(), forCellReuseIdentifier: FilterHeaderTableViewCell.identifier)
         tableView.register(FilterCollectionTableViewCell.nib(), forCellReuseIdentifier: FilterCollectionTableViewCell.identifier)
         tableView.delegate = self
@@ -49,7 +47,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
-//        tableView.backgroundColor = .red
+        tableView.backgroundColor = .systemGray6
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,14 +66,11 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }else {
                 indexHeader = 0
             }
-//            print("indexHeader\(indexPath.row)")
             return cell
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.identifier, for: indexPath) as! FilterCollectionTableViewCell
-//            print("\(buttonArray[indexButton])")
             cell.configure(with: buttonArray[indexButton])
-//            cell.configure(with: models)
             cell.selectionStyle = .none
 
             if indexButton < 2 {
@@ -83,7 +78,6 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }else {
                 indexButton = 0
             }
-//            print("tableview\(indexPath.row)")
             return cell
         }
     }
@@ -95,11 +89,6 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("im here!") //hits the end of the rows
-    }
-
 }
 
 
@@ -114,10 +103,8 @@ extension FilterViewController {
 
         if prevScrollDirection > scrollViewY && prevScrollDirection < scrollHeight {
             isHidden = false
-           // print("Scroll Up")
         } else if prevScrollDirection < scrollViewY && scrollViewY > 0 {
             isHidden = true
-           // print("Scroll Down")
         }
         let userInfo : [String : Bool] = [ "isHidden" : isHidden ]
         NotificationCenter.default.post(name: tabBarNotificationKey, object: nil, userInfo: userInfo)
