@@ -57,19 +57,21 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     vc.modalPresentationStyle = .fullScreen
                     self.present(vc, animated: true)
 
-//                    let vc = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.intialVC) as? IntialViewController
-//                    let appDelegate = UIApplication.shared.delegate
-//                    appDelegate?.window??.rootViewController = vc
-//                    self.view.window?.rootViewController = vc
-//                    self.view.window?.makeKeyAndVisible()
                 }))
                 self.present(alert, animated: true)
                 
             }),
             SettingsOption(title: "Add Acount", icon: UIImage(systemName: "person.fill.badge.plus"), iconBackgroundColor: .systemGreen, handler: {
-                
-                //action sheet
-                
+                //need to make title bigger and recreate the instagram add acount action sheet
+                let actionSheet = UIAlertController(title: "Add Account", message: "", preferredStyle: .actionSheet)
+                actionSheet.addAction(UIAlertAction(title: "Log Into Existing Acount", style: .default, handler: { action in
+                    //go to sign in page
+                }))
+                actionSheet.addAction(UIAlertAction(title: "Create New Account", style: .default, handler: { action in
+                    //go to intial vc
+                }))
+                actionSheet.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                self.present(actionSheet, animated: true)
             })
         ]))
         models.append(Section(title: "Advertising", options: [

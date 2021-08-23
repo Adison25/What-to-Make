@@ -19,6 +19,8 @@ struct Model {
 class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {    
 
     private let tableView = DynamicSizeTableView()
+    private let numberReciepesLabel = UILabel()
+    private let clearFiltersButton = UIButton()
     private var prevScrollDirection: CGFloat = 0
     
 //    var models = [Model]()
@@ -42,6 +44,10 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        //puts the button ontop of everything because the navbar was infront of the button when i add it to the subview
+        UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.addSubview(clearFiltersButton)
+        configureClearAll()
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -49,6 +55,20 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.frame = view.bounds
         tableView.backgroundColor = .systemGray6
     }
+    @objc func tappedClearAll(){
+        print("here")
+    }
+    
+    func configureClearAll() {
+        clearFiltersButton.setTitle("Clear All", for: .normal)
+        clearFiltersButton.addTarget(self, action: #selector(tappedClearAll), for: .touchUpInside)
+        clearFiltersButton.setTitleColor(dynamicColorText, for: .normal)
+        clearFiltersButton.titleLabel?.textAlignment = .center
+        clearFiltersButton.frame = CGRect(x: 300, y: 90, width: 80, height: 50)
+        clearFiltersButton.superview?.bringSubviewToFront(clearFiltersButton)
+    }
+    
+ 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6

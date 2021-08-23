@@ -16,7 +16,7 @@ class TabBarController: UITabBarController {
         setupMenuBar()
         setUpControllers()
         NotificationCenter.default.addObserver(self, selector: #selector(self.notificationReceived(_:)), name: tabBarNotificationKey, object: nil)
-        selectedIndex = 3
+        selectedIndex = 2
     }
     
     @objc func notificationReceived(_ notification: Notification) {
