@@ -19,7 +19,7 @@ struct Model {
 class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {    
 
     private let tableView = DynamicSizeTableView()
-    private let numberReciepesLabel = UILabel()
+    private let numberReciepesLabel = UIButton()
     private let clearFiltersButton = UIButton()
     private var prevScrollDirection: CGFloat = 0
     
@@ -44,10 +44,13 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        
         //puts the button ontop of everything because the navbar was infront of the button when i add it to the subview
-        UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.addSubview(clearFiltersButton)
-        configureClearAll()
-
+//        UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.addSubview(clearFiltersButton)
+//        configureClearAll()
+        
+        //adding label
+        view.addSubview(numberReciepesLabel)
     }
     
     override func viewDidLayoutSubviews() {
@@ -55,20 +58,53 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.frame = view.bounds
         tableView.backgroundColor = .systemGray6
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNumRecipeLabel()
+    }
+    
+    func configureNumRecipeLabel() {
+        if Constants.modifiedRecipesArr.count == 0 {
+            numberReciepesLabel.setTitle("SHOW RECIPES", for: .normal)
+            numberReciepesLabel.backgroundColor = .systemGray4
+            numberReciepesLabel.setTitleColor(dynamicColorBackground, for: .normal)
+        }else {
+            numberReciepesLabel.setTitle("SHOW \(Constants.modifiedRecipesArr.count) RECIPES", for: .normal)
+            Utilities.styleFilledButton(numberReciepesLabel)
+            numberReciepesLabel.setTitleColor(dynamicColorText, for: .normal)
+        }
+        numberReciepesLabel.titleLabel?.textAlignment = .center
+        numberReciepesLabel.addTarget(self, action: #selector(openFeed), for: .touchUpInside)
+//        numberReciepesLabel.backgroundColor = dynamicColorBackground
+        numberReciepesLabel.layer.cornerRadius = 18
+        numberReciepesLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            numberReciepesLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -150),
+            numberReciepesLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.60), //or 0.25 can change depending on what i want it to look like
+            numberReciepesLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.frame.size.width/5)
+        ])
+    }
+    
+    @objc func openFeed() {
+        print("Here")
+    }
+    
     @objc func tappedClearAll(){
-        print("here")
+        //resets all the buttons
+        tableView.reloadData()
     }
     
     func configureClearAll() {
-        clearFiltersButton.setTitle("Clear All", for: .normal)
+        clearFiltersButton.setTitle("CLEAR ALL", for: .normal)
         clearFiltersButton.addTarget(self, action: #selector(tappedClearAll), for: .touchUpInside)
         clearFiltersButton.setTitleColor(dynamicColorText, for: .normal)
         clearFiltersButton.titleLabel?.textAlignment = .center
-        clearFiltersButton.frame = CGRect(x: 300, y: 90, width: 80, height: 50)
+        clearFiltersButton.frame = CGRect(x: 300, y: 90, width: 100, height: 50)
         clearFiltersButton.superview?.bringSubviewToFront(clearFiltersButton)
     }
-    
- 
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
@@ -109,6 +145,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+
 }
 
 

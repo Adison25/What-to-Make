@@ -139,22 +139,14 @@
 		751664B726C1A63000CBACCC /* filter */ = {
 			isa = PBXGroup;
 			children = (
-				751664BA26C1AA0700CBACCC /* FilterHeaderTableViewCell.swift */,
-				751664BB26C1AA0700CBACCC /* FilterHeaderTableViewCell.xib */,
-				751664C226C1EA8900CBACCC /* filterCollection */,
-			);
-			path = filter;
-			sourceTree = "<group>";
-		};
-		751664C226C1EA8900CBACCC /* filterCollection */ = {
-			isa = PBXGroup;
-			children = (
 				751664BE26C1AD8900CBACCC /* FilterCollectionTableViewCell.swift */,
 				751664BF26C1AD8900CBACCC /* FilterCollectionTableViewCell.xib */,
+				751664BA26C1AA0700CBACCC /* FilterHeaderTableViewCell.swift */,
+				751664BB26C1AA0700CBACCC /* FilterHeaderTableViewCell.xib */,
 				751664C526C1EACF00CBACCC /* ButtonCollectionViewCell.swift */,
 				751664C626C1EACF00CBACCC /* ButtonCollectionViewCell.xib */,
 			);
-			path = filterCollection;
+			path = filter;
 			sourceTree = "<group>";
 		};
 		753AF04126A9D06200AE1D54 = {
