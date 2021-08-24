@@ -35,7 +35,6 @@ class LoadingViewController: UIViewController {
                 let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarVC) as! TabBarController)
                 vc.modalTransitionStyle = .crossDissolve
                 vc.modalPresentationStyle = .fullScreen
-                print("in")
                 self.present(vc, animated: true)
             }
             

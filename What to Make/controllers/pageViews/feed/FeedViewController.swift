@@ -80,7 +80,6 @@ extension FeedViewController {
         //        let model = data[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
         let size =  cell.frame.size.height
-        print(size)
         vc.configureInfoView(with: Constants.modifiedRecipesArr[indexPath.row], size: size)
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .fullScreen

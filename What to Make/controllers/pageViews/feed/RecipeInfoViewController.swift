@@ -31,7 +31,6 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     
     lazy var scrollContentViewSize = CGSize(width: view.frame.size.width, height: view.frame.height)
     
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6//dynamicColorBackground
@@ -45,6 +44,11 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         directionsTableView.register(DirectionTableViewCell.nib(), forCellReuseIdentifier: DirectionTableViewCell.identifier)
         directionsTableView.delegate = self
         directionsTableView.dataSource = self
+        
+    }
+    
+    @objc private func didDoubleTap(_ gesture: UITapGestureRecognizer) {
+        print("tapped!!")
     }
     
     //dismisses the current vc
@@ -92,7 +96,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         let imageView = UIImageView()
         imageView.sd_setImage(with: URL(string: model.photoURL), completed: nil)
         imageView.contentMode = .scaleAspectFit
-//        imageView.backgroundColor = .red
+//        imageView.isUserInteractionEnabled = true
         scrollView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -191,6 +195,10 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         fillArrays(with: model)
         
         let scrollView = createScrollView()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didDoubleTap(_:)))
+        tapGesture.numberOfTouchesRequired = 2
+        tapGesture.numberOfTapsRequired = 1
+        scrollView.addGestureRecognizer(tapGesture)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
