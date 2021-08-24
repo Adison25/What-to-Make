@@ -13,6 +13,7 @@ class LoadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //make it look like its loading
         fetchData { data in
             defaults.set(true, forKey: "LoggedIn")
             DispatchQueue.main.async {

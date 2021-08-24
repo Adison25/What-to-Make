@@ -16,7 +16,7 @@ struct Model {
     }
 }
 
-class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {    
+class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MyCustomCellDelegate2 {
 
     private let tableView = DynamicSizeTableView()
     private let numberReciepesLabel = UIButton()
@@ -64,6 +64,10 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         configureNumRecipeLabel()
     }
     
+    func updateLabel2() {
+        configureNumRecipeLabel()
+    }
+    
     func configureNumRecipeLabel() {
         if Constants.modifiedRecipesArr.count == 0 {
             numberReciepesLabel.setTitle("SHOW RECIPES", for: .normal)
@@ -88,7 +92,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @objc func openFeed() {
-        print("Here")
+        tabBarController?.selectedIndex = 1
     }
     
     @objc func tappedClearAll(){
@@ -128,7 +132,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.identifier, for: indexPath) as! FilterCollectionTableViewCell
             cell.configure(with: buttonArray[indexButton])
             cell.selectionStyle = .none
-
+            cell.delegate2 = self
             if indexButton < 2 {
                 indexButton += 1
             }else {

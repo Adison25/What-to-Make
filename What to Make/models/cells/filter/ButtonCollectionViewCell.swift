@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol MyCustomCellDelegate: AnyObject {
+    func updateLabel()
+}
+
 class ButtonCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var filterButton: UIButton!
     
     static let identifier = "ButtonCollectionViewCell"
+    
+    weak var delegate: MyCustomCellDelegate?
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -37,7 +43,7 @@ class ButtonCollectionViewCell: UICollectionViewCell {
     
     @objc func buttonTap(){
         changeColor()
-
+        delegate?.updateLabel()
     }
     
     func changeColor() {

@@ -7,7 +7,11 @@
 
 import UIKit
 
-class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+protocol MyCustomCellDelegate2: AnyObject {
+    func updateLabel2()
+}
+
+class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MyCustomCellDelegate{
 
     static let identifier = "FilterCollectionTableViewCell"
     var filterArr: [String] = []
@@ -18,6 +22,8 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     @IBOutlet var collectionView: UICollectionView!
     
     var models = [String]()
+    
+    weak var delegate2: MyCustomCellDelegate2?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +40,11 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         // Configure the view for the selected state
     }
     
+    func updateLabel() {
+        delegate2?.updateLabel2()
+    }
+    
+    
     func configure(with models: [String]) {
         self.models = models
         collectionView.reloadData()
@@ -46,6 +57,7 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonCollectionViewCell.identifier, for: indexPath) as! ButtonCollectionViewCell
         cell.configure(with: models[indexPath.row])
+        cell.delegate = self
         return cell
     }
     
