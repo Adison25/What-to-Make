@@ -8,6 +8,7 @@ target 'What to Make' do
   # Pods for What to Make
 pod 'BEMCheckBox'
 pod 'SDWebImage'
+pod 'SkeletonView'
 pod 'Firebase/Analytics'
 pod 'Firebase/Core'
 pod 'Firebase/Database'

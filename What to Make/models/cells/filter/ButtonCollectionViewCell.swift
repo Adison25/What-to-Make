@@ -37,7 +37,7 @@ class ButtonCollectionViewCell: UICollectionViewCell {
     
     @objc func buttonTap(){
         changeColor()
-        
+
     }
     
     func changeColor() {

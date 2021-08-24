@@ -16,11 +16,13 @@ struct Constants {
         static let intialVC = "intialVC"
         static let signUpVC = "SignUp"
         static let loginVC = "loginVC"
+        static let loadingVC = "loadingVC"
         
     }
     
     static var allRecipes: [RecipeItem] = []
     static var modifiedRecipesArr: [RecipeItem] = []
+//    static var onTaskFinished:(() -> Void)?
     
 }
 
@@ -67,7 +69,7 @@ func removeFilter(filter: String) {
     filterRecipesArr()
 }
 
-func filterRecipesArr(){
+func filterRecipesArr() {
     Constants.modifiedRecipesArr = Constants.allRecipes
     var idx = 0
     var hasIt = 0
@@ -88,7 +90,7 @@ func filterRecipesArr(){
 }
 
 
-func fetchData() {
+func fetchData(completion: @escaping ([RecipeItem]) -> Void) {
     let recipesRef = Database.database().reference(withPath: "recipes")
     recipesRef.getData { (error, snapshot) in
         if let error = error {
@@ -103,12 +105,13 @@ func fetchData() {
                     newItems.append(recipeItem)
                 }
             }
-
             Constants.allRecipes = newItems
             Constants.modifiedRecipesArr = Constants.allRecipes
+            completion(Constants.modifiedRecipesArr)
         }
         else {
             print("No data available")
         }
     }
+//    Constants.onTaskFinished = completion
 }

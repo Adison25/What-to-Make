@@ -14,11 +14,12 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
     private let cellId = "PhotoCollectionViewCell"
     private var prevScrollDirection: CGFloat = 0
     
-    var gradient : CAGradientLayer?
-    let gradientView : UIView = {
-        let view = UIView()
-        return view
-    }()
+    var completionHandlers = [(() -> Void)]()
+//    var gradient : CAGradientLayer?
+//    let gradientView : UIView = {
+//        let view = UIView()
+//        return view
+//    }()
     
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -46,6 +47,7 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }

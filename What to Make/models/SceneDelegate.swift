@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         if UserDefaults.standard.bool(forKey: "LoggedIn") == true {
             self.window = UIWindow(windowScene: scene)
-            let vc = TabBarController()
+            let vc = LoadingViewController()
             self.window?.rootViewController = vc
             self.window?.makeKeyAndVisible()
         }

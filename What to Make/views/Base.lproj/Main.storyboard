@@ -238,6 +238,21 @@
             </objects>
             <point key="canvasLocation" x="450.72463768115944" y="-283.25892857142856"/>
         </scene>
+        <!--Loading View Controller-->
+        <scene sceneID="kwY-JY-DQh">
+            <objects>
+                <viewController storyboardIdentifier="loadingVC" id="SYX-HN-3Qq" customClass="LoadingViewController" customModule="What_to_Make" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ABH-Dx-xum">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="sbV-gI-yY0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pNb-PF-N9n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1185.5072463768117" y="57.589285714285708"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -252,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1255" y="58"/>
+            <point key="canvasLocation" x="1875" y="58"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Q3L-Qc-dfc">
