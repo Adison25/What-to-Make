@@ -27,7 +27,7 @@
 		753AF06726A9D16000AE1D54 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF06326A9D16000AE1D54 /* FeedViewController.swift */; };
 		753AF06826A9D16000AE1D54 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF06426A9D16000AE1D54 /* Extensions.swift */; };
 		753AF06926A9D16000AE1D54 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF06526A9D16000AE1D54 /* FilterViewController.swift */; };
-		753AF06A26A9D16000AE1D54 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF06626A9D16000AE1D54 /* FolderViewController.swift */; };
+		753AF06A26A9D16000AE1D54 /* BookmarkedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF06626A9D16000AE1D54 /* BookmarkedViewController.swift */; };
 		753AF06F26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF06E26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift */; };
 		753AF07126AA1CB300AE1D54 /* RecipeInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF07026AA1CB300AE1D54 /* RecipeInfoViewController.swift */; };
 		753AF07326AA200200AE1D54 /* TSBlurEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF07226AA200200AE1D54 /* TSBlurEffectView.swift */; };
@@ -69,7 +69,7 @@
 		753AF06326A9D16000AE1D54 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		753AF06426A9D16000AE1D54 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		753AF06526A9D16000AE1D54 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
-		753AF06626A9D16000AE1D54 /* FolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
+		753AF06626A9D16000AE1D54 /* BookmarkedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkedViewController.swift; sourceTree = "<group>"; };
 		753AF06E26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		753AF07026AA1CB300AE1D54 /* RecipeInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInfoViewController.swift; sourceTree = "<group>"; };
 		753AF07226AA200200AE1D54 /* TSBlurEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSBlurEffectView.swift; sourceTree = "<group>"; };
@@ -219,7 +219,7 @@
 				75DA0A8E26D45FEF00A2CF1F /* LoadingViewController.swift */,
 				75DA0A4C26CC02E100A2CF1F /* feed */,
 				753AF06526A9D16000AE1D54 /* FilterViewController.swift */,
-				753AF06626A9D16000AE1D54 /* FolderViewController.swift */,
+				753AF06626A9D16000AE1D54 /* BookmarkedViewController.swift */,
 				75DA0A8926D0253600A2CF1F /* SettingsViewController.swift */,
 				75DA0A4D26CC02F500A2CF1F /* preliminary */,
 			);
@@ -409,7 +409,7 @@
 				753AF06226A9D13800AE1D54 /* TabBarController.swift in Sources */,
 				753AF04E26A9D06200AE1D54 /* AppDelegate.swift in Sources */,
 				75DA0A8D26D060BF00A2CF1F /* SettingsTableViewCell.swift in Sources */,
-				753AF06A26A9D16000AE1D54 /* FolderViewController.swift in Sources */,
+				753AF06A26A9D16000AE1D54 /* BookmarkedViewController.swift in Sources */,
 				75A25C7726AE575C00A6643F /* dynamicColor.swift in Sources */,
 				751664C026C1AD8900CBACCC /* FilterCollectionTableViewCell.swift in Sources */,
 				75A25C7926AE75C800A6643F /* WebViewViewController.swift in Sources */,

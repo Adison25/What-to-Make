@@ -9,7 +9,7 @@
 import UIKit
 import BEMCheckBox
 
-class FolderViewController: UIViewController {
+class BookmarkedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
