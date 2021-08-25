@@ -41,9 +41,8 @@
                                     <constraint firstItem="Pi0-A5-f2d" firstAttribute="height" secondItem="Fi8-Sy-jz6" secondAttribute="height" id="7Yz-uM-zZb"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What To Make?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYA-Gq-icU">
-                                <rect key="frame" x="76" y="424" width="263" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What To Make?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYA-Gq-icU">
+                                <rect key="frame" x="76" y="424" width="262.5" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -53,8 +52,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ABo-he-e0C" firstAttribute="trailing" secondItem="HvL-sx-rK2" secondAttribute="trailing" constant="40" id="Ewc-0n-0xZ"/>
+                            <constraint firstItem="cYA-Gq-icU" firstAttribute="centerX" secondItem="QKe-ZR-hNV" secondAttribute="centerX" id="NDG-83-MVg"/>
                             <constraint firstItem="ABo-he-e0C" firstAttribute="bottom" secondItem="HvL-sx-rK2" secondAttribute="bottom" constant="140" id="OwY-i7-P0z"/>
                             <constraint firstItem="HvL-sx-rK2" firstAttribute="leading" secondItem="ABo-he-e0C" secondAttribute="leading" constant="40" id="Rd5-VK-4E0"/>
+                            <constraint firstItem="cYA-Gq-icU" firstAttribute="centerY" secondItem="QKe-ZR-hNV" secondAttribute="centerY" id="fdS-mh-iTO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="y0H-sx-L4n"/>
@@ -127,6 +128,7 @@
                             <constraint firstItem="UTn-ga-Zv4" firstAttribute="top" secondItem="HKF-Lp-V3m" secondAttribute="top" constant="60" id="2VF-al-69t"/>
                             <constraint firstItem="rL0-fG-0Yy" firstAttribute="leading" secondItem="HKF-Lp-V3m" secondAttribute="leading" constant="20" id="4xB-6B-MFo"/>
                             <constraint firstItem="HKF-Lp-V3m" firstAttribute="trailing" secondItem="UTn-ga-Zv4" secondAttribute="trailing" constant="40" id="COf-kt-P3a"/>
+                            <constraint firstItem="HKF-Lp-V3m" firstAttribute="trailing" secondItem="rL0-fG-0Yy" secondAttribute="trailing" constant="360" id="jl5-9g-VWd"/>
                             <constraint firstItem="UTn-ga-Zv4" firstAttribute="leading" secondItem="HKF-Lp-V3m" secondAttribute="leading" constant="40" id="pkD-kW-cML"/>
                             <constraint firstItem="rL0-fG-0Yy" firstAttribute="top" secondItem="MO7-Ts-rkK" secondAttribute="top" constant="50" id="rmr-38-tlq"/>
                         </constraints>
@@ -219,6 +221,7 @@
                             <constraint firstItem="hy5-CJ-Erl" firstAttribute="leading" secondItem="l2l-Tk-tKs" secondAttribute="leading" constant="20" id="eRZ-Rr-2g2"/>
                             <constraint firstItem="Nlo-t6-2Lh" firstAttribute="top" secondItem="Ban-R4-fIi" secondAttribute="top" constant="60" id="goV-Uf-4VV"/>
                             <constraint firstItem="Nlo-t6-2Lh" firstAttribute="leading" secondItem="Ban-R4-fIi" secondAttribute="leading" constant="40" id="kMI-MP-PkM"/>
+                            <constraint firstItem="Ban-R4-fIi" firstAttribute="trailing" secondItem="hy5-CJ-Erl" secondAttribute="trailing" constant="360" id="kSf-VA-z9m"/>
                             <constraint firstItem="hy5-CJ-Erl" firstAttribute="top" secondItem="l2l-Tk-tKs" secondAttribute="top" constant="50" id="qpQ-iO-ECI"/>
                         </constraints>
                     </view>

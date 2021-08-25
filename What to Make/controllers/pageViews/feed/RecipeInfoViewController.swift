@@ -4,7 +4,6 @@
 //
 //  Created by Adison Emerick on 7/22/21.
 //
-
 import UIKit
 
 class ChecklistItem {
@@ -66,6 +65,17 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         present(navVC, animated: true)
     }
     
+    @objc func bookmarkRecipe(sender:UIButton) {
+        if sender.tag == 1 {
+            sender.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+            sender.tag = 2
+        } else {
+            sender.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
+            sender.tag = 1
+        }
+        
+    }
+    
     private func updateScrollViewContentSize(height: CGFloat){
         scrollContentViewSize = CGSize(width: view.frame.size.width, height: view.frame.height + height)
         reloadInputViews()
@@ -91,7 +101,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         return scrollView
     }
     
-    private func createRecipeImageView(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat) -> UIImageView {
+    private func createRecipeImageView(with model: RecipeItem, scrollView: UIScrollView) -> UIImageView {
         //imageView
         let imageView = UIImageView()
         imageView.sd_setImage(with: URL(string: model.photoURL), completed: nil)
@@ -102,7 +112,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         return imageView
     }
 
-    private func createTitleLabel(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat) -> UIButton{
+    private func createTitleLabel(with model: RecipeItem, scrollView: UIScrollView) -> UIButton{
         //title
         let titleLabel = UIButton()
         titleLabel.setTitle("\(model.name)",for: .normal)
@@ -117,7 +127,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         return titleLabel
     }
 
-    private func createSourceButton(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat) -> UIButton {
+    private func createSourceButton(scrollView: UIScrollView) -> UIButton {
         let sourceButton = UIButton()
         sourceButton.setTitle("i", for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
@@ -131,8 +141,20 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         sourceButton.translatesAutoresizingMaskIntoConstraints = false
         return sourceButton
     }
+    
+    private func createBookmarkButton(scrollView: UIScrollView) -> UIButton {
+        let bookmarkButton = UIButton()
+        bookmarkButton.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
+//        bookmarkButton.tintColor = dynamicColorTextLink
+        bookmarkButton.tag = 1
+        bookmarkButton.addTarget(self, action: #selector(bookmarkRecipe), for: .touchUpInside)
+        scrollView.addSubview(bookmarkButton)
+        bookmarkButton.translatesAutoresizingMaskIntoConstraints = false
+        return bookmarkButton
+    }
 
-    private func createBackButton(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat) -> UIButton {
+
+    private func createBackButton(scrollView: UIScrollView) -> UIButton {
         let backButton = UIButton()
         backButton.setTitle("X", for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
@@ -147,7 +169,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         return backButton
     }
 
-    private func createIngredientHeader(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat)  -> UIButton{
+    private func createIngredientHeader(scrollView: UIScrollView)  -> UIButton{
         let ingredientHeader = UIButton()
         ingredientHeader.setTitle("Ingredients:",for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
@@ -159,7 +181,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         return ingredientHeader
     }
 
-    private func createIngredientTableView(scrollView: UIScrollView, size: CGFloat){
+    private func createIngredientTableView(scrollView: UIScrollView){
         ingredientsTableView.backgroundColor = .systemGray6//.clear//dynamicColorBackground
         ingredientsTableView.estimatedRowHeight = UITableView.automaticDimension
         ingredientsTableView.separatorStyle = .none
@@ -167,7 +189,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         ingredientsTableView.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    private func createDirectionHeader(with model: RecipeItem, scrollView: UIScrollView, size: CGFloat) -> UIButton{
+    private func createDirectionHeader(scrollView: UIScrollView) -> UIButton{
         let directionsHeader = UIButton()
         directionsHeader.setTitle("Directions:",for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
@@ -179,7 +201,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         return directionsHeader
     }
 
-    private func createDirectionTableView(scrollView: UIScrollView, size: CGFloat) {
+    private func createDirectionTableView(scrollView: UIScrollView) {
         //ingredientsList
         directionsTableView.backgroundColor = .systemGray6//.clear//dynamicColorBackground
         directionsTableView.estimatedRowHeight = UITableView.automaticDimension
@@ -205,49 +227,56 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-        let imageView = createRecipeImageView(with: model, scrollView: scrollView, size: size)
+        let imageView = createRecipeImageView(with: model, scrollView: scrollView)
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             imageView.heightAnchor.constraint(equalToConstant: size)
         ])
-        let titleButton = createTitleLabel(with: model, scrollView: scrollView, size: size)
+        let titleButton = createTitleLabel(with: model, scrollView: scrollView)
         NSLayoutConstraint.activate([
             titleButton.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: 25),
             titleButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
             titleButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
             titleButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
         ])
-        let sourceButton = createSourceButton(with: model, scrollView: scrollView, size: size)
+        let sourceButton = createSourceButton(scrollView: scrollView)
         NSLayoutConstraint.activate([
             sourceButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 25),
             sourceButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10),
             sourceButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -10)
         ])
-        let backButton = createBackButton(with: model, scrollView: scrollView, size: size)
+        let bookmarkButton = createBookmarkButton(scrollView: scrollView)
+        NSLayoutConstraint.activate([
+            bookmarkButton.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: -50),
+            bookmarkButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10),
+            bookmarkButton.heightAnchor.constraint(equalTo: sourceButton.heightAnchor),
+            bookmarkButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -10)
+        ])
+        let backButton = createBackButton(scrollView: scrollView)
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 25),
             backButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10), //or 0.25 can change depending on what i want it to look like
             backButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 10)
         ])
         //ingredient views
-        let ingredientHeader = createIngredientHeader(with: model, scrollView: scrollView, size: size)
+        let ingredientHeader = createIngredientHeader(scrollView: scrollView)
         NSLayoutConstraint.activate([
             ingredientHeader.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 25),
             ingredientHeader.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.41)
         ])
-        createIngredientTableView(scrollView: scrollView, size: size)
+        createIngredientTableView(scrollView: scrollView)
         NSLayoutConstraint.activate([
             ingredientsTableView.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 75),
             ingredientsTableView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
         //directions views
-        let directionHeader = createDirectionHeader(with: model, scrollView: scrollView, size: size)
+        let directionHeader = createDirectionHeader(scrollView: scrollView)
         NSLayoutConstraint.activate([
             directionHeader.topAnchor.constraint(equalTo: ingredientsTableView.bottomAnchor,constant: 25),
             directionHeader.widthAnchor.constraint(equalTo: ingredientsTableView.widthAnchor, multiplier: 0.41)
         ])
-        createDirectionTableView(scrollView: scrollView, size: size)
+        createDirectionTableView(scrollView: scrollView)
         NSLayoutConstraint.activate([
             directionsTableView.topAnchor.constraint(equalTo: ingredientsTableView.bottomAnchor,constant: 75),
             directionsTableView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
