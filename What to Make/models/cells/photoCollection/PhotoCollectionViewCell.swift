@@ -11,9 +11,7 @@ import SDWebImage
 class PhotoCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "PhotoCollectionViewCell"
-    
-    var disabledHighlightedAnimation = false
-    
+ 
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -29,8 +27,9 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         }
         let imageView = UIImageView()
         imageView.sd_setImage(with: URL(string: model.photoURL), completed: nil)
-        imageView.frame = CGRect(x: 0 , y: 0, width: contentView.frame.size.height, height: contentView.frame.size.height)
+        imageView.frame = contentView.bounds
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         contentView.addSubview(imageView)
         //add some labels
     }

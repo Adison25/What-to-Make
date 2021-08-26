@@ -103,7 +103,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         //imageView
         let imageView = UIImageView()
         imageView.sd_setImage(with: URL(string: model.photoURL), completed: nil)
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
 //        imageView.isUserInteractionEnabled = true
         scrollView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false

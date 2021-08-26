@@ -6,27 +6,27 @@
 //  Copyright © 2020 Diego Bustamante. All rights reserved.
 //
 import UIKit
+import CHTCollectionViewWaterfallLayout
 
 public let tabBarNotificationKey = Notification.Name(rawValue: "tabBarNotificationKey")
 
-class FeedViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class FeedViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout {
     
     private let cellId = "PhotoCollectionViewCell"
     private var prevScrollDirection: CGFloat = 0
 
     lazy var collectionView : UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.isPagingEnabled = false
-        collectionView.backgroundColor = .systemGray6//dynamicColorBackground//.clear
+        let layout = CHTCollectionViewWaterfallLayout()
+        layout.itemRenderDirection = .leftToRight
+        layout.columnCount = 2
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
-        collectionView.contentInsetAdjustmentBehavior = .always
-        collectionView.alwaysBounceVertical = true
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
+        collectionView.backgroundColor = .systemGray6//dynamicColorBackground//.clear
+
+//        collectionView.contentInsetAdjustmentBehavior = .always
+//        collectionView.alwaysBounceVertical = true
+//        collectionView.showsHorizontalScrollIndicator = false
+//        collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
     
@@ -34,8 +34,12 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewDidLoad()
         setupClearNavBar()
         navigationItem.title = "Recipes"
-        view.backgroundColor = .systemBackground
-        setupCollectionView()
+        view.backgroundColor = .systemGray6
+        
+        view.addSubview(collectionView)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+//        setupCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +53,11 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
             alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
             self.present(alert, animated: true)
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.frame = view.bounds
     }
 }
 
@@ -75,6 +84,10 @@ extension FeedViewController {
         present(vc, animated: true)
     }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Constants.modifiedRecipesArr.count
     }
@@ -86,7 +99,7 @@ extension FeedViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.width)
+        return CGSize(width: view.frame.size.width/2,  height: view.frame.size.width/2)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
