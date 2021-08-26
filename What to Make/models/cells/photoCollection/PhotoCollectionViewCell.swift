@@ -23,10 +23,14 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with model: RecipeItem) {
+        //because it would keep adding image views to the content view
+        for contentView in self.contentView.subviews {
+            contentView.removeFromSuperview()
+        }
         let imageView = UIImageView()
         imageView.sd_setImage(with: URL(string: model.photoURL), completed: nil)
         imageView.frame = CGRect(x: 0 , y: 0, width: contentView.frame.size.height, height: contentView.frame.size.height)
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         contentView.addSubview(imageView)
         //add some labels
     }

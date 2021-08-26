@@ -10,11 +10,12 @@ import UIKit
 import BEMCheckBox
 
 class BookmarkedViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupClearNavBar()
         navigationItem.title = "Folders"
-
+        
     }
 }
