@@ -11,6 +11,7 @@ struct RecipeItem {
     let ref: DatabaseReference?
     let key: String
     let name: String
+    let activeTime: String
     let photoURL: String
     let sourceURL: String
     let ingredients: [String]
@@ -18,10 +19,11 @@ struct RecipeItem {
     let tags: [String]
     
     // MARK: Initialize with Raw Data
-    init(key: String = "", name: String, photoURL: String, sourceURL: String, ingredients: [String], directions: [String], tags: [String]) {
+    init(key: String = "", name: String, activeTime: String, photoURL: String, sourceURL: String, ingredients: [String], directions: [String], tags: [String]) {
         self.ref = nil
         self.key = key
         self.name = name
+        self.activeTime = activeTime
         self.photoURL = photoURL
         self.sourceURL = sourceURL
         self.ingredients = ingredients
@@ -36,6 +38,7 @@ struct RecipeItem {
             let directions = value["directions"] as? [String],
             let ingredients = value["ingredients"] as? [String],
             let name = value["name"] as? String,
+            let activeTime = value["activeTime"] as? String,
             let sourceURL = value["sourceURL"] as? String,
             let photoURL = value["photoURL"] as? String,
             let tags = value["tags"] as? [String]
@@ -47,6 +50,7 @@ struct RecipeItem {
         self.ref = snapshot.ref
         self.key = snapshot.key
         self.name = name
+        self.activeTime = activeTime
         self.photoURL = photoURL
         self.sourceURL = sourceURL
         self.ingredients = ingredients
@@ -58,6 +62,7 @@ struct RecipeItem {
     func toAnyObject() -> Any {
         return [
             "name": name,
+            "activeTime": activeTime,
             "photoURL": photoURL,
             "sourceURL": sourceURL,
             "ingredients": ingredients,

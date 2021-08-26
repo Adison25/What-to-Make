@@ -43,6 +43,7 @@
 		75DA0A8A26D0253600A2CF1F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A8926D0253600A2CF1F /* SettingsViewController.swift */; };
 		75DA0A8D26D060BF00A2CF1F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A8C26D060BF00A2CF1F /* SettingsTableViewCell.swift */; };
 		75DA0A8F26D45FEF00A2CF1F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A8E26D45FEF00A2CF1F /* LoadingViewController.swift */; };
+		75DA0A9226D6F34500A2CF1F /* WhatToMake.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A9026D6F34500A2CF1F /* WhatToMake.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		75DA0A8926D0253600A2CF1F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		75DA0A8C26D060BF00A2CF1F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		75DA0A8E26D45FEF00A2CF1F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		75DA0A9126D6F34500A2CF1F /* WhatToMake.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WhatToMake.xcdatamodel; sourceTree = "<group>"; };
 		CC378A188847D5AB1E6B8E91 /* Pods_What_to_Make.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_to_Make.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -179,6 +181,7 @@
 				753AF06B26A9D90A00AE1D54 /* controllers */,
 				753AF05626A9D06300AE1D54 /* Assets.xcassets */,
 				753AF05B26A9D06300AE1D54 /* Info.plist */,
+				75DA0A9026D6F34500A2CF1F /* WhatToMake.xcdatamodeld */,
 			);
 			path = "What to Make";
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				75A25C7726AE575C00A6643F /* dynamicColor.swift in Sources */,
 				751664C026C1AD8900CBACCC /* FilterCollectionTableViewCell.swift in Sources */,
 				75A25C7926AE75C800A6643F /* WebViewViewController.swift in Sources */,
+				75DA0A9226D6F34500A2CF1F /* WhatToMake.xcdatamodeld in Sources */,
 				751664BC26C1AA0700CBACCC /* FilterHeaderTableViewCell.swift in Sources */,
 				75DA0A5626CC7D3C00A2CF1F /* IntialViewController.swift in Sources */,
 				751664C726C1EACF00CBACCC /* ButtonCollectionViewCell.swift in Sources */,
@@ -623,6 +627,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		75DA0A9026D6F34500A2CF1F /* WhatToMake.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				75DA0A9126D6F34500A2CF1F /* WhatToMake.xcdatamodel */,
+			);
+			currentVersion = 75DA0A9126D6F34500A2CF1F /* WhatToMake.xcdatamodel */;
+			path = WhatToMake.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 753AF04226A9D06200AE1D54 /* Project object */;
 }

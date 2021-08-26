@@ -43,11 +43,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         directionsTableView.register(DirectionTableViewCell.nib(), forCellReuseIdentifier: DirectionTableViewCell.identifier)
         directionsTableView.delegate = self
         directionsTableView.dataSource = self
-        
-    }
-    
-    @objc private func didDoubleTap(_ gesture: UITapGestureRecognizer) {
-        print("tapped!!")
+                
     }
     
     //dismisses the current vc
@@ -73,6 +69,8 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             sender.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
             sender.tag = 1
         }
+        
+        //add to core data
         
     }
     
@@ -110,6 +108,21 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         scrollView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
+    }
+    
+    
+    private func createActiveTimeLabel(with model: RecipeItem, scrollView: UIScrollView) -> UIButton{
+        //title
+        let activeLabel = UIButton()
+        activeLabel.setTitle("Active Time: \(model.activeTime)",for: .normal)
+        //call some func that makes the size fit perfectly to how many characterrs are in the string
+        activeLabel.titleLabel?.font = activeLabel.titleLabel?.font.withSize(15)//recipeTitleFont()
+        activeLabel.titleLabel?.numberOfLines = 0
+        activeLabel.setTitleColor(dynamicColorText, for: .normal)
+        activeLabel.titleLabel?.textAlignment = .left
+        scrollView.addSubview(activeLabel)
+        activeLabel.translatesAutoresizingMaskIntoConstraints = false
+        return activeLabel
     }
 
     private func createTitleLabel(with model: RecipeItem, scrollView: UIScrollView) -> UIButton{
@@ -215,12 +228,8 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         
         urlString = model.sourceURL
         fillArrays(with: model)
-        
+                
         let scrollView = createScrollView()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didDoubleTap(_:)))
-        tapGesture.numberOfTouchesRequired = 2
-        tapGesture.numberOfTapsRequired = 1
-        scrollView.addGestureRecognizer(tapGesture)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -232,13 +241,6 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             imageView.heightAnchor.constraint(equalToConstant: size)
-        ])
-        let titleButton = createTitleLabel(with: model, scrollView: scrollView)
-        NSLayoutConstraint.activate([
-            titleButton.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: 25),
-            titleButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
-            titleButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
-            titleButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
         ])
         let sourceButton = createSourceButton(scrollView: scrollView)
         NSLayoutConstraint.activate([
@@ -259,10 +261,24 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             backButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10), //or 0.25 can change depending on what i want it to look like
             backButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 10)
         ])
+        let titleButton = createTitleLabel(with: model, scrollView: scrollView)
+        NSLayoutConstraint.activate([
+            titleButton.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: 25),
+            titleButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
+            titleButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
+            titleButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+        ])
+        let activeButton = createActiveTimeLabel(with: model, scrollView: scrollView)
+        NSLayoutConstraint.activate([
+            activeButton.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 0),
+            activeButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor,constant: 20)
+//            activeButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor)
+//            activeButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+        ])
         //ingredient views
         let ingredientHeader = createIngredientHeader(scrollView: scrollView)
         NSLayoutConstraint.activate([
-            ingredientHeader.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 25),
+            ingredientHeader.topAnchor.constraint(equalTo: activeButton.bottomAnchor,constant: 0),
             ingredientHeader.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.41)
         ])
         createIngredientTableView(scrollView: scrollView)
