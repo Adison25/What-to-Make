@@ -11,15 +11,16 @@ struct RecipeItem {
     let ref: DatabaseReference?
     let key: String
     let name: String
-    let activeTime: String
+    var activeTime: String
     let photoURL: String
     let sourceURL: String
     let ingredients: [String]
     let directions: [String]
     let tags: [String]
+    var isSaved: Bool
     
     // MARK: Initialize with Raw Data
-    init(key: String = "", name: String, activeTime: String, photoURL: String, sourceURL: String, ingredients: [String], directions: [String], tags: [String]) {
+    init(key: String = "", name: String, activeTime: String, photoURL: String, sourceURL: String, ingredients: [String], directions: [String], tags: [String], isSaved: Bool) {
         self.ref = nil
         self.key = key
         self.name = name
@@ -29,6 +30,7 @@ struct RecipeItem {
         self.ingredients = ingredients
         self.directions = directions
         self.tags = tags
+        self.isSaved = isSaved
     }
     
     // MARK: Initialize with Firebase DataSnapshot
@@ -56,9 +58,10 @@ struct RecipeItem {
         self.ingredients = ingredients
         self.directions = directions
         self.tags = tags
+        self.isSaved = false
     }
     
-    // MARK: Convert GroceryItem to AnyObject
+    // MARK: Convert RecipeItem to AnyObject
     func toAnyObject() -> Any {
         return [
             "name": name,

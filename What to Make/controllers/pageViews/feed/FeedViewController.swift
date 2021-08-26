@@ -23,10 +23,6 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         collectionView.backgroundColor = .systemGray6//dynamicColorBackground//.clear
 
-//        collectionView.contentInsetAdjustmentBehavior = .always
-//        collectionView.alwaysBounceVertical = true
-//        collectionView.showsHorizontalScrollIndicator = false
-//        collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
     
@@ -75,10 +71,7 @@ extension FeedViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = RecipeInfoViewController()
-        //        let model = data[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
-        let size =  cell.frame.size.height
-        vc.configureInfoView(with: Constants.modifiedRecipesArr[indexPath.row], size: size)
+        vc.configureInfoView(with: Constants.modifiedRecipesArr[indexPath.row], index: indexPath.row)
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)

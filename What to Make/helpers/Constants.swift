@@ -63,6 +63,11 @@ func addFilter(filter: String) {
     
 }
 
+func updateSavedRecipe(idx: Int, active: Bool) {
+    Constants.allRecipes[idx].isSaved = active
+    Constants.modifiedRecipesArr[idx].isSaved = active
+}
+
 func removeFilter(filter: String) {
     let modifiedArray = filterArr.filter { $0 != filter }
     filterArr = modifiedArray

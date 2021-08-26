@@ -30,6 +30,10 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     
     lazy var scrollContentViewSize = CGSize(width: view.frame.size.width, height: view.frame.height)
     
+    private var isSaved: Bool = false
+    private var idx = 0
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6//dynamicColorBackground
@@ -62,12 +66,15 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @objc func bookmarkRecipe(sender:UIButton) {
-        if sender.tag == 1 {
+        
+        if isSaved == false {
             sender.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-            sender.tag = 2
+            isSaved = true
+            updateSavedRecipe(idx: idx, active: isSaved)
         } else {
             sender.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
-            sender.tag = 1
+            isSaved = false
+            updateSavedRecipe(idx: idx, active: isSaved)
         }
         
         //add to core data
@@ -157,7 +164,11 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func createBookmarkButton(scrollView: UIScrollView) -> UIButton {
         let bookmarkButton = UIButton()
-        bookmarkButton.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
+        if isSaved == false {
+            bookmarkButton.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
+        }else {
+            bookmarkButton.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        }
 //        bookmarkButton.tintColor = dynamicColorTextLink
         bookmarkButton.tag = 1
         bookmarkButton.addTarget(self, action: #selector(bookmarkRecipe), for: .touchUpInside)
@@ -224,10 +235,12 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     //home func that calls all the other functions
-    func configureInfoView(with model: RecipeItem, size: CGFloat) {
+    func configureInfoView(with model: RecipeItem, index: Int) {
         
+        idx = index
         urlString = model.sourceURL
         fillArrays(with: model)
+        isSaved = model.isSaved
                 
         let scrollView = createScrollView()
         NSLayoutConstraint.activate([
@@ -240,7 +253,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: size)
+            imageView.heightAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
         let sourceButton = createSourceButton(scrollView: scrollView)
         NSLayoutConstraint.activate([
@@ -270,7 +283,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         ])
         let activeButton = createActiveTimeLabel(with: model, scrollView: scrollView)
         NSLayoutConstraint.activate([
-            activeButton.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 0),
+            activeButton.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 25),
             activeButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor,constant: 20)
 //            activeButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor)
 //            activeButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
@@ -278,12 +291,12 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         //ingredient views
         let ingredientHeader = createIngredientHeader(scrollView: scrollView)
         NSLayoutConstraint.activate([
-            ingredientHeader.topAnchor.constraint(equalTo: activeButton.bottomAnchor,constant: 0),
+            ingredientHeader.topAnchor.constraint(equalTo: activeButton.bottomAnchor,constant: 25),
             ingredientHeader.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.41)
         ])
         createIngredientTableView(scrollView: scrollView)
         NSLayoutConstraint.activate([
-            ingredientsTableView.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 75),
+            ingredientsTableView.topAnchor.constraint(equalTo: ingredientHeader.bottomAnchor,constant: 15),
             ingredientsTableView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
         //directions views
