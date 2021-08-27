@@ -14,35 +14,21 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
     
     private var prevScrollDirection: CGFloat = 0
     
-    //get the context from core data
-    
+    var items: [Recipe] = []
     
     private let collectionView: UICollectionView = {
         let layout = CHTCollectionViewWaterfallLayout()
         layout.itemRenderDirection = .leftToRight
         layout.columnCount = 2
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        //that'll need to change to photoview collection like in feed view controller
-//        collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         collectionView.backgroundColor = .systemGray6
         return collectionView
     }()
     
-    //can be deleted later
-//    struct Model {
-//        let imageName: String
-//        let height: CGFloat
-//    }
-//
-//    //can be deleted later
-//    private var models = [Model]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let images = Array(1...9).map { "meal\($0)" }
-//        models = images.compactMap { return Model.init(imageName: $0, height: CGFloat.random(in: 250...450))
-//        }
         view.backgroundColor = .systemGray6
         setupClearNavBar()
         navigationItem.title = "Saved"
@@ -50,11 +36,13 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        items = DataManager.shared.recipes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
@@ -69,7 +57,7 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
     }
-    
+        
 }
 
 extension SavedRecipesViewController {
@@ -86,6 +74,8 @@ extension SavedRecipesViewController {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
         //read core data
+        //        let item = configureRecipe(item: items[indexPath.row])
+        
         cell.configure(with: Constants.modifiedRecipesArr[indexPath.row])
         return cell
     }

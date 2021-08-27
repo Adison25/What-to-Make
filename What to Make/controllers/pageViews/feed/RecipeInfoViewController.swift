@@ -5,6 +5,7 @@
 //  Created by Adison Emerick on 7/22/21.
 //
 import UIKit
+import CoreData
 
 class ChecklistItem {
     var title: String
@@ -29,11 +30,11 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     private var directionsArray = [ChecklistItem]()
     
     lazy var scrollContentViewSize = CGSize(width: view.frame.size.width, height: view.frame.height)
-    
     private var isSaved: Bool = false
     private var idx = 0
 
-    
+    var recipes: [Recipe] = []
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6//dynamicColorBackground
@@ -72,6 +73,11 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             isSaved = true
             updateSavedRecipe(idx: idx, active: isSaved)
             //add recipe to core data
+            let item = Constants.modifiedRecipesArr[idx]
+            let recipe = DataManager.shared.recipe(name: item.name, activeTime: item.activeTime, isSaved: item.isSaved, photoURL: item.photoURL, sourceURL: item.sourceURL)
+
+            DataManager.shared.saveContext()
+            
         } else {
             sender.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
             isSaved = false
@@ -79,7 +85,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             //remove recipe from core data
         }
         
-        //add to core data
+        //save to core data
         
     }
     
