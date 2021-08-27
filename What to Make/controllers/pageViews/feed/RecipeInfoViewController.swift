@@ -71,10 +71,12 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             sender.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
             isSaved = true
             updateSavedRecipe(idx: idx, active: isSaved)
+            //add recipe to core data
         } else {
             sender.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
             isSaved = false
             updateSavedRecipe(idx: idx, active: isSaved)
+            //remove recipe from core data
         }
         
         //add to core data

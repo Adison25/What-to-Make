@@ -41,7 +41,7 @@ extension TabBarController {
     
     fileprivate func setUpControllers() {
         let viewFeed = FeedViewController()
-        let ViewFolders = BookmarkedViewController()
+        let ViewFolders = SavedRecipesViewController()
         let viewFilters = FilterViewController()
         let viewSetting = SettingsViewController()
         
