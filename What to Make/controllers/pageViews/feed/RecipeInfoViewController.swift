@@ -31,9 +31,9 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     
     lazy var scrollContentViewSize = CGSize(width: view.frame.size.width, height: view.frame.height)
     private var isSaved: Bool = false
-    private var idx = 0
+    var idx = 0
 
-    var recipes: [Recipe] = []
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,11 +72,40 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             sender.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
             isSaved = true
             updateSavedRecipe(idx: idx, active: isSaved)
+            
             //add recipe to core data
             let item = Constants.modifiedRecipesArr[idx]
-            let recipe = DataManager.shared.recipe(name: item.name, activeTime: item.activeTime, isSaved: item.isSaved, photoURL: item.photoURL, sourceURL: item.sourceURL)
-
-            DataManager.shared.saveContext()
+            let rec = Recipe(context: context)
+            rec.name = item.name
+            rec.activeTime = item.activeTime
+            rec.isSaved = item.isSaved
+            rec.photoURL = item.photoURL
+            rec.sourceURL = item.sourceURL
+            for it in item.ingredients {
+                let ingr = Ingredient(context: context)
+                ingr.name = it
+                rec.addToIngredients(ingr)
+            }
+            for it in item.directions {
+                let dir = Direction(context: context)
+                dir.name = it
+                rec.addToDirections(dir)
+            }
+            for it in item.tags {
+                let tag = Tag(context: context)
+                tag.name = it
+                rec.addToTags(tag)
+            }
+            
+            //save the data
+            do {
+                try self.context.save()
+            }catch {
+                fatalError("error saving")
+            }
+           
+            //re fetch the data not neccesary
+            
             
         } else {
             sender.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)

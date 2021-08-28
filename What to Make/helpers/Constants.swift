@@ -22,8 +22,10 @@ struct Constants {
     
     static var allRecipes: [RecipeItem] = []
     static var modifiedRecipesArr: [RecipeItem] = []
-//    static var onTaskFinished:(() -> Void)?
-    
+    static var recipes: [Recipe] = []
+    static var ingredients: [Ingredient] = []
+    static var directions: [Direction] = []
+    static var tags: [Tag] = []
 }
 
 class DynamicHeightCollectionView: UICollectionView {

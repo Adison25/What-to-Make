@@ -14,7 +14,10 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
     
     private var prevScrollDirection: CGFloat = 0
     
-    var items: [Recipe] = []
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    //data for the collectionview
+    var items:[Recipe] = []
     
     private let collectionView: UICollectionView = {
         let layout = CHTCollectionViewWaterfallLayout()
@@ -36,12 +39,12 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        items = DataManager.shared.recipes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        fetchRecipe()
         
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -57,10 +60,52 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
     }
+    
+    func fetchRecipe() {
+        //fetch the data from core  data to display in the collectionview
+        do {
+            self.items = try context.fetch(Recipe.fetchRequest())
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }catch {
+            fatalError("Could not fetch data from core data")
+        }
+    }
+    
+    func covertRecipeToRecipeItem(item: Recipe) -> RecipeItem {
         
+        
+        var ingredients: [String] = []
+        for case let it as Ingredient in item.ingredients ?? [] {
+            ingredients.append(it.name ?? "")
+        }
+        var directions: [String] = []
+        for case let it as Direction in item.directions ?? [] {
+            directions.append(it.name ?? "")
+        }
+        var tags: [String] = []
+        for case let it as Tag in item.tags ?? [] {
+            tags.append(it.name ?? "")
+        }
+        
+        let ret = RecipeItem(name: item.name!, activeTime: item.activeTime!, photoURL: item.photoURL!, sourceURL: item.sourceURL!, ingredients: ingredients, directions: directions, tags: tags, isSaved: item.isSaved)
+        return ret
+    }
 }
 
 extension SavedRecipesViewController {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = RecipeInfoViewController()
+        //get recipe from array and set the cell
+        let recipe = self.items[indexPath.row]
+        let rec = covertRecipeToRecipeItem(item: recipe)
+        vc.configureInfoView(with: rec, index: indexPath.row)
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -68,15 +113,16 @@ extension SavedRecipesViewController {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return core data size
-        return 8
+        return self.items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
-        //read core data
-        //        let item = configureRecipe(item: items[indexPath.row])
         
-        cell.configure(with: Constants.modifiedRecipesArr[indexPath.row])
+        //get recipe from array and set the cell
+        let recipe = self.items[indexPath.row]
+        let rec = covertRecipeToRecipeItem(item: recipe)
+        cell.configure(with: rec)
         return cell
     }
     
