@@ -5,7 +5,6 @@
 //  Created by Adison Emerick on 7/22/21.
 //
 import UIKit
-import CoreData
 
 class ChecklistItem {
     var title: String
@@ -22,6 +21,8 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         static let ingredientCell = "ingredientsCell"
         static let directionCell = "directionsCell"
     }
+    
+    var whichVc : Int = 0
 
     private var urlString: String = ""
     private let ingredientsTableView = DynamicSizeTableView()
@@ -32,8 +33,6 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     lazy var scrollContentViewSize = CGSize(width: view.frame.size.width, height: view.frame.height)
     private var isSaved: Bool = false
     var idx = 0
-
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,50 +71,28 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             sender.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
             isSaved = true
             updateSavedRecipe(idx: idx, active: isSaved)
-            
-            //add recipe to core data
-            let item = Constants.modifiedRecipesArr[idx]
-            let rec = Recipe(context: context)
-            rec.name = item.name
-            rec.activeTime = item.activeTime
-            rec.isSaved = item.isSaved
-            rec.photoURL = item.photoURL
-            rec.sourceURL = item.sourceURL
-            for it in item.ingredients {
-                let ingr = Ingredient(context: context)
-                ingr.name = it
-                rec.addToIngredients(ingr)
-            }
-            for it in item.directions {
-                let dir = Direction(context: context)
-                dir.name = it
-                rec.addToDirections(dir)
-            }
-            for it in item.tags {
-                let tag = Tag(context: context)
-                tag.name = it
-                rec.addToTags(tag)
-            }
-            
-            //save the data
-            do {
-                try self.context.save()
-            }catch {
-                fatalError("error saving")
-            }
-           
-            //re fetch the data not neccesary
-            
-            
+            addToCoreData(idx: idx)
+
         } else {
             sender.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
             isSaved = false
             updateSavedRecipe(idx: idx, active: isSaved)
-            //remove recipe from core data
+            //the recipe to be removed
+            let recipeToRemove = Constants.items[idx]
+            //remove the recipe
+            Constants.context.delete(recipeToRemove)
+            //save the data
+            saveCoreData()
         }
-        
-        //save to core data
-        
+    }
+    
+    func checkIsSave(idx: Int, key: String) -> Bool {
+        for it in Constants.items {
+            if it.key == key {
+                return true
+            }
+        }
+        return false
     }
     
     private func updateScrollViewContentSize(height: CGFloat){
@@ -278,6 +255,8 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         urlString = model.sourceURL
         fillArrays(with: model)
         isSaved = model.isSaved
+        if whichVc == 2 {
+            isSaved = checkIsSave(idx: idx, key: model.key) }
                 
         let scrollView = createScrollView()
         NSLayoutConstraint.activate([

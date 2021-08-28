@@ -32,6 +32,11 @@ class LoadingViewController: UIViewController {
         fetchData { data in
             defaults.set(true, forKey: "LoggedIn")
             DispatchQueue.main.async {
+                do {
+                    Constants.items = try Constants.context.fetch(Recipe.fetchRequest())
+                }catch {
+                    fatalError("error fetching recipe data")
+                }
                 let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarVC) as! TabBarController)
                 vc.modalTransitionStyle = .crossDissolve
                 vc.modalPresentationStyle = .fullScreen

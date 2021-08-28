@@ -13,11 +13,9 @@ import CHTCollectionViewWaterfallLayout
 class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
     
     private var prevScrollDirection: CGFloat = 0
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+        
     //data for the collectionview
-    var items:[Recipe] = []
+    var idx: Int = 0
     
     private let collectionView: UICollectionView = {
         let layout = CHTCollectionViewWaterfallLayout()
@@ -27,6 +25,15 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         collectionView.backgroundColor = .systemGray6
         return collectionView
+    }()
+    
+    private let alertLabel: UILabel = {
+        let lable = UILabel()
+        lable.text = "No Recipes Saved"
+        lable.font.withSize(40)
+        lable.alpha = 0
+        lable.translatesAutoresizingMaskIntoConstraints = false
+        return lable
     }()
     
     
@@ -39,6 +46,8 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        view.addSubview(alertLabel)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,22 +58,28 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-        if Constants.modifiedRecipesArr.count == 0 {
-            let alert = UIAlertController(title: "No recipes with filters selected", message: "Please change your filters to see more recipes", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-        }
+        if Constants.items.count == 0 {
+            alertLabel.alpha = 1
+//            let alert = UIAlertController(title: "No recipes with filters selected", message: "Please change your filters to see more recipes", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+//            self.present(alert, animated: true)
+        }else {
+            alertLabel.alpha = 0 }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
+        NSLayoutConstraint.activate([
+            alertLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            alertLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     func fetchRecipe() {
         //fetch the data from core  data to display in the collectionview
         do {
-            self.items = try context.fetch(Recipe.fetchRequest())
+            Constants.items = try Constants.context.fetch(Recipe.fetchRequest())
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -74,7 +89,6 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func covertRecipeToRecipeItem(item: Recipe) -> RecipeItem {
-        
         
         var ingredients: [String] = []
         for case let it as Ingredient in item.ingredients ?? [] {
@@ -97,9 +111,10 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
 extension SavedRecipesViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        idx = indexPath.row
         let vc = RecipeInfoViewController()
         //get recipe from array and set the cell
-        let recipe = self.items[indexPath.row]
+        let recipe = Constants.items[indexPath.row]
         let rec = covertRecipeToRecipeItem(item: recipe)
         vc.configureInfoView(with: rec, index: indexPath.row)
         vc.modalTransitionStyle = .crossDissolve
@@ -113,14 +128,14 @@ extension SavedRecipesViewController {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return core data size
-        return self.items.count
+        return Constants.items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
         
         //get recipe from array and set the cell
-        let recipe = self.items[indexPath.row]
+        let recipe = Constants.items[indexPath.row]
         let rec = covertRecipeToRecipeItem(item: recipe)
         cell.configure(with: rec)
         return cell

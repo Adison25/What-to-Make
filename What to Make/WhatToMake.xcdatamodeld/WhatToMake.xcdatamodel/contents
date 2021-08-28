@@ -2,30 +2,31 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Direction" representedClassName="Direction" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="recipe" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="directions" inverseEntity="Recipe"/>
+        <relationship name="recipe" maxCount="1" deletionRule="Cascade" destinationEntity="Recipe" inverseName="directions" inverseEntity="Recipe"/>
     </entity>
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES">
         <attribute name="name" attributeType="String"/>
-        <relationship name="recipe" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="ingredients" inverseEntity="Recipe"/>
+        <relationship name="recipe" maxCount="1" deletionRule="Cascade" destinationEntity="Recipe" inverseName="ingredients" inverseEntity="Recipe"/>
     </entity>
     <entity name="Recipe" representedClassName="Recipe" syncable="YES">
         <attribute name="activeTime" attributeType="String"/>
         <attribute name="isSaved" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="key" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="photoURL" attributeType="String"/>
         <attribute name="sourceURL" attributeType="String"/>
-        <relationship name="directions" toMany="YES" deletionRule="Nullify" destinationEntity="Direction" inverseName="recipe" inverseEntity="Direction"/>
-        <relationship name="ingredients" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="recipe" inverseEntity="Ingredient"/>
-        <relationship name="tags" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="recipe" inverseEntity="Tag"/>
+        <relationship name="directions" toMany="YES" deletionRule="Cascade" destinationEntity="Direction" inverseName="recipe" inverseEntity="Direction"/>
+        <relationship name="ingredients" toMany="YES" deletionRule="Cascade" destinationEntity="Ingredient" inverseName="recipe" inverseEntity="Ingredient"/>
+        <relationship name="tags" toMany="YES" deletionRule="Cascade" destinationEntity="Tag" inverseName="recipe" inverseEntity="Tag"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES">
         <attribute name="name" attributeType="String"/>
-        <relationship name="recipe" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="tags" inverseEntity="Recipe"/>
+        <relationship name="recipe" maxCount="1" deletionRule="Cascade" destinationEntity="Recipe" inverseName="tags" inverseEntity="Recipe"/>
     </entity>
     <elements>
         <element name="Direction" positionX="-206.8671875" positionY="19.97265625" width="128" height="59"/>
         <element name="Ingredient" positionX="-200.30078125" positionY="-95.3828125" width="128" height="59"/>
-        <element name="Recipe" positionX="-440.140625" positionY="-35.24609375" width="128" height="149"/>
+        <element name="Recipe" positionX="-440.140625" positionY="-35.24609375" width="128" height="164"/>
         <element name="Tag" positionX="-197.11328125" positionY="128.41796875" width="128" height="59"/>
     </elements>
 </model>

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseDatabase
 
 struct Constants {
     
@@ -22,40 +21,11 @@ struct Constants {
     
     static var allRecipes: [RecipeItem] = []
     static var modifiedRecipesArr: [RecipeItem] = []
-    static var recipes: [Recipe] = []
-    static var ingredients: [Ingredient] = []
-    static var directions: [Direction] = []
-    static var tags: [Tag] = []
-}
-
-class DynamicHeightCollectionView: UICollectionView {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        if bounds.size != intrinsicContentSize {
-            self.invalidateIntrinsicContentSize()
-        }
-    }
-    override var intrinsicContentSize: CGSize {
-        return collectionViewLayout.collectionViewContentSize
-    }
-}
-
-
-public class DynamicSizeTableView: UITableView {
+    static var items: [Recipe] = []
+    static var modifiedItmes: [Recipe] = []
     
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        if bounds.size != intrinsicContentSize {
-            invalidateIntrinsicContentSize()
-        }
-    }
-    
-    public override var intrinsicContentSize: CGSize {
-        return contentSize
-    }
+    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 }
-
-let defaults = UserDefaults.standard
 
 var filterArr: [String] = []
 
@@ -94,31 +64,4 @@ func filterRecipesArr() {
         hasIt = 0
         
     }
-}
-
-
-func fetchData(completion: @escaping ([RecipeItem]) -> Void) {
-    let recipesRef = Database.database().reference(withPath: "recipes")
-    recipesRef.getData { (error, snapshot) in
-        if let error = error {
-            print("Error getting data \(error)")
-        }
-        else if snapshot.exists() {
-            var newItems: [RecipeItem] = []
-            for child in snapshot.children {
-                if
-                    let snapshot = child as? DataSnapshot,
-                    let recipeItem = RecipeItem(snapshot: snapshot) {
-                    newItems.append(recipeItem)
-                }
-            }
-            Constants.allRecipes = newItems
-            Constants.modifiedRecipesArr = Constants.allRecipes
-            completion(Constants.modifiedRecipesArr)
-        }
-        else {
-            print("No data available")
-        }
-    }
-//    Constants.onTaskFinished = completion
 }

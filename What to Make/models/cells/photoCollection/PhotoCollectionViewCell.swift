@@ -30,6 +30,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         imageView.frame = contentView.bounds
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 10
         contentView.addSubview(imageView)
         //add some labels
     }

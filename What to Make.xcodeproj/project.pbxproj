@@ -46,14 +46,15 @@
 		75DA0A9226D6F34500A2CF1F /* WhatToMake.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A9026D6F34500A2CF1F /* WhatToMake.xcdatamodeld */; };
 		75DA0A9526D7E68E00A2CF1F /* CHTCollectionViewWaterfallLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 75DA0A9426D7E68E00A2CF1F /* CHTCollectionViewWaterfallLayout */; };
 		75DA0A9726D7E77700A2CF1F /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0A9626D7E77700A2CF1F /* ImageCollectionViewCell.swift */; };
-		75DA0AEA26D9813800A2CF1F /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AE226D9813800A2CF1F /* Recipe+CoreDataClass.swift */; };
-		75DA0AEB26D9813800A2CF1F /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AE326D9813800A2CF1F /* Recipe+CoreDataProperties.swift */; };
-		75DA0AEC26D9813800A2CF1F /* Ingredient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AE426D9813800A2CF1F /* Ingredient+CoreDataClass.swift */; };
-		75DA0AED26D9813800A2CF1F /* Ingredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AE526D9813800A2CF1F /* Ingredient+CoreDataProperties.swift */; };
-		75DA0AEE26D9813800A2CF1F /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AE626D9813800A2CF1F /* Tag+CoreDataClass.swift */; };
-		75DA0AEF26D9813800A2CF1F /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AE726D9813800A2CF1F /* Tag+CoreDataProperties.swift */; };
-		75DA0AF026D9813800A2CF1F /* Direction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AE826D9813800A2CF1F /* Direction+CoreDataClass.swift */; };
-		75DA0AF126D9813800A2CF1F /* Direction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AE926D9813800A2CF1F /* Direction+CoreDataProperties.swift */; };
+		75DA0AF326DAA45C00A2CF1F /* helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF226DAA45C00A2CF1F /* helpers.swift */; };
+		75DA0AFC26DAB07800A2CF1F /* Direction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF426DAB07800A2CF1F /* Direction+CoreDataClass.swift */; };
+		75DA0AFD26DAB07800A2CF1F /* Direction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF526DAB07800A2CF1F /* Direction+CoreDataProperties.swift */; };
+		75DA0AFE26DAB07800A2CF1F /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF626DAB07800A2CF1F /* Recipe+CoreDataClass.swift */; };
+		75DA0AFF26DAB07800A2CF1F /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF726DAB07800A2CF1F /* Recipe+CoreDataProperties.swift */; };
+		75DA0B0026DAB07800A2CF1F /* Ingredient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF826DAB07800A2CF1F /* Ingredient+CoreDataClass.swift */; };
+		75DA0B0126DAB07800A2CF1F /* Ingredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF926DAB07800A2CF1F /* Ingredient+CoreDataProperties.swift */; };
+		75DA0B0226DAB07800A2CF1F /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AFA26DAB07800A2CF1F /* Tag+CoreDataClass.swift */; };
+		75DA0B0326DAB07800A2CF1F /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AFB26DAB07800A2CF1F /* Tag+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,14 +99,15 @@
 		75DA0A8E26D45FEF00A2CF1F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		75DA0A9126D6F34500A2CF1F /* WhatToMake.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WhatToMake.xcdatamodel; sourceTree = "<group>"; };
 		75DA0A9626D7E77700A2CF1F /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		75DA0AE226D9813800A2CF1F /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		75DA0AE326D9813800A2CF1F /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		75DA0AE426D9813800A2CF1F /* Ingredient+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		75DA0AE526D9813800A2CF1F /* Ingredient+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		75DA0AE626D9813800A2CF1F /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		75DA0AE726D9813800A2CF1F /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		75DA0AE826D9813800A2CF1F /* Direction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Direction+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		75DA0AE926D9813800A2CF1F /* Direction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Direction+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		75DA0AF226DAA45C00A2CF1F /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
+		75DA0AF426DAB07800A2CF1F /* Direction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Direction+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		75DA0AF526DAB07800A2CF1F /* Direction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Direction+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		75DA0AF626DAB07800A2CF1F /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		75DA0AF726DAB07800A2CF1F /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		75DA0AF826DAB07800A2CF1F /* Ingredient+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		75DA0AF926DAB07800A2CF1F /* Ingredient+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		75DA0AFA26DAB07800A2CF1F /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		75DA0AFB26DAB07800A2CF1F /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		CC378A188847D5AB1E6B8E91 /* Pods_What_to_Make.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_to_Make.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -277,6 +279,7 @@
 				753AF06426A9D16000AE1D54 /* Extensions.swift */,
 				75DA0A5226CC7AE600A2CF1F /* Utilities.swift */,
 				75DA0A5726CD52CB00A2CF1F /* Constants.swift */,
+				75DA0AF226DAA45C00A2CF1F /* helpers.swift */,
 				75A25C7626AE575C00A6643F /* dynamicColor.swift */,
 			);
 			path = helpers;
@@ -293,14 +296,14 @@
 		75DA0AE126D9811400A2CF1F /* dataModel */ = {
 			isa = PBXGroup;
 			children = (
-				75DA0AE226D9813800A2CF1F /* Recipe+CoreDataClass.swift */,
-				75DA0AE326D9813800A2CF1F /* Recipe+CoreDataProperties.swift */,
-				75DA0AE426D9813800A2CF1F /* Ingredient+CoreDataClass.swift */,
-				75DA0AE526D9813800A2CF1F /* Ingredient+CoreDataProperties.swift */,
-				75DA0AE626D9813800A2CF1F /* Tag+CoreDataClass.swift */,
-				75DA0AE726D9813800A2CF1F /* Tag+CoreDataProperties.swift */,
-				75DA0AE826D9813800A2CF1F /* Direction+CoreDataClass.swift */,
-				75DA0AE926D9813800A2CF1F /* Direction+CoreDataProperties.swift */,
+				75DA0AF426DAB07800A2CF1F /* Direction+CoreDataClass.swift */,
+				75DA0AF526DAB07800A2CF1F /* Direction+CoreDataProperties.swift */,
+				75DA0AF626DAB07800A2CF1F /* Recipe+CoreDataClass.swift */,
+				75DA0AF726DAB07800A2CF1F /* Recipe+CoreDataProperties.swift */,
+				75DA0AF826DAB07800A2CF1F /* Ingredient+CoreDataClass.swift */,
+				75DA0AF926DAB07800A2CF1F /* Ingredient+CoreDataProperties.swift */,
+				75DA0AFA26DAB07800A2CF1F /* Tag+CoreDataClass.swift */,
+				75DA0AFB26DAB07800A2CF1F /* Tag+CoreDataProperties.swift */,
 			);
 			path = dataModel;
 			sourceTree = "<group>";
@@ -440,30 +443,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75DA0AED26D9813800A2CF1F /* Ingredient+CoreDataProperties.swift in Sources */,
 				753AF06726A9D16000AE1D54 /* FeedViewController.swift in Sources */,
 				753AF06F26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift in Sources */,
 				75DA0A5326CC7AE600A2CF1F /* Utilities.swift in Sources */,
 				75DA0A4726CAF2E500A2CF1F /* RecipeItem.swift in Sources */,
-				75DA0AEA26D9813800A2CF1F /* Recipe+CoreDataClass.swift in Sources */,
-				75DA0AEC26D9813800A2CF1F /* Ingredient+CoreDataClass.swift in Sources */,
 				753AF07126AA1CB300AE1D54 /* RecipeInfoViewController.swift in Sources */,
-				75DA0AF026D9813800A2CF1F /* Direction+CoreDataClass.swift in Sources */,
 				753AF06826A9D16000AE1D54 /* Extensions.swift in Sources */,
 				753AF06926A9D16000AE1D54 /* FilterViewController.swift in Sources */,
-				75DA0AEF26D9813800A2CF1F /* Tag+CoreDataProperties.swift in Sources */,
 				753AF07326AA200200AE1D54 /* TSBlurEffectView.swift in Sources */,
 				75DA0A4B26CC02D800A2CF1F /* SignUpViewController.swift in Sources */,
+				75DA0AFC26DAB07800A2CF1F /* Direction+CoreDataClass.swift in Sources */,
 				75DA0A4F26CC032D00A2CF1F /* LoginViewController.swift in Sources */,
 				75DA0A9726D7E77700A2CF1F /* ImageCollectionViewCell.swift in Sources */,
+				75DA0AFD26DAB07800A2CF1F /* Direction+CoreDataProperties.swift in Sources */,
+				75DA0AF326DAA45C00A2CF1F /* helpers.swift in Sources */,
+				75DA0B0026DAB07800A2CF1F /* Ingredient+CoreDataClass.swift in Sources */,
 				751664AF26BB3FD000CBACCC /* IngredientTableViewCell.swift in Sources */,
 				75DA0A8F26D45FEF00A2CF1F /* LoadingViewController.swift in Sources */,
 				753AF06226A9D13800AE1D54 /* TabBarController.swift in Sources */,
-				75DA0AEE26D9813800A2CF1F /* Tag+CoreDataClass.swift in Sources */,
+				75DA0AFE26DAB07800A2CF1F /* Recipe+CoreDataClass.swift in Sources */,
 				753AF04E26A9D06200AE1D54 /* AppDelegate.swift in Sources */,
-				75DA0AF126D9813800A2CF1F /* Direction+CoreDataProperties.swift in Sources */,
 				75DA0A8D26D060BF00A2CF1F /* SettingsTableViewCell.swift in Sources */,
 				753AF06A26A9D16000AE1D54 /* SavedRecipesViewController.swift in Sources */,
+				75DA0B0226DAB07800A2CF1F /* Tag+CoreDataClass.swift in Sources */,
 				75A25C7726AE575C00A6643F /* dynamicColor.swift in Sources */,
 				751664C026C1AD8900CBACCC /* FilterCollectionTableViewCell.swift in Sources */,
 				75A25C7926AE75C800A6643F /* WebViewViewController.swift in Sources */,
@@ -471,9 +473,11 @@
 				751664BC26C1AA0700CBACCC /* FilterHeaderTableViewCell.swift in Sources */,
 				75DA0A5626CC7D3C00A2CF1F /* IntialViewController.swift in Sources */,
 				751664C726C1EACF00CBACCC /* ButtonCollectionViewCell.swift in Sources */,
-				75DA0AEB26D9813800A2CF1F /* Recipe+CoreDataProperties.swift in Sources */,
+				75DA0B0126DAB07800A2CF1F /* Ingredient+CoreDataProperties.swift in Sources */,
+				75DA0B0326DAB07800A2CF1F /* Tag+CoreDataProperties.swift in Sources */,
 				753AF05026A9D06200AE1D54 /* SceneDelegate.swift in Sources */,
 				751664B326BC4A5D00CBACCC /* DirectionTableViewCell.swift in Sources */,
+				75DA0AFF26DAB07800A2CF1F /* Recipe+CoreDataProperties.swift in Sources */,
 				75DA0A5826CD52CB00A2CF1F /* Constants.swift in Sources */,
 				75DA0A8A26D0253600A2CF1F /* SettingsViewController.swift in Sources */,
 			);

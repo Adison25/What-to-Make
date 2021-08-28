@@ -59,6 +59,7 @@ extension FeedViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = RecipeInfoViewController()
+        vc.whichVc = 2
         vc.configureInfoView(with: Constants.modifiedRecipesArr[indexPath.row], index: indexPath.row)
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .fullScreen
