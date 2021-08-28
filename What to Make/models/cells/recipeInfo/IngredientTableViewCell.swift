@@ -19,6 +19,7 @@ class IngredientTableViewCell: UITableViewCell {
     public func configure(with title: String) {
         ingredientTextView.text = title
         ingredientTextView.numberOfLines = 0
+        ingredientTextView.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
     }
     
     @IBAction func checkBoxAction(_ sender: BEMCheckBox) {

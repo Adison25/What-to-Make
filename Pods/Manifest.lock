@@ -1,4 +1,5 @@
 PODS:
+  - AMXFontAutoScale (1.2.0)
   - BEMCheckBox (1.4.1)
   - Firebase/Analytics (8.3.0):
     - Firebase/Core
@@ -103,6 +104,7 @@ PODS:
   - SkeletonView (1.24.4)
 
 DEPENDENCIES:
+  - AMXFontAutoScale (~> 1.2)
   - BEMCheckBox
   - Firebase/Analytics
   - Firebase/Auth
@@ -113,6 +115,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AMXFontAutoScale
     - BEMCheckBox
     - Firebase
     - FirebaseAnalytics
@@ -132,6 +135,7 @@ SPEC REPOS:
     - SkeletonView
 
 SPEC CHECKSUMS:
+  AMXFontAutoScale: 142e4296a62cab27f9191971657483000655bc00
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   Firebase: 817b9171d0d51dccc458b94a5e8edff6b1dd323d
   FirebaseAnalytics: 456f2c51599870a15ded4548d1f1f7b2cabf65a7
@@ -150,6 +154,6 @@ SPEC CHECKSUMS:
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SkeletonView: c8632f212fcce7b7ba742c3d4a5af3596b5fa5ae
 
-PODFILE CHECKSUM: 8ae641bfe570f4bf911eed259543e62ce17f84ad
+PODFILE CHECKSUM: ff698a121f8d348a9b84c91af2ad6bfad16f7d3f
 
 COCOAPODS: 1.10.1

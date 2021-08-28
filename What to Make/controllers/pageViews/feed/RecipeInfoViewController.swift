@@ -5,6 +5,7 @@
 //  Created by Adison Emerick on 7/22/21.
 //
 import UIKit
+import AMXFontAutoScale
 
 class ChecklistItem {
     var title: String
@@ -143,6 +144,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         activeLabel.titleLabel?.textAlignment = .left
         scrollView.addSubview(activeLabel)
         activeLabel.translatesAutoresizingMaskIntoConstraints = false
+        activeLabel.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return activeLabel
     }
 
@@ -158,6 +160,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         titleLabel.titleLabel?.textAlignment = .center
         scrollView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return titleLabel
     }
 
@@ -173,6 +176,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         sourceButton.addTarget(self, action: #selector(openLink), for: .touchUpInside)
         scrollView.addSubview(sourceButton)
         sourceButton.translatesAutoresizingMaskIntoConstraints = false
+        sourceButton.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return sourceButton
     }
     
@@ -204,6 +208,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         backButton.layer.cornerRadius = 20
         scrollView.addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return backButton
     }
 
@@ -213,9 +218,10 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         //call some func that makes the size fit perfectly to how many characterrs are in the string
         ingredientHeader.titleLabel?.font = ingredientHeader.titleLabel?.font.withSize(30)//tableViewHeaderFont()
         ingredientHeader.setTitleColor(dynamicColorText, for: .normal)
-        ingredientHeader.contentHorizontalAlignment =  UIControl.ContentHorizontalAlignment.center
+        ingredientHeader.contentHorizontalAlignment =  UIControl.ContentHorizontalAlignment.left
         scrollView.addSubview(ingredientHeader)
         ingredientHeader.translatesAutoresizingMaskIntoConstraints = false
+        ingredientHeader.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return ingredientHeader
     }
 
@@ -233,9 +239,10 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         //call some func that makes the size fit perfectly to how many characterrs are in the string
         directionsHeader.titleLabel?.font = directionsHeader.titleLabel?.font.withSize(30)
         directionsHeader.setTitleColor(dynamicColorText, for: .normal)
-        directionsHeader.contentHorizontalAlignment =  UIControl.ContentHorizontalAlignment.center
+        directionsHeader.contentHorizontalAlignment =  UIControl.ContentHorizontalAlignment.left
         scrollView.addSubview(directionsHeader)
         directionsHeader.translatesAutoresizingMaskIntoConstraints = false
+        directionsHeader.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return directionsHeader
     }
 
@@ -308,6 +315,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         let ingredientHeader = createIngredientHeader(scrollView: scrollView)
         NSLayoutConstraint.activate([
             ingredientHeader.topAnchor.constraint(equalTo: activeButton.bottomAnchor,constant: 25),
+            ingredientHeader.leftAnchor.constraint(equalTo: scrollView.leftAnchor,constant: 10),
             ingredientHeader.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.41)
         ])
         createIngredientTableView(scrollView: scrollView)
@@ -319,11 +327,12 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         let directionHeader = createDirectionHeader(scrollView: scrollView)
         NSLayoutConstraint.activate([
             directionHeader.topAnchor.constraint(equalTo: ingredientsTableView.bottomAnchor,constant: 25),
+            directionHeader.leftAnchor.constraint(equalTo: scrollView.leftAnchor,constant: 10),
             directionHeader.widthAnchor.constraint(equalTo: ingredientsTableView.widthAnchor, multiplier: 0.41)
         ])
         createDirectionTableView(scrollView: scrollView)
         NSLayoutConstraint.activate([
-            directionsTableView.topAnchor.constraint(equalTo: ingredientsTableView.bottomAnchor,constant: 75),
+            directionsTableView.topAnchor.constraint(equalTo: directionHeader.bottomAnchor,constant: 15),
             directionsTableView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             directionsTableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])

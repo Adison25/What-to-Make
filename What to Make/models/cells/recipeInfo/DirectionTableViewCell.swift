@@ -22,6 +22,8 @@ class DirectionTableViewCell: UITableViewCell {
         stepLabel.text = "Step \(step)"
         directionLabel.text = title
         directionLabel.numberOfLines = 0
+        stepLabel.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
+        directionLabel.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
     }
     
     override func awakeFromNib() {

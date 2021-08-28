@@ -9,6 +9,7 @@ target 'What to Make' do
 pod 'BEMCheckBox'
 pod 'SDWebImage'
 pod 'SkeletonView'
+pod 'AMXFontAutoScale', '~> 1.2'
 pod 'Firebase/Analytics'
 pod 'Firebase/Core'
 pod 'Firebase/Database'
