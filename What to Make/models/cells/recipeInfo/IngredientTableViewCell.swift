@@ -12,18 +12,24 @@ class IngredientTableViewCell: UITableViewCell {
     
     static let identifier = "IngredientTableViewCell"
     
+    @IBOutlet var checkBox: BEMCheckBox!
+    
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
     
-    public func configure(with title: String) {
+    public func configure(with title: String, boxSize: CGFloat) {
         ingredientTextView.text = title
         ingredientTextView.numberOfLines = 0
         ingredientTextView.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
+        NSLayoutConstraint.activate([
+            checkBox.heightAnchor.constraint(equalToConstant: boxSize),
+            checkBox.widthAnchor.constraint(equalToConstant: boxSize)
+        ])
     }
     
     @IBAction func checkBoxAction(_ sender: BEMCheckBox) {
-        sender.offAnimationType = .fade
+        sender.offAnimationType = .oneStroke
     }
     @IBOutlet var ingredientTextView: UILabel!
     

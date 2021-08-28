@@ -358,7 +358,9 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         if tableView == self.ingredientsTableView {
             let item = ingredientsArray[indexPath.row]
             let cell = ingredientsTableView.dequeueReusableCell(withIdentifier: IngredientTableViewCell.identifier, for: indexPath) as! IngredientTableViewCell
-            cell.configure(with: item.title)
+            var boxSize: CGFloat = 40 //1024
+            boxSize = boxSize * view.frame.size.width / 414
+            cell.configure(with: item.title, boxSize: boxSize)
             cell.selectionStyle = .none
             return cell
         }
