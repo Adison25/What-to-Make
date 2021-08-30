@@ -33,7 +33,7 @@ class LoadingViewController: UIViewController {
             defaults.set(true, forKey: "LoggedIn")
             DispatchQueue.main.async {
                 do {
-                    Constants.items = try Constants.context.fetch(Recipe.fetchRequest())
+                    Constants.savedRecipes = try Constants.context.fetch(Recipe.fetchRequest())
                 }catch {
                     fatalError("error fetching recipe data")
                 }

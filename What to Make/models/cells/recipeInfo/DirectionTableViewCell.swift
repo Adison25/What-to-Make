@@ -23,7 +23,7 @@ class DirectionTableViewCell: UITableViewCell {
         stepLabel.text = "Step \(step)"
         directionLabel.text = title
         directionLabel.numberOfLines = 0
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 10
         stepLabel.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         directionLabel.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
     }

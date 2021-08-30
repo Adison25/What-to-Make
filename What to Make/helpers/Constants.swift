@@ -21,7 +21,7 @@ struct Constants {
     
     static var allRecipes: [RecipeItem] = []
     static var modifiedRecipesArr: [RecipeItem] = []
-    static var items: [Recipe] = []
+    static var savedRecipes: [Recipe] = []
     static var modifiedItmes: [Recipe] = []
     
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -38,6 +38,11 @@ func addFilter(filter: String) {
 func updateSavedRecipe(idx: Int, active: Bool) {
     Constants.allRecipes[idx].isSaved = active
     Constants.modifiedRecipesArr[idx].isSaved = active
+    do {
+        Constants.savedRecipes = try Constants.context.fetch(Recipe.fetchRequest())
+    }catch {
+        print("error fetching core data")
+    }
 }
 
 func removeFilter(filter: String) {

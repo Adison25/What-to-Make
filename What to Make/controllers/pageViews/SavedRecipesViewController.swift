@@ -30,9 +30,10 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
     private let alertLabel: UILabel = {
         let lable = UILabel()
         lable.text = "No Recipes Saved"
-        lable.font.withSize(40)
+        lable.font = UIFont.boldSystemFont(ofSize: 40)
         lable.alpha = 0
         lable.translatesAutoresizingMaskIntoConstraints = false
+        lable.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return lable
     }()
     
@@ -58,11 +59,8 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-        if Constants.items.count == 0 {
+        if Constants.savedRecipes.count == 0 {
             alertLabel.alpha = 1
-//            let alert = UIAlertController(title: "No recipes with filters selected", message: "Please change your filters to see more recipes", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-//            self.present(alert, animated: true)
         }else {
             alertLabel.alpha = 0 }
     }
@@ -79,7 +77,7 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
     func fetchRecipe() {
         //fetch the data from core  data to display in the collectionview
         do {
-            Constants.items = try Constants.context.fetch(Recipe.fetchRequest())
+            Constants.savedRecipes = try Constants.context.fetch(Recipe.fetchRequest())
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -114,7 +112,7 @@ extension SavedRecipesViewController {
         idx = indexPath.row
         let vc = RecipeInfoViewController()
         //get recipe from array and set the cell
-        let recipe = Constants.items[indexPath.row]
+        let recipe = Constants.savedRecipes[indexPath.row]
         let rec = covertRecipeToRecipeItem(item: recipe)
         vc.configureInfoView(with: rec, index: indexPath.row)
         vc.modalTransitionStyle = .crossDissolve
@@ -128,14 +126,14 @@ extension SavedRecipesViewController {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return core data size
-        return Constants.items.count
+        return Constants.savedRecipes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
         
         //get recipe from array and set the cell
-        let recipe = Constants.items[indexPath.row]
+        let recipe = Constants.savedRecipes[indexPath.row]
         let rec = covertRecipeToRecipeItem(item: recipe)
         cell.configure(with: rec)
         return cell

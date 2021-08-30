@@ -30,7 +30,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }()
     
     lazy var backButton: UIButton = {
-        let itemWidth = navBar.frame.size.width*0.08
+        let itemWidth =  navBar.frame.size.height/4//navBar.frame.size.width*0.08
         let itemHeight =  navBar.frame.size.height/4
         let backButton = UIButton(frame: CGRect(x: view.frame.size.width * 0.05, y: navBar.frame.size.height/3*2, width: itemWidth, height: itemHeight))
         backButton.setBackgroundImage(UIImage(systemName: "arrow.left"), for: .normal)
@@ -40,7 +40,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }()
     
     lazy var bookMarkButton: UIButton = {
-        let itemWidth = navBar.frame.size.width*0.08
+        let itemWidth = navBar.frame.size.height/4//navBar.frame.size.width*0.08
         let itemHeight =  navBar.frame.size.height/4
         let bookmarkButton = UIButton(frame: CGRect(x: view.frame.size.width * 0.85, y: navBar.frame.size.height/3*2, width: itemWidth, height: itemHeight))
         bookmarkButton.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
@@ -50,10 +50,10 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }()
     
     lazy var sourceButton: UIButton = {
-        let itemWidth = self.navBar.frame.size.width*0.04
+        let itemWidth = navBar.frame.size.height/4//self.navBar.frame.size.width*0.04
         let itemHeight =  self.navBar.frame.size.height/4
         let sourceButton = UIButton(frame: CGRect(x: view.frame.size.width * 0.75, y: navBar.frame.size.height/3*2, width: itemWidth, height: itemHeight))
-        sourceButton.setBackgroundImage(UIImage(systemName: "info"), for: .normal)
+        sourceButton.setBackgroundImage(UIImage(systemName: "info.circle"), for: .normal)
         sourceButton.tintColor = dynamicColorText
         sourceButton.addTarget(self, action: #selector(openLink), for: .touchUpInside)
         return sourceButton
@@ -100,7 +100,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @objc func bookmarkRecipe(sender:UIButton) {
-        
+            
         if isSaved == false {
             sender.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
             isSaved = true
@@ -111,8 +111,9 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             sender.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
             isSaved = false
             updateSavedRecipe(idx: idx, active: isSaved)
+            
             //the recipe to be removed
-            let recipeToRemove = Constants.items[idx]
+            let recipeToRemove = Constants.savedRecipes[idx]
             //remove the recipe
             Constants.context.delete(recipeToRemove)
             //save the data
@@ -121,7 +122,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func checkIsSave(idx: Int, key: String) -> Bool {
-        for it in Constants.items {
+        for it in Constants.savedRecipes {
             if it.key == key {
                 return true
             }
@@ -167,7 +168,6 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     private func createActiveTimeLabel(with model: RecipeItem, scrollView: UIScrollView) -> UIButton{
-        //title
         let activeLabel = UIButton()
         activeLabel.setTitle("Active Time: \(model.activeTime)",for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
@@ -195,54 +195,6 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return titleLabel
-    }
-    
-    private func createSourceButton(scrollView: UIScrollView) -> UIButton {
-        let sourceButton = UIButton()
-        sourceButton.setTitle("i", for: .normal)
-        //call some func that makes the size fit perfectly to how many characterrs are in the string
-        sourceButton.titleLabel?.font = UIFont(name: "Apple Color Emoji", size: 18)
-        sourceButton.setTitleColor(dynamicColorText, for: .normal)
-        sourceButton.titleLabel?.textAlignment = .center
-        sourceButton.backgroundColor = dynamicColorBackground
-        sourceButton.layer.cornerRadius = 20
-        sourceButton.addTarget(self, action: #selector(openLink), for: .touchUpInside)
-        scrollView.addSubview(sourceButton)
-        sourceButton.translatesAutoresizingMaskIntoConstraints = false
-        sourceButton.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
-        return sourceButton
-    }
-    
-    private func createBookmarkButton(scrollView: UIScrollView) -> UIButton {
-        let bookmarkButton = UIButton()
-        if isSaved == false {
-            bookmarkButton.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
-        }else {
-            bookmarkButton.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-        }
-        //        bookmarkButton.tintColor = dynamicColorTextLink
-        bookmarkButton.tag = 1
-        bookmarkButton.addTarget(self, action: #selector(bookmarkRecipe), for: .touchUpInside)
-        scrollView.addSubview(bookmarkButton)
-        bookmarkButton.translatesAutoresizingMaskIntoConstraints = false
-        return bookmarkButton
-    }
-    
-    
-    private func createBackButton(scrollView: UIScrollView) -> UIButton {
-        let backButton = UIButton()
-        backButton.setTitle("X", for: .normal)
-        //call some func that makes the size fit perfectly to how many characterrs are in the string
-        backButton.titleLabel?.font = UIFont(name: "Apple Color Emoji", size: 18)
-        backButton.setTitleColor(dynamicColorText, for: .normal)
-        backButton.titleLabel?.textAlignment = .center
-        backButton.addTarget(self, action: #selector(didTapDone), for: .touchUpInside)
-        backButton.backgroundColor = dynamicColorBackground
-        backButton.layer.cornerRadius = 20
-        scrollView.addSubview(backButton)
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
-        return backButton
     }
     
     private func createIngredientHeader(scrollView: UIScrollView)  -> UIButton{
@@ -287,7 +239,47 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         directionsTableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func updateNavbar() {
+    // MARK: - infostackview
+    
+    private func createInfoStackView(scrollView: UIScrollView) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .fill // .leading .firstBaseline .center .trailing .lastBaseline
+//        stackView.distribution = .fillEqually // .fillEqually .fillProportionally .equalSpacing .equalCentering
+        scrollView.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.backgroundColor = .systemBackground
+        stackView.layer.cornerRadius = 10
+        return stackView
+    }
+    
+    private func createVerticalStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .center // .leading .firstBaseline .center .trailing .lastBaseline
+        stackView.distribution = .fillEqually // .fillEqually .fillProportionally .equalSpacing .equalCentering
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }
+    
+    private func createInfoStackViewHeader(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
+        return label
+    }
+    
+    private func createInfoStackViewLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.font =  label.font.withSize(15)
+        label.alpha = 0.90
+        label.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
+        return label
+    }
+    
+    private func updateNavbar() {
         navBar.addSubview(bookMarkButton)
         navBar.addSubview(backButton)
         navBar.addSubview(sourceButton)
@@ -311,6 +303,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         let scrollView = createScrollView()
         view.addSubview(navBar)
         updateNavbar()
+        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: navBar.bottomAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -323,43 +316,74 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             imageView.heightAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
-//        let sourceButton = createSourceButton(scrollView: scrollView)
+        let infoStackView = createInfoStackView(scrollView: scrollView)
+        NSLayoutConstraint.activate([
+            infoStackView.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: -view.frame.size.height * 0.05),
+            infoStackView.heightAnchor.constraint(equalToConstant: scrollView.frame.size.height * 0.10),
+            infoStackView.widthAnchor.constraint(equalToConstant: scrollView.frame.size.width * 0.90 ),
+            infoStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+        ])
+        
+        let num = scrollView.frame.size.width * 0.90
+        
+        let vert1 = createVerticalStackView()
+        let timeLabel = createInfoStackViewHeader(text: "\(model.activeTime)")
+        let timeLabel1 = createInfoStackViewLabel(text: "Total Time")
+        vert1.addArrangedSubview(timeLabel)
+        vert1.addArrangedSubview(timeLabel1)
+        infoStackView.addArrangedSubview(vert1)
+        NSLayoutConstraint.activate([
+            vert1.widthAnchor.constraint(equalToConstant: (num/3) - 1)
+        ])
+        
+        //separator
+        let separator = UIView()
+        separator.widthAnchor.constraint(equalToConstant: 1).isActive = true
+        separator.backgroundColor = .black
+        infoStackView.addArrangedSubview(separator)
+        separator.heightAnchor.constraint(equalTo: infoStackView.heightAnchor, multiplier: 1.0).isActive = true
 //        NSLayoutConstraint.activate([
-//            sourceButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 25),
-//            sourceButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10),
-//            sourceButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -10)
+//            separator.centerYAnchor.constraint(equalTo: infoStackView.centerYAnchor)
 //        ])
-//        let bookmarkButton = createBookmarkButton(scrollView: scrollView)
-//        NSLayoutConstraint.activate([
-//            bookmarkButton.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: -50),
-//            bookmarkButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10),
-//            bookmarkButton.heightAnchor.constraint(equalTo: sourceButton.heightAnchor),
-//            bookmarkButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -10)
-//        ])
-//        let backButton = createBackButton(scrollView: scrollView)
-//        NSLayoutConstraint.activate([
-//            backButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 25),
-//            backButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10), //or 0.25 can change depending on what i want it to look like
-//            backButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 10)
-//        ])
+        
+        let vert2 = createVerticalStackView()
+        let ingredientLabel = createInfoStackViewHeader(text: "\(model.ingredients.count)")
+        let ingredientLabel1 = createInfoStackViewLabel(text: "Ingredients")
+        vert2.addArrangedSubview(ingredientLabel)
+        vert2.addArrangedSubview(ingredientLabel1)
+        infoStackView.addArrangedSubview(vert2)
+        NSLayoutConstraint.activate([
+            vert2.widthAnchor.constraint(equalToConstant: (num/3) - 1)
+        ])
+        
+        let separator2 = UIView()
+        separator2.widthAnchor.constraint(equalToConstant: 1).isActive = true
+        separator2.backgroundColor = .black
+        infoStackView.addArrangedSubview(separator2)
+        separator2.heightAnchor.constraint(equalTo: infoStackView.heightAnchor, multiplier: 1.0).isActive = true
+        
+        let vert3 = createVerticalStackView()
+        let stepLabel = createInfoStackViewHeader(text: "\(model.directions.count)")
+        let stepLabel1 = createInfoStackViewLabel(text: "Directions")
+        vert3.addArrangedSubview(stepLabel)
+        vert3.addArrangedSubview(stepLabel1)
+        infoStackView.addArrangedSubview(vert3)
+        NSLayoutConstraint.activate([
+            vert3.widthAnchor.constraint(equalToConstant: num/3 )
+        ])
+//        infoStackView.addHorizontalSeparators(color: .black)
+        
         let titleButton = createTitleLabel(with: model, scrollView: scrollView)
         NSLayoutConstraint.activate([
-            titleButton.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: 25),
+            titleButton.topAnchor.constraint(equalTo: infoStackView.bottomAnchor,constant: 20),
             titleButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
             titleButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
             titleButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
         ])
-        let activeButton = createActiveTimeLabel(with: model, scrollView: scrollView)
-        NSLayoutConstraint.activate([
-            activeButton.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 25),
-            activeButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor,constant: 20)
-            //            activeButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor)
-            //            activeButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
-        ])
         //ingredient views
         let ingredientHeader = createIngredientHeader(scrollView: scrollView)
         NSLayoutConstraint.activate([
-            ingredientHeader.topAnchor.constraint(equalTo: activeButton.bottomAnchor,constant: 25),
+            ingredientHeader.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 25),
             ingredientHeader.leftAnchor.constraint(equalTo: scrollView.leftAnchor,constant: 10),
             ingredientHeader.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.41)
         ])
