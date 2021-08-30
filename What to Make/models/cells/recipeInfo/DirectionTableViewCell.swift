@@ -15,6 +15,7 @@ class DirectionTableViewCell: UITableViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
     
+    @IBOutlet var view: UIView!
     @IBOutlet var stepLabel: UILabel!
     @IBOutlet var directionLabel: UILabel!
         
@@ -22,6 +23,7 @@ class DirectionTableViewCell: UITableViewCell {
         stepLabel.text = "Step \(step)"
         directionLabel.text = title
         directionLabel.numberOfLines = 0
+        view.layer.cornerRadius = 5
         stepLabel.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         directionLabel.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
     }

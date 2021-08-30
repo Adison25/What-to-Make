@@ -153,7 +153,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         let titleLabel = UIButton()
         titleLabel.setTitle("\(model.name)",for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
-        titleLabel.titleLabel?.font = titleLabel.titleLabel?.font.withSize(50)//recipeTitleFont()
+        titleLabel.titleLabel?.font = UIFont.boldSystemFont(ofSize: 50)//titleLabel.titleLabel?.font.withSize(50)//recipeTitleFont()
         titleLabel.titleLabel?.numberOfLines = 0
         titleLabel.titleLabel?.lineBreakMode = .byWordWrapping
         titleLabel.setTitleColor(dynamicColorText, for: .normal)
@@ -215,8 +215,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     private func createIngredientHeader(scrollView: UIScrollView)  -> UIButton{
         let ingredientHeader = UIButton()
         ingredientHeader.setTitle("Ingredients:",for: .normal)
-        //call some func that makes the size fit perfectly to how many characterrs are in the string
-        ingredientHeader.titleLabel?.font = ingredientHeader.titleLabel?.font.withSize(30)//tableViewHeaderFont()
+        ingredientHeader.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)//tableViewHeaderFont()
         ingredientHeader.setTitleColor(dynamicColorText, for: .normal)
         ingredientHeader.contentHorizontalAlignment =  UIControl.ContentHorizontalAlignment.left
         scrollView.addSubview(ingredientHeader)
@@ -237,7 +236,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         let directionsHeader = UIButton()
         directionsHeader.setTitle("Directions:",for: .normal)
         //call some func that makes the size fit perfectly to how many characterrs are in the string
-        directionsHeader.titleLabel?.font = directionsHeader.titleLabel?.font.withSize(30)
+        directionsHeader.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
         directionsHeader.setTitleColor(dynamicColorText, for: .normal)
         directionsHeader.contentHorizontalAlignment =  UIControl.ContentHorizontalAlignment.left
         scrollView.addSubview(directionsHeader)
