@@ -17,14 +17,50 @@ class ChecklistItem {
 }
 
 class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     struct Cells {
         static let ingredientCell = "ingredientsCell"
         static let directionCell = "directionsCell"
     }
     
+    lazy var navBar: UIView = {
+        let bar = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height * 0.10))
+        bar.backgroundColor = .systemBackground
+        return bar
+    }()
+    
+    lazy var backButton: UIButton = {
+        let itemWidth = navBar.frame.size.width*0.08
+        let itemHeight =  navBar.frame.size.height/4
+        let backButton = UIButton(frame: CGRect(x: view.frame.size.width * 0.05, y: navBar.frame.size.height/3*2, width: itemWidth, height: itemHeight))
+        backButton.setBackgroundImage(UIImage(systemName: "arrow.left"), for: .normal)
+        backButton.tintColor = dynamicColorText
+        backButton.addTarget(self, action: #selector(didTapDone), for: .touchUpInside)
+        return backButton
+    }()
+    
+    lazy var bookMarkButton: UIButton = {
+        let itemWidth = navBar.frame.size.width*0.08
+        let itemHeight =  navBar.frame.size.height/4
+        let bookmarkButton = UIButton(frame: CGRect(x: view.frame.size.width * 0.85, y: navBar.frame.size.height/3*2, width: itemWidth, height: itemHeight))
+        bookmarkButton.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
+        bookmarkButton.tintColor = dynamicColorText
+        bookmarkButton.addTarget(self, action: #selector(bookmarkRecipe(sender:)), for: .touchUpInside)
+        return bookmarkButton
+    }()
+    
+    lazy var sourceButton: UIButton = {
+        let itemWidth = self.navBar.frame.size.width*0.04
+        let itemHeight =  self.navBar.frame.size.height/4
+        let sourceButton = UIButton(frame: CGRect(x: view.frame.size.width * 0.75, y: navBar.frame.size.height/3*2, width: itemWidth, height: itemHeight))
+        sourceButton.setBackgroundImage(UIImage(systemName: "info"), for: .normal)
+        sourceButton.tintColor = dynamicColorText
+        sourceButton.addTarget(self, action: #selector(openLink), for: .touchUpInside)
+        return sourceButton
+    }()
+    
     var whichVc : Int = 0
-
+    
     private var urlString: String = ""
     private let ingredientsTableView = DynamicSizeTableView()
     private var ingredientsArray = [ChecklistItem]()
@@ -34,21 +70,18 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     lazy var scrollContentViewSize = CGSize(width: view.frame.size.width, height: view.frame.height)
     private var isSaved: Bool = false
     var idx = 0
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6//dynamicColorBackground
         
-//        ingredientsTableView.register(UITableViewCell.self, forCellReuseIdentifier: Cells.ingredientCell)
         ingredientsTableView.register(IngredientTableViewCell.nib(), forCellReuseIdentifier: IngredientTableViewCell.identifier)
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
         
-//        directionsTableView.register(UITableViewCell.self, forCellReuseIdentifier: Cells.directionCell)
         directionsTableView.register(DirectionTableViewCell.nib(), forCellReuseIdentifier: DirectionTableViewCell.identifier)
         directionsTableView.delegate = self
         directionsTableView.dataSource = self
-                
     }
     
     //dismisses the current vc
@@ -73,7 +106,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             isSaved = true
             updateSavedRecipe(idx: idx, active: isSaved)
             addToCoreData(idx: idx)
-
+            
         } else {
             sender.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
             isSaved = false
@@ -113,7 +146,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     private func createScrollView() -> UIScrollView{
-        let scrollView = UIScrollView(frame: view.bounds)
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: navBar.frame.size.height, width: view.frame.size.width, height: view.frame.size.height - navBar.frame.size.height))
         scrollView.contentSize = scrollContentViewSize
         scrollView.backgroundColor = .systemGray6//.clear
         view.addSubview(scrollView)
@@ -126,7 +159,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         let imageView = UIImageView()
         imageView.sd_setImage(with: URL(string: model.photoURL), completed: nil)
         imageView.contentMode = .scaleAspectFill
-//        imageView.isUserInteractionEnabled = true
+        //        imageView.isUserInteractionEnabled = true
         scrollView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -147,7 +180,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         activeLabel.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return activeLabel
     }
-
+    
     private func createTitleLabel(with model: RecipeItem, scrollView: UIScrollView) -> UIButton{
         //title
         let titleLabel = UIButton()
@@ -163,7 +196,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         titleLabel.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return titleLabel
     }
-
+    
     private func createSourceButton(scrollView: UIScrollView) -> UIButton {
         let sourceButton = UIButton()
         sourceButton.setTitle("i", for: .normal)
@@ -187,15 +220,15 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         }else {
             bookmarkButton.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
         }
-//        bookmarkButton.tintColor = dynamicColorTextLink
+        //        bookmarkButton.tintColor = dynamicColorTextLink
         bookmarkButton.tag = 1
         bookmarkButton.addTarget(self, action: #selector(bookmarkRecipe), for: .touchUpInside)
         scrollView.addSubview(bookmarkButton)
         bookmarkButton.translatesAutoresizingMaskIntoConstraints = false
         return bookmarkButton
     }
-
-
+    
+    
     private func createBackButton(scrollView: UIScrollView) -> UIButton {
         let backButton = UIButton()
         backButton.setTitle("X", for: .normal)
@@ -211,7 +244,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         backButton.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return backButton
     }
-
+    
     private func createIngredientHeader(scrollView: UIScrollView)  -> UIButton{
         let ingredientHeader = UIButton()
         ingredientHeader.setTitle("Ingredients:",for: .normal)
@@ -223,7 +256,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         ingredientHeader.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return ingredientHeader
     }
-
+    
     private func createIngredientTableView(scrollView: UIScrollView){
         ingredientsTableView.backgroundColor = .systemGray6//.clear//dynamicColorBackground
         ingredientsTableView.estimatedRowHeight = UITableView.automaticDimension
@@ -231,7 +264,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         scrollView.addSubview(ingredientsTableView)
         ingredientsTableView.translatesAutoresizingMaskIntoConstraints = false
     }
-
+    
     private func createDirectionHeader(scrollView: UIScrollView) -> UIButton{
         let directionsHeader = UIButton()
         directionsHeader.setTitle("Directions:",for: .normal)
@@ -244,7 +277,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         directionsHeader.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return directionsHeader
     }
-
+    
     private func createDirectionTableView(scrollView: UIScrollView) {
         //ingredientsList
         directionsTableView.backgroundColor = .systemGray6//.clear//dynamicColorBackground
@@ -253,7 +286,18 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         scrollView.addSubview(directionsTableView)
         directionsTableView.translatesAutoresizingMaskIntoConstraints = false
     }
-
+    
+    func updateNavbar() {
+        navBar.addSubview(bookMarkButton)
+        navBar.addSubview(backButton)
+        navBar.addSubview(sourceButton)
+        if isSaved == false {
+            bookMarkButton.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
+        }else {
+            bookMarkButton.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        }
+    }
+    
     //home func that calls all the other functions
     func configureInfoView(with model: RecipeItem, index: Int) {
         
@@ -263,10 +307,12 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         isSaved = model.isSaved
         if whichVc == 2 {
             isSaved = checkIsSave(idx: idx, key: model.key) }
-                
+        
         let scrollView = createScrollView()
+        view.addSubview(navBar)
+        updateNavbar()
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: navBar.bottomAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
@@ -277,25 +323,25 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             imageView.heightAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
-        let sourceButton = createSourceButton(scrollView: scrollView)
-        NSLayoutConstraint.activate([
-            sourceButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 25),
-            sourceButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10),
-            sourceButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -10)
-        ])
-        let bookmarkButton = createBookmarkButton(scrollView: scrollView)
-        NSLayoutConstraint.activate([
-            bookmarkButton.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: -50),
-            bookmarkButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10),
-            bookmarkButton.heightAnchor.constraint(equalTo: sourceButton.heightAnchor),
-            bookmarkButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -10)
-        ])
-        let backButton = createBackButton(scrollView: scrollView)
-        NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 25),
-            backButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10), //or 0.25 can change depending on what i want it to look like
-            backButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 10)
-        ])
+//        let sourceButton = createSourceButton(scrollView: scrollView)
+//        NSLayoutConstraint.activate([
+//            sourceButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 25),
+//            sourceButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10),
+//            sourceButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -10)
+//        ])
+//        let bookmarkButton = createBookmarkButton(scrollView: scrollView)
+//        NSLayoutConstraint.activate([
+//            bookmarkButton.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: -50),
+//            bookmarkButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10),
+//            bookmarkButton.heightAnchor.constraint(equalTo: sourceButton.heightAnchor),
+//            bookmarkButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -10)
+//        ])
+//        let backButton = createBackButton(scrollView: scrollView)
+//        NSLayoutConstraint.activate([
+//            backButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 25),
+//            backButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.10), //or 0.25 can change depending on what i want it to look like
+//            backButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 10)
+//        ])
         let titleButton = createTitleLabel(with: model, scrollView: scrollView)
         NSLayoutConstraint.activate([
             titleButton.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: 25),
@@ -307,8 +353,8 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         NSLayoutConstraint.activate([
             activeButton.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 25),
             activeButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor,constant: 20)
-//            activeButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor)
-//            activeButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+            //            activeButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor)
+            //            activeButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
         ])
         //ingredient views
         let ingredientHeader = createIngredientHeader(scrollView: scrollView)
@@ -373,23 +419,23 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-       return UITableView.automaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-
+    
 }
 
 extension UIView {
-
+    
     func addBlurrEffect() {
         let blurEffectView = TSBlurEffectView() // creating a blur effect view
         blurEffectView.intensity = 1 // setting blur intensity from 0.1 to 10
         self.addSubview(blurEffectView) // adding blur effect view as a subview to your view in which you want to use
     }
-
+    
     func removeBlurEffect() {
         for subview in self.subviews {
             if subview is UIVisualEffectView {
