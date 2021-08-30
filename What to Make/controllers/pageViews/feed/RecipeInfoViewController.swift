@@ -70,6 +70,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     lazy var scrollContentViewSize = CGSize(width: view.frame.size.width, height: view.frame.height)
     private var isSaved: Bool = false
     var idx = 0
+    var key = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +101,6 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @objc func bookmarkRecipe(sender:UIButton) {
-            
         if isSaved == false {
             sender.setBackgroundImage(UIImage(systemName: "bookmark.fill"), for: .normal)
             isSaved = true
@@ -111,14 +111,25 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             sender.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
             isSaved = false
             updateSavedRecipe(idx: idx, active: isSaved)
-            
             //the recipe to be removed
-            let recipeToRemove = Constants.savedRecipes[idx]
+            let location = saveIdx(key: key)
+            let recipeToRemove = Constants.savedRecipes[location]
             //remove the recipe
             Constants.context.delete(recipeToRemove)
             //save the data
             saveCoreData()
         }
+    }
+    
+    func saveIdx(key: String) -> Int {
+        var loc = 0
+        for item in Constants.savedRecipes {
+            if item.key == key {
+                return loc
+            }
+            loc += 1
+        }
+        return loc
     }
     
     func checkIsSave(idx: Int, key: String) -> Bool {
@@ -294,11 +305,12 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     func configureInfoView(with model: RecipeItem, index: Int) {
         
         idx = index
+        key = model.key
         urlString = model.sourceURL
         fillArrays(with: model)
         isSaved = model.isSaved
         if whichVc == 2 {
-            isSaved = checkIsSave(idx: idx, key: model.key) }
+            isSaved = checkIsSave(idx: idx, key: key) }
         
         let scrollView = createScrollView()
         view.addSubview(navBar)

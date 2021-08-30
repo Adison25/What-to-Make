@@ -30,7 +30,6 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         setupClearNavBar()
         navigationItem.title = "Recipes"
         view.backgroundColor = .systemGray6
-        
         view.addSubview(collectionView)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -47,6 +46,7 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
             alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
             self.present(alert, animated: true)
         }
+        self.becomeFirstResponder()
     }
     
     override func viewDidLayoutSubviews() {
@@ -56,6 +56,13 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
 }
 
 extension FeedViewController {
+    
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+       print(motion)
+       if motion == .motionShake {
+          print("shake was detected in feed view")
+       }
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = RecipeInfoViewController()

@@ -20,7 +20,7 @@ struct RecipeItem {
     var isSaved: Bool
     
     // MARK: Initialize with Raw Data
-    init(key: String = "", name: String, activeTime: String, photoURL: String, sourceURL: String, ingredients: [String], directions: [String], tags: [String], isSaved: Bool) {
+    init(key: String, name: String, activeTime: String, photoURL: String, sourceURL: String, ingredients: [String], directions: [String], tags: [String], isSaved: Bool) {
         self.ref = nil
         self.key = key
         self.name = name
