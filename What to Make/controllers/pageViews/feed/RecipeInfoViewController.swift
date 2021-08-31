@@ -427,33 +427,34 @@ extension RecipeInfoViewController {
         let difficultLabel = createBoldLabel(scrollView: scrollView, str: "Difficulty: ")
         NSLayoutConstraint.activate([
             difficultLabel.topAnchor.constraint(equalTo: infoStackView.bottomAnchor, constant: scrollView.frame.size.height * 0.05),
-            difficultLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor,constant: scrollView.frame.size.width * 0.15),
+            difficultLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor,constant: scrollView.frame.size.width * 0.13),
             difficultLabel.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.20)
         ])
         let difficultLabel2 = createRegularLabel(scrollView: scrollView, str: "\(model.difficulty)")
         NSLayoutConstraint.activate([
             difficultLabel2.topAnchor.constraint(equalTo: infoStackView.bottomAnchor, constant: scrollView.frame.size.height * 0.05),
             difficultLabel2.leftAnchor.constraint(equalTo: difficultLabel.rightAnchor, constant: 5),
-            difficultLabel2.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.20)
+            difficultLabel2.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.22)
         ])
         //yield labels
         let yieldLabel = createBoldLabel(scrollView: scrollView, str: "Yield: ")
         NSLayoutConstraint.activate([
             yieldLabel.topAnchor.constraint(equalTo: difficultLabel.bottomAnchor, constant: 15),
-            yieldLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor,constant: scrollView.frame.size.width * 0.15),
+            yieldLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor,constant: scrollView.frame.size.width * 0.13),
             yieldLabel.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.20)
         ])
         let yieldLabel2 = createRegularLabel(scrollView: scrollView, str: "\(model.yield)")
         NSLayoutConstraint.activate([
             yieldLabel2.topAnchor.constraint(equalTo: difficultLabel2.bottomAnchor, constant: 15),
             yieldLabel2.leftAnchor.constraint(equalTo: yieldLabel.rightAnchor, constant: 5),
-            yieldLabel2.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.20)
+            yieldLabel2.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.25),
+            yieldLabel2.heightAnchor.constraint(equalTo: yieldLabel.heightAnchor)
         ])
         
         //ingredient views
         let ingredientHeader = createIngredientHeader(scrollView: scrollView)
         NSLayoutConstraint.activate([
-            ingredientHeader.topAnchor.constraint(equalTo: difficultLabel.bottomAnchor,constant: scrollView.frame.size.height * 0.05),
+            ingredientHeader.topAnchor.constraint(equalTo: yieldLabel.bottomAnchor,constant: scrollView.frame.size.height * 0.01),
             ingredientHeader.leftAnchor.constraint(equalTo: scrollView.leftAnchor,constant: 10),
             ingredientHeader.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.41)
         ])
