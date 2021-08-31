@@ -44,6 +44,8 @@ func addToCoreData(idx: Int) {
     rec.key = item.key
     rec.activeTime = item.activeTime
     rec.isSaved = item.isSaved
+    rec.yield = item.yield
+    rec.difficulty = item.difficulty
     rec.photoURL = item.photoURL
     rec.sourceURL = item.sourceURL
     for it in item.ingredients {

@@ -22,7 +22,7 @@ struct Constants {
     static var allRecipes: [RecipeItem] = []
     static var modifiedRecipesArr: [RecipeItem] = []
     static var savedRecipes: [Recipe] = []
-    static var modifiedItmes: [Recipe] = []
+    static var modifiedSaved: [Recipe] = []
     
     static var size: CGFloat = 0
     static var buttonActiveArray = [
