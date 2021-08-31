@@ -20,6 +20,7 @@ class FilterHeaderTableViewCell: UITableViewCell {
     public func configure(with title: String) {
         filterHeaderLabel.text = title
         filterHeaderLabel.font = filterHeaderLabel.font.withSize(25)//tableViewHeaderFont()
+        filterHeaderLabel.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
     }
     
 

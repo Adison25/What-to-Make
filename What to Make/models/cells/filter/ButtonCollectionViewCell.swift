@@ -33,15 +33,16 @@ class ButtonCollectionViewCell: UICollectionViewCell {
     
     public func configure(with title: String, row: Int, col: Int) {
         filterButton.setTitle(title, for: .normal)
-        filterButton.titleLabel?.font = filterButton.titleLabel?.font.withSize(15)//buttonFont()
+        filterButton.titleLabel?.font = filterButton.titleLabel?.font.withSize(16)//buttonFont()
         filterButton.setTitleColor(dynamicColorText, for: .normal)
         filterButton.backgroundColor = dynamicColorBackground
 //        filterButton.layer.borderColor = UIColor(named: "buttonBorder")!.cgColor
-        filterButton.layer.cornerRadius = 15
+        filterButton.layer.cornerRadius = 18
         filterButton.layer.borderWidth = 1
         filterButton.layer.borderColor = dynamicBorderColor() //dynamic color
         filterButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
         filterButton.tag = Constants.buttonActiveArray[row][col]
+        filterButton.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         rowIdx = row
         colIdx = col
         changeColorStart()

@@ -23,6 +23,7 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     
     var models = [String]()
     var row = 0
+    var fontSize: CGFloat = 0
     
     weak var delegate2: MyCustomCellDelegate2?
     
@@ -32,7 +33,6 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         collectionView.register(ButtonCollectionViewCell.nib(), forCellWithReuseIdentifier: ButtonCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
-//        collectionView.allowsMultipleSelection = false
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -74,8 +74,14 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let aWidth : CGFloat = models[indexPath.row].width(withConstraintedHeight: 0, font: UIFont.systemFont(ofSize: 17.0))
-        return CGSize(width: aWidth + 15 , height: 30)
+        //40 for ipad font
+        //1024 for ipad width
+        //414 for iphone width
+//        print(contentView.frame.size.width)
+//        print((contentView.frame.size.width/414) * 17)
+        fontSize = contentView.frame.size.width/414 * 17
+        let aWidth : CGFloat = models[indexPath.row].width(withConstraintedHeight: 0, font: UIFont.systemFont(ofSize: fontSize))
+        return CGSize(width: aWidth + 15 , height: 30 + contentView.frame.width * 0.015)
     }
     
 

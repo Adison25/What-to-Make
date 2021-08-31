@@ -34,6 +34,19 @@ struct Constants {
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 }
 
+func resetButtonActiveArray() {
+    var x = 0
+    var y = 0
+    for row in Constants.buttonActiveArray {
+        for _ in row {
+            Constants.buttonActiveArray[x][y] = 0
+            y += 1
+        }
+        x += 1
+        y = 0
+    }
+}
+
 var filterArr: [String] = []
 
 func addFilter(filter: String) {
