@@ -23,12 +23,20 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private let clearFiltersButton = UIButton()
     private var prevScrollDirection: CGFloat = 0
     
+    lazy var filterLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Filters"
+        label.font = UIFont.boldSystemFont(ofSize: 50)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     var buttonArray = [
-        ["15 Min or Less","15 to 30 Min", "45 Min", "60 Min", "60+"],
-        ["Breakfast","Lunch","Dinner","Dessert"],
-        ["Gluten Free","Vegetarian", "Mediterranean", "Pescatarian", "Vegan","Kosher","Nut Free"]
+        ["Under 15 min","Under 30 Min", "Under 60 Min"],
+        ["Breakfast","Snack","Smoothies", "Lunch","Sandwiches","Dinner","Bowl Meals","Pasta", "Salad","Soups", "Pizza","Chicken","Dessert", "Drinks"],
+        ["Gluten Free","Vegetarian", "Mediterranean", "Pescatarian", "Vegan","Kosher","Nut Free"],
+        ["Easy","Medium", "Hard"]
     ]
-    var header = ["Time","Dish Type","Dietary"]
+    var header = ["Time","Dish Type","Dietary","Difficulty"]
     var indexHeader = 0
     var indexButton = 0
     
@@ -36,20 +44,32 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         setupClearNavBar()
         navigationItem.title = "Filters"
+        view.backgroundColor = .systemGray6
         view.addSubview(tableView)
         tableView.register(FilterHeaderTableViewCell.nib(), forCellReuseIdentifier: FilterHeaderTableViewCell.identifier)
         tableView.register(FilterCollectionTableViewCell.nib(), forCellReuseIdentifier: FilterCollectionTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         //adding label
         view.addSubview(numberReciepesLabel)
+        view.addSubview(filterLabel)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
+        NSLayoutConstraint.activate([
+            filterLabel.topAnchor.constraint(equalTo: view.topAnchor,constant: view.frame.size.height * 0.10),
+            filterLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.frame.size.width * 0.05)
+        ])
+        //tableView.frame = view.bounds
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: filterLabel.bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
         tableView.backgroundColor = .systemGray6
     }
     
@@ -79,7 +99,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         numberReciepesLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            numberReciepesLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -150),
+            numberReciepesLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -view.frame.size.height * 0.05),
             numberReciepesLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.60), //or 0.25 can change depending on what i want it to look like
             numberReciepesLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.frame.size.width/5)
         ])
@@ -110,17 +130,17 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        if indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4 {
+        if indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4 || indexPath.row == 6 {
             let cell = tableView.dequeueReusableCell(withIdentifier: FilterHeaderTableViewCell.identifier, for: indexPath) as! FilterHeaderTableViewCell
             cell.configure(with: header[indexHeader])
             cell.selectionStyle = .none
             
-            if indexHeader < 2 {
+            if indexHeader < 3 {
                 indexHeader += 1
             }else {
                 indexHeader = 0
@@ -132,7 +152,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.configure(with: buttonArray[indexButton], idx: indexButton)
             cell.selectionStyle = .none
             cell.delegate2 = self
-            if indexButton < 2 {
+            if indexButton < 3 {
                 indexButton += 1
             }else {
                 indexButton = 0

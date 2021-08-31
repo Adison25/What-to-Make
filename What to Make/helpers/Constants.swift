@@ -25,9 +25,10 @@ struct Constants {
     static var modifiedItmes: [Recipe] = []
     
     static var buttonActiveArray = [
-        [0,0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0,0,0,0]
+        [0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0]
     ]
     
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
