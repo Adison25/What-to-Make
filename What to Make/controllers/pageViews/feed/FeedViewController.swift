@@ -25,6 +25,17 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         return collectionView
     }()
     
+    lazy var filterButton : UIButton = {
+        let button = UIButton(frame: CGRect(x: view.frame.size.width * 0.85, y: view.frame.size.height * 0.85, width: view.frame.size.width * 0.10, height: view.frame.size.width * 0.10))
+        button.setBackgroundImage(UIImage(systemName: "line.horizontal.3.decrease.circle.fill"), for: .normal)
+        button.tintColor = dynamicColorText
+        button.backgroundColor = .systemBackground
+        button.layer.cornerRadius = 20
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(goToFilterView), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupClearNavBar()
@@ -33,6 +44,7 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         view.addSubview(collectionView)
         collectionView.dataSource = self
         collectionView.delegate = self
+        view.addSubview(filterButton)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,24 +58,24 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
             alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
             self.present(alert, animated: true)
         }
-        self.becomeFirstResponder()
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
     }
+    
+    @objc func goToFilterView() {
+        let vc = FilterViewController()
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
 }
 
 extension FeedViewController {
-    
-    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-       print(motion)
-       if motion == .motionShake {
-          print("shake was detected in feed view")
-       }
-    }
-    
+ 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = RecipeInfoViewController()
         vc.whichVc = 2

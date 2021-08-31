@@ -23,13 +23,11 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private let clearFiltersButton = UIButton()
     private var prevScrollDirection: CGFloat = 0
     
-//    var models = [Model]()
     var buttonArray = [
-        ["Under 30 Min","Over 30 Min"],
+        ["Quick","Over 30 Min"],
         ["Breakfast","Lunch","Dinner","Dessert"],
         ["Gluten Free","Vegetarian", "Mediterranean", "Pescatarian", "Vegan","Kosher","Nut Free"]
     ]
-//    var timeArray = ["Under 15 Min", "Under 30 Min", "Under 45 Min"]
     var header = ["Time","Dish Type","Dietary"]
     var indexHeader = 0
     var indexButton = 0
@@ -44,10 +42,6 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        
-        //puts the button ontop of everything because the navbar was infront of the button when i add it to the subview
-//        UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.addSubview(clearFiltersButton)
-//        configureClearAll()
         
         //adding label
         view.addSubview(numberReciepesLabel)
@@ -92,7 +86,10 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @objc func openFeed() {
-        tabBarController?.selectedIndex = 1
+        let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarVC) as! TabBarController)
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
     
     @objc func tappedClearAll(){
@@ -130,7 +127,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.identifier, for: indexPath) as! FilterCollectionTableViewCell
-            cell.configure(with: buttonArray[indexButton])
+            cell.configure(with: buttonArray[indexButton], idx: indexButton)
             cell.selectionStyle = .none
             cell.delegate2 = self
             if indexButton < 2 {

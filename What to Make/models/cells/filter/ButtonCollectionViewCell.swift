@@ -19,6 +19,9 @@ class ButtonCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: MyCustomCellDelegate?
     
+    var rowIdx = 0
+    var colIdx = 0
+    
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
@@ -28,7 +31,7 @@ class ButtonCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    public func configure(with title: String) {
+    public func configure(with title: String, row: Int, col: Int) {
         filterButton.setTitle(title, for: .normal)
         filterButton.titleLabel?.font = filterButton.titleLabel?.font.withSize(15)//buttonFont()
         filterButton.setTitleColor(dynamicColorText, for: .normal)
@@ -38,12 +41,29 @@ class ButtonCollectionViewCell: UICollectionViewCell {
         filterButton.layer.borderWidth = 1
         filterButton.layer.borderColor = dynamicBorderColor() //dynamic color
         filterButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
-        filterButton.tag = 0
+        filterButton.tag = Constants.buttonActiveArray[row][col]
+        rowIdx = row
+        colIdx = col
+        changeColorStart()
     }
     
     @objc func buttonTap(){
         changeColor()
         delegate?.updateLabel()
+    }
+    
+    func changeColorStart() {
+        if traitCollection.userInterfaceStyle == .light {
+            if filterButton.tag == 1 {
+                setDark()
+                removeFilter(filter: (filterButton.titleLabel?.text)!)
+            }
+        } else if traitCollection.userInterfaceStyle == .dark {
+            if filterButton.tag == 1 {
+                setLight()
+                removeFilter(filter: (filterButton.titleLabel?.text)!)
+            }
+        }
     }
     
     func changeColor() {
@@ -52,22 +72,26 @@ class ButtonCollectionViewCell: UICollectionViewCell {
                 setDark()
                 addFilter(filter: (filterButton.titleLabel?.text)!)
                 filterButton.tag = 1
+                Constants.buttonActiveArray[rowIdx][colIdx] = 1
             }
             else if filterButton.tag == 1 {
                 setNormal()
                 removeFilter(filter: (filterButton.titleLabel?.text)!)
                 filterButton.tag = 0
+                Constants.buttonActiveArray[rowIdx][colIdx] = 0
             }
         } else if traitCollection.userInterfaceStyle == .dark {
             if filterButton.tag == 0 {
                 setLight()
                 addFilter(filter: (filterButton.titleLabel?.text)!)
                 filterButton.tag = 1
+                Constants.buttonActiveArray[rowIdx][colIdx] = 1
             }
             else if filterButton.tag == 1 {
                 setNormal()
                 removeFilter(filter: (filterButton.titleLabel?.text)!)
                 filterButton.tag = 0
+                Constants.buttonActiveArray[rowIdx][colIdx] = 0
             }
         }
     }
