@@ -25,7 +25,7 @@ struct Constants {
     static var modifiedItmes: [Recipe] = []
     
     static var buttonActiveArray = [
-        [0,0],
+        [0,0,0,0,0],
         [0,0,0,0],
         [0,0,0,0,0,0,0]
     ]

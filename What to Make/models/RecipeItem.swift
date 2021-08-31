@@ -12,6 +12,8 @@ struct RecipeItem {
     let key: String
     let name: String
     var activeTime: String
+    let difficulty: String
+    let yield: String
     let photoURL: String
     let sourceURL: String
     let ingredients: [String]
@@ -20,11 +22,13 @@ struct RecipeItem {
     var isSaved: Bool
     
     // MARK: Initialize with Raw Data
-    init(key: String, name: String, activeTime: String, photoURL: String, sourceURL: String, ingredients: [String], directions: [String], tags: [String], isSaved: Bool) {
+    init(key: String, name: String, activeTime: String, difficulty: String, yield: String, photoURL: String, sourceURL: String, ingredients: [String], directions: [String], tags: [String], isSaved: Bool) {
         self.ref = nil
         self.key = key
         self.name = name
         self.activeTime = activeTime
+        self.difficulty = difficulty
+        self.yield = yield
         self.photoURL = photoURL
         self.sourceURL = sourceURL
         self.ingredients = ingredients
@@ -41,6 +45,8 @@ struct RecipeItem {
             let ingredients = value["ingredients"] as? [String],
             let name = value["name"] as? String,
             let activeTime = value["activeTime"] as? String,
+            let difficulty = value["difficulty"] as? String,
+            let yield = value["yield"] as? String,
             let sourceURL = value["sourceURL"] as? String,
             let photoURL = value["photoURL"] as? String,
             let tags = value["tags"] as? [String]
@@ -53,6 +59,8 @@ struct RecipeItem {
         self.key = snapshot.key
         self.name = name
         self.activeTime = activeTime
+        self.difficulty = difficulty
+        self.yield = yield
         self.photoURL = photoURL
         self.sourceURL = sourceURL
         self.ingredients = ingredients
@@ -66,6 +74,8 @@ struct RecipeItem {
         return [
             "name": name,
             "activeTime": activeTime,
+            "difficulty": difficulty,
+            "yield": yield,
             "photoURL": photoURL,
             "sourceURL": sourceURL,
             "ingredients": ingredients,

@@ -24,7 +24,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var prevScrollDirection: CGFloat = 0
     
     var buttonArray = [
-        ["Quick","Over 30 Min"],
+        ["15 Min or Less","15 to 30 Min", "45 Min", "60 Min", "60+"],
         ["Breakfast","Lunch","Dinner","Dessert"],
         ["Gluten Free","Vegetarian", "Mediterranean", "Pescatarian", "Vegan","Kosher","Nut Free"]
     ]
@@ -86,10 +86,12 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @objc func openFeed() {
-        let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarVC) as! TabBarController)
-        vc.modalTransitionStyle = .crossDissolve
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+        if Constants.modifiedRecipesArr.count > 0 {
+            let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarVC) as! TabBarController)
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }
     }
     
     @objc func tappedClearAll(){
@@ -148,7 +150,6 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
 }
-
 
 extension FilterViewController {
     

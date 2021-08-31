@@ -2,7 +2,7 @@
 //  Recipe+CoreDataProperties.swift
 //  What to Make
 //
-//  Created by Adison Emerick on 8/28/21.
+//  Created by Adison Emerick on 8/30/21.
 //
 //
 
@@ -18,10 +18,12 @@ extension Recipe {
 
     @NSManaged public var activeTime: String?
     @NSManaged public var isSaved: Bool
+    @NSManaged public var key: String?
     @NSManaged public var name: String?
     @NSManaged public var photoURL: String?
     @NSManaged public var sourceURL: String?
-    @NSManaged public var key: String?
+    @NSManaged public var difficulty: String?
+    @NSManaged public var yield: String?
     @NSManaged public var directions: NSSet?
     @NSManaged public var ingredients: NSSet?
     @NSManaged public var tags: NSSet?

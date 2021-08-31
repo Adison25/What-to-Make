@@ -21,7 +21,6 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         collectionView.backgroundColor = .systemGray6//dynamicColorBackground//.clear
-
         return collectionView
     }()
     
@@ -53,12 +52,6 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-        if Constants.modifiedRecipesArr.count == 0 {
-            let alert = UIAlertController(title: "No recipes with filters selected", message: "Please change your filters to see more recipes", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-        }
-        
     }
     
     override func viewDidLayoutSubviews() {

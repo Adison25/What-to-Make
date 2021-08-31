@@ -49,12 +49,12 @@
 		75DA0AF326DAA45C00A2CF1F /* helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF226DAA45C00A2CF1F /* helpers.swift */; };
 		75DA0AFC26DAB07800A2CF1F /* Direction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF426DAB07800A2CF1F /* Direction+CoreDataClass.swift */; };
 		75DA0AFD26DAB07800A2CF1F /* Direction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF526DAB07800A2CF1F /* Direction+CoreDataProperties.swift */; };
-		75DA0AFE26DAB07800A2CF1F /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF626DAB07800A2CF1F /* Recipe+CoreDataClass.swift */; };
-		75DA0AFF26DAB07800A2CF1F /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF726DAB07800A2CF1F /* Recipe+CoreDataProperties.swift */; };
 		75DA0B0026DAB07800A2CF1F /* Ingredient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF826DAB07800A2CF1F /* Ingredient+CoreDataClass.swift */; };
 		75DA0B0126DAB07800A2CF1F /* Ingredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AF926DAB07800A2CF1F /* Ingredient+CoreDataProperties.swift */; };
 		75DA0B0226DAB07800A2CF1F /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AFA26DAB07800A2CF1F /* Tag+CoreDataClass.swift */; };
 		75DA0B0326DAB07800A2CF1F /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0AFB26DAB07800A2CF1F /* Tag+CoreDataProperties.swift */; };
+		75DA0B0626DDDB3D00A2CF1F /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0B0426DDDB3D00A2CF1F /* Recipe+CoreDataClass.swift */; };
+		75DA0B0726DDDB3D00A2CF1F /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DA0B0526DDDB3D00A2CF1F /* Recipe+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,12 +102,12 @@
 		75DA0AF226DAA45C00A2CF1F /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
 		75DA0AF426DAB07800A2CF1F /* Direction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Direction+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		75DA0AF526DAB07800A2CF1F /* Direction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Direction+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		75DA0AF626DAB07800A2CF1F /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		75DA0AF726DAB07800A2CF1F /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		75DA0AF826DAB07800A2CF1F /* Ingredient+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		75DA0AF926DAB07800A2CF1F /* Ingredient+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		75DA0AFA26DAB07800A2CF1F /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		75DA0AFB26DAB07800A2CF1F /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		75DA0B0426DDDB3D00A2CF1F /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		75DA0B0526DDDB3D00A2CF1F /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		CC378A188847D5AB1E6B8E91 /* Pods_What_to_Make.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_to_Make.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -296,10 +296,10 @@
 		75DA0AE126D9811400A2CF1F /* dataModel */ = {
 			isa = PBXGroup;
 			children = (
+				75DA0B0426DDDB3D00A2CF1F /* Recipe+CoreDataClass.swift */,
+				75DA0B0526DDDB3D00A2CF1F /* Recipe+CoreDataProperties.swift */,
 				75DA0AF426DAB07800A2CF1F /* Direction+CoreDataClass.swift */,
 				75DA0AF526DAB07800A2CF1F /* Direction+CoreDataProperties.swift */,
-				75DA0AF626DAB07800A2CF1F /* Recipe+CoreDataClass.swift */,
-				75DA0AF726DAB07800A2CF1F /* Recipe+CoreDataProperties.swift */,
 				75DA0AF826DAB07800A2CF1F /* Ingredient+CoreDataClass.swift */,
 				75DA0AF926DAB07800A2CF1F /* Ingredient+CoreDataProperties.swift */,
 				75DA0AFA26DAB07800A2CF1F /* Tag+CoreDataClass.swift */,
@@ -460,8 +460,8 @@
 				75DA0B0026DAB07800A2CF1F /* Ingredient+CoreDataClass.swift in Sources */,
 				751664AF26BB3FD000CBACCC /* IngredientTableViewCell.swift in Sources */,
 				75DA0A8F26D45FEF00A2CF1F /* LoadingViewController.swift in Sources */,
+				75DA0B0626DDDB3D00A2CF1F /* Recipe+CoreDataClass.swift in Sources */,
 				753AF06226A9D13800AE1D54 /* TabBarController.swift in Sources */,
-				75DA0AFE26DAB07800A2CF1F /* Recipe+CoreDataClass.swift in Sources */,
 				753AF04E26A9D06200AE1D54 /* AppDelegate.swift in Sources */,
 				75DA0A8D26D060BF00A2CF1F /* SettingsTableViewCell.swift in Sources */,
 				753AF06A26A9D16000AE1D54 /* SavedRecipesViewController.swift in Sources */,
@@ -477,9 +477,9 @@
 				75DA0B0326DAB07800A2CF1F /* Tag+CoreDataProperties.swift in Sources */,
 				753AF05026A9D06200AE1D54 /* SceneDelegate.swift in Sources */,
 				751664B326BC4A5D00CBACCC /* DirectionTableViewCell.swift in Sources */,
-				75DA0AFF26DAB07800A2CF1F /* Recipe+CoreDataProperties.swift in Sources */,
 				75DA0A5826CD52CB00A2CF1F /* Constants.swift in Sources */,
 				75DA0A8A26D0253600A2CF1F /* SettingsViewController.swift in Sources */,
+				75DA0B0726DDDB3D00A2CF1F /* Recipe+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

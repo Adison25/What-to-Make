@@ -61,7 +61,6 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
             alertLabel.alpha = 1
         }else {
             alertLabel.alpha = 0 }
-        self.becomeFirstResponder()
     }
     
     override func viewDidLayoutSubviews() {
@@ -100,19 +99,12 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
             tags.append(it.name ?? "")
         }
         
-        let ret = RecipeItem(key: item.key!, name: item.name!, activeTime: item.activeTime!, photoURL: item.photoURL!, sourceURL: item.sourceURL!, ingredients: ingredients, directions: directions, tags: tags, isSaved: item.isSaved)
+        let ret = RecipeItem(key: item.key!, name: item.name!, activeTime: item.activeTime!, difficulty: item.difficulty!, yield: item.yield!, photoURL: item.photoURL!, sourceURL: item.sourceURL!, ingredients: ingredients, directions: directions, tags: tags, isSaved: item.isSaved)
         return ret
     }
 }
 
 extension SavedRecipesViewController {
-    
-    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-       print(motion)
-       if motion == .motionShake {
-          print("shake was detected in saved controller")
-       }
-    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         idx = indexPath.row

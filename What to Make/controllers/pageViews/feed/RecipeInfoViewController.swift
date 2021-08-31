@@ -84,7 +84,9 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         directionsTableView.delegate = self
         directionsTableView.dataSource = self
     }
-    
+}
+ 
+extension RecipeInfoViewController {
     //dismisses the current vc
     @objc private func didTapDone(){
         dismiss(animated: true, completion: nil)
@@ -156,6 +158,9 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             directionsArray.append(ChecklistItem(title: model.directions[x]))
         }
     }
+}
+
+extension RecipeInfoViewController {
     
     private func createScrollView() -> UIScrollView{
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: navBar.frame.size.height, width: view.frame.size.width, height: view.frame.size.height - navBar.frame.size.height))
@@ -301,6 +306,57 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    func configureStackView(scrollView: UIScrollView, infoStackView: UIStackView, model: RecipeItem) {
+        let num = scrollView.frame.size.width * 0.90
+        
+        let vert1 = createVerticalStackView()
+        let timeLabel = createInfoStackViewHeader(text: "\(model.activeTime)")
+        let timeLabel1 = createInfoStackViewLabel(text: "Total Time")
+        vert1.addArrangedSubview(timeLabel)
+        vert1.addArrangedSubview(timeLabel1)
+        infoStackView.addArrangedSubview(vert1)
+        NSLayoutConstraint.activate([
+            vert1.widthAnchor.constraint(equalToConstant: (num/3) - 1)
+        ])
+        
+        //separator
+        let separator = UIView()
+        separator.widthAnchor.constraint(equalToConstant: 1).isActive = true
+        separator.backgroundColor = dynamicColorText
+        infoStackView.addArrangedSubview(separator)
+        separator.heightAnchor.constraint(equalTo: infoStackView.heightAnchor, multiplier: 1.0).isActive = true
+
+        let vert2 = createVerticalStackView()
+        let ingredientLabel = createInfoStackViewHeader(text: "\(model.ingredients.count)")
+        let ingredientLabel1 = createInfoStackViewLabel(text: "Ingredients")
+        vert2.addArrangedSubview(ingredientLabel)
+        vert2.addArrangedSubview(ingredientLabel1)
+        infoStackView.addArrangedSubview(vert2)
+        NSLayoutConstraint.activate([
+            vert2.widthAnchor.constraint(equalToConstant: (num/3) - 1)
+        ])
+        
+        let separator2 = UIView()
+        separator2.widthAnchor.constraint(equalToConstant: 1).isActive = true
+        separator2.backgroundColor = dynamicColorText
+        infoStackView.addArrangedSubview(separator2)
+        separator2.heightAnchor.constraint(equalTo: infoStackView.heightAnchor, multiplier: 1.0).isActive = true
+        
+        let vert3 = createVerticalStackView()
+        let stepLabel = createInfoStackViewHeader(text: "\(model.directions.count)")
+        let stepLabel1 = createInfoStackViewLabel(text: "Directions")
+        vert3.addArrangedSubview(stepLabel)
+        vert3.addArrangedSubview(stepLabel1)
+        infoStackView.addArrangedSubview(vert3)
+        NSLayoutConstraint.activate([
+            vert3.widthAnchor.constraint(equalToConstant: num/3 )
+        ])
+    }
+    
+    private func createDifficultyLabel(model: RecipeItem) -> UILabel {
+        return UILabel()
+    }
+    
     //home func that calls all the other functions
     func configureInfoView(with model: RecipeItem, index: Int) {
         
@@ -322,9 +378,16 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+        let titleButton = createTitleLabel(with: model, scrollView: scrollView)
+        NSLayoutConstraint.activate([
+            titleButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 15),
+            titleButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
+            titleButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
+            titleButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+        ])
         let imageView = createRecipeImageView(with: model, scrollView: scrollView)
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            imageView.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 20),
             imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             imageView.heightAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
@@ -335,67 +398,14 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             infoStackView.widthAnchor.constraint(equalToConstant: scrollView.frame.size.width * 0.90 ),
             infoStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
         ])
+        configureStackView(scrollView: scrollView, infoStackView: infoStackView, model: model)
         
-        let num = scrollView.frame.size.width * 0.90
         
-        let vert1 = createVerticalStackView()
-        let timeLabel = createInfoStackViewHeader(text: "\(model.activeTime)")
-        let timeLabel1 = createInfoStackViewLabel(text: "Total Time")
-        vert1.addArrangedSubview(timeLabel)
-        vert1.addArrangedSubview(timeLabel1)
-        infoStackView.addArrangedSubview(vert1)
-        NSLayoutConstraint.activate([
-            vert1.widthAnchor.constraint(equalToConstant: (num/3) - 1)
-        ])
         
-        //separator
-        let separator = UIView()
-        separator.widthAnchor.constraint(equalToConstant: 1).isActive = true
-        separator.backgroundColor = .black
-        infoStackView.addArrangedSubview(separator)
-        separator.heightAnchor.constraint(equalTo: infoStackView.heightAnchor, multiplier: 1.0).isActive = true
-//        NSLayoutConstraint.activate([
-//            separator.centerYAnchor.constraint(equalTo: infoStackView.centerYAnchor)
-//        ])
-        
-        let vert2 = createVerticalStackView()
-        let ingredientLabel = createInfoStackViewHeader(text: "\(model.ingredients.count)")
-        let ingredientLabel1 = createInfoStackViewLabel(text: "Ingredients")
-        vert2.addArrangedSubview(ingredientLabel)
-        vert2.addArrangedSubview(ingredientLabel1)
-        infoStackView.addArrangedSubview(vert2)
-        NSLayoutConstraint.activate([
-            vert2.widthAnchor.constraint(equalToConstant: (num/3) - 1)
-        ])
-        
-        let separator2 = UIView()
-        separator2.widthAnchor.constraint(equalToConstant: 1).isActive = true
-        separator2.backgroundColor = .black
-        infoStackView.addArrangedSubview(separator2)
-        separator2.heightAnchor.constraint(equalTo: infoStackView.heightAnchor, multiplier: 1.0).isActive = true
-        
-        let vert3 = createVerticalStackView()
-        let stepLabel = createInfoStackViewHeader(text: "\(model.directions.count)")
-        let stepLabel1 = createInfoStackViewLabel(text: "Directions")
-        vert3.addArrangedSubview(stepLabel)
-        vert3.addArrangedSubview(stepLabel1)
-        infoStackView.addArrangedSubview(vert3)
-        NSLayoutConstraint.activate([
-            vert3.widthAnchor.constraint(equalToConstant: num/3 )
-        ])
-//        infoStackView.addHorizontalSeparators(color: .black)
-        
-        let titleButton = createTitleLabel(with: model, scrollView: scrollView)
-        NSLayoutConstraint.activate([
-            titleButton.topAnchor.constraint(equalTo: infoStackView.bottomAnchor,constant: 20),
-            titleButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
-            titleButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
-            titleButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
-        ])
         //ingredient views
         let ingredientHeader = createIngredientHeader(scrollView: scrollView)
         NSLayoutConstraint.activate([
-            ingredientHeader.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 25),
+            ingredientHeader.topAnchor.constraint(equalTo: infoStackView.bottomAnchor,constant: 25),
             ingredientHeader.leftAnchor.constraint(equalTo: scrollView.leftAnchor,constant: 10),
             ingredientHeader.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.41)
         ])
