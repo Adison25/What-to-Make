@@ -75,7 +75,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLayoutSubviews()
         NSLayoutConstraint.activate([
             filterLabel.topAnchor.constraint(equalTo: view.topAnchor,constant: view.frame.size.height * 0.10),
-            filterLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.frame.size.width * 0.05)
+            filterLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15)
         ])
         NSLayoutConstraint.activate([
             clearFiltersButton.centerYAnchor.constraint(equalTo: filterLabel.centerYAnchor,constant: view.frame.size.height*0.01),
@@ -138,18 +138,15 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 9
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        print(indexPath.row)
-        
+                
         if indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4 || indexPath.row == 6 {
             let cell = tableView.dequeueReusableCell(withIdentifier: FilterHeaderTableViewCell.identifier, for: indexPath) as! FilterHeaderTableViewCell
             cell.configure(with: header[equivalentToIndexPathEven(idx: indexPath.row) ])
             cell.selectionStyle = .none
-            
             return cell
         }
         else if indexPath.row == 1  || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 7  {
@@ -158,15 +155,13 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.configure(with: buttonArray[num], idx: num)
             cell.selectionStyle = .none
             cell.delegate2 = self
-//            if indexButton < 3 {
-//                indexButton += 1
-//            }else {
-//                indexButton = 0
-//            }
             return cell
         }
         else {
-            return UITableViewCell()
+            let cell = UITableViewCell()
+            cell.backgroundColor = .systemGray6
+            cell.selectionStyle = .none
+            return cell
         }
     }
     
@@ -177,6 +172,23 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    //reconfigure because when a cell goes off screen it resets to base default and so font gets small for some reason
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4 || indexPath.row == 6 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: FilterHeaderTableViewCell.identifier, for: indexPath) as! FilterHeaderTableViewCell
+            cell.configure(with: header[equivalentToIndexPathEven(idx: indexPath.row) ])
+            cell.selectionStyle = .none
+        }
+        else if indexPath.row == 1  || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 7  {
+            let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.identifier, for: indexPath) as! FilterCollectionTableViewCell
+            let num = equivalentToIndexPathOdd(idx: indexPath.row)
+            cell.configure(with: buttonArray[num], idx: num)
+            cell.selectionStyle = .none
+            cell.delegate2 = self
+        }
+    }
+
     
 }
 

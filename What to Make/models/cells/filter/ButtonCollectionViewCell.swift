@@ -37,7 +37,8 @@ class ButtonCollectionViewCell: UICollectionViewCell {
         filterButton.setTitleColor(dynamicColorText, for: .normal)
         filterButton.backgroundColor = dynamicColorBackground
 //        filterButton.layer.borderColor = UIColor(named: "buttonBorder")!.cgColor
-        filterButton.layer.cornerRadius = 18
+//        print(contentView.frame.size.width * 0.057)
+        filterButton.layer.cornerRadius = Constants.size//17 //contentView.frame.size.width * 0.060
         filterButton.layer.borderWidth = 1
         filterButton.layer.borderColor = dynamicBorderColor() //dynamic color
         filterButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)

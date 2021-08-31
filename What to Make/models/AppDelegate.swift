@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import CoreData
+import AMXFontAutoScale
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

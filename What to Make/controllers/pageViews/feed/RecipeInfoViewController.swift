@@ -375,6 +375,7 @@ extension RecipeInfoViewController {
         label.attributedText = regularText
         label.translatesAutoresizingMaskIntoConstraints = false
         label.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
+        label.numberOfLines = 0
         scrollView.addSubview(label)
         return label
     }
@@ -402,14 +403,14 @@ extension RecipeInfoViewController {
         ])
         let titleButton = createTitleLabel(with: model, scrollView: scrollView)
         NSLayoutConstraint.activate([
-            titleButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 15),
+            titleButton.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: view.frame.size.height * 0.05),
             titleButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
             titleButton.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
             titleButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
         ])
         let imageView = createRecipeImageView(with: model, scrollView: scrollView)
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: 20),
+            imageView.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: view.frame.size.height * 0.05),
             imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             imageView.heightAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
