@@ -29,7 +29,7 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         button.setBackgroundImage(UIImage(systemName: "line.horizontal.3.decrease.circle.fill"), for: .normal)
         button.tintColor = dynamicColorText
         button.backgroundColor = .systemBackground
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = view.frame.size.width * 0.05
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(goToFilterView), for: .touchUpInside)
         return button
