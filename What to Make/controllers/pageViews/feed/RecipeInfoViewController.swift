@@ -30,7 +30,7 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }()
     
     lazy var backButton: UIButton = {
-        let itemWidth =  navBar.frame.size.height/4//navBar.frame.size.width*0.08
+        let itemWidth =  navBar.frame.size.height/3//navBar.frame.size.width*0.08
         let itemHeight =  navBar.frame.size.height/4
         let backButton = UIButton(frame: CGRect(x: view.frame.size.width * 0.05, y: navBar.frame.size.height/3*2, width: itemWidth, height: itemHeight))
         backButton.setBackgroundImage(UIImage(systemName: "arrow.left"), for: .normal)
@@ -40,8 +40,8 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }()
     
     lazy var bookMarkButton: UIButton = {
-        let itemWidth = navBar.frame.size.height/4//navBar.frame.size.width*0.08
-        let itemHeight =  navBar.frame.size.height/4
+        let itemWidth = navBar.frame.size.height/3//navBar.frame.size.width*0.08
+        let itemHeight =  navBar.frame.size.height/3
         let bookmarkButton = UIButton(frame: CGRect(x: view.frame.size.width * 0.85, y: navBar.frame.size.height/3*2, width: itemWidth, height: itemHeight))
         bookmarkButton.setBackgroundImage(UIImage(systemName: "bookmark"), for: .normal)
         bookmarkButton.tintColor = dynamicColorText
@@ -50,8 +50,8 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }()
     
     lazy var sourceButton: UIButton = {
-        let itemWidth = navBar.frame.size.height/4//self.navBar.frame.size.width*0.04
-        let itemHeight =  self.navBar.frame.size.height/4
+        let itemWidth = navBar.frame.size.height/3//self.navBar.frame.size.width*0.04
+        let itemHeight =  self.navBar.frame.size.height/3
         let sourceButton = UIButton(frame: CGRect(x: view.frame.size.width * 0.75, y: navBar.frame.size.height/3*2, width: itemWidth, height: itemHeight))
         sourceButton.setBackgroundImage(UIImage(systemName: "info.circle"), for: .normal)
         sourceButton.tintColor = dynamicColorText
