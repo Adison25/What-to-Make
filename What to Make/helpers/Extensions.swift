@@ -37,6 +37,7 @@ extension UIViewController {
             navigationController?.navigationBar.barStyle = .default
             navigationController?.navigationBar.isTranslucent = true
             navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: dynamicColorText]
+                                                                            //, NSAttributedString.Key.font: UIFont(descriptor: UIFontDescriptor(name: "HelveticaNeue-Bold", size: Constants.size), size: Constants.size)]
         }
     func hideKeyboardOnTap() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))

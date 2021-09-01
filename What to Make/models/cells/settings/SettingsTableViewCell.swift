@@ -14,7 +14,8 @@ class SettingsTableViewCell: UITableViewCell {
        let view = UIView()
         view.clipsToBounds = true //applys to the frame of the view
         view.layer.cornerRadius = 8
-        view.layer.masksToBounds = true //apples to the layer of the view
+//        view.layer.masksToBounds = true //apples to the layer of the view
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -22,6 +23,7 @@ class SettingsTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.tintColor = .white
         imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -29,6 +31,7 @@ class SettingsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 1
         label.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -48,6 +51,7 @@ class SettingsTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         let size: CGFloat = contentView.frame.size.height - 12
+//        print(size)
         iconContainer.frame = CGRect(x: 15, y: 6, width: size, height: size)
         
         let imageSize: CGFloat = size/1.5

@@ -81,6 +81,7 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
 //        print((contentView.frame.size.width/414) * 17)
 //        print(contentView.frame.width * 0.075)
         Constants.size = contentView.frame.size.width/414 * 17
+//        print(Constants.size)
         let aWidth : CGFloat = models[indexPath.row].width(withConstraintedHeight: 0, font: UIFont.systemFont(ofSize: Constants.size))
         return CGSize(width: aWidth + 15 , height: contentView.frame.width * 0.075)
     }

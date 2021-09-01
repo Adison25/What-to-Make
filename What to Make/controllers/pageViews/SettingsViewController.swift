@@ -21,11 +21,18 @@ struct SettingsOption {
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    private var prevScrollDirection: CGFloat = 0
+    
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         //        table.backgroundColor = .systemBackground
         table.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
         return table
+    }()
+    
+    lazy var sheetLoc: UIView = {
+        let view = UIView(frame: CGRect(x: view.frame.size.width/2 * 0.90, y: view.frame.size.height * 0.95, width: 100, height: 100))
+        return view
     }()
     
     var models = [Section]()
@@ -40,6 +47,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        view.addSubview(sheetLoc)
     }
     
     func configure() {
@@ -56,16 +65,20 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     vc.modalTransitionStyle = .crossDissolve
                     vc.modalPresentationStyle = .fullScreen
                     self.present(vc, animated: true)
-
+                    
                 }))
                 self.present(alert, animated: true)
                 
             }),
             SettingsOption(title: "Add Acount", icon: UIImage(systemName: "person.fill.badge.plus"), iconBackgroundColor: .systemGreen, handler: {
+                
                 //need to make title bigger and recreate the instagram add acount action sheet
                 let actionSheet = UIAlertController(title: "Add Account", message: "", preferredStyle: .actionSheet)
-                actionSheet.addAction(UIAlertAction(title: "Log Into Existing Acount", style: .default, handler: { action in
+                actionSheet.popoverPresentationController?.sourceView = self.sheetLoc
+                actionSheet.addAction(UIAlertAction(title: "Log Into Existing Acount", style: .default, handler: {_ in
                     //go to sign in page
+                    print("sign in")
+                    
                 }))
                 actionSheet.addAction(UIAlertAction(title: "Create New Account", style: .default, handler: { action in
                     //go to intial vc
@@ -91,14 +104,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 
             })
         ]))        
-    }
-    
-    func showAlert() {
-        
-    }
-    
-    func showActionSheet() {
-        
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -129,4 +134,29 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         model.handler()
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+       return UITableView.automaticDimension
+    }
+    
 }
+
+extension SettingsViewController {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollViewY = scrollView.contentOffset.y
+        let scrollSizeHeight = scrollView.contentSize.height
+        let scrollFrameHeight = scrollView.frame.height
+        let scrollHeight = scrollSizeHeight - scrollFrameHeight
+        var isHidden = false
+        
+        if prevScrollDirection > scrollViewY && prevScrollDirection < scrollHeight {
+            isHidden = false
+        } else if prevScrollDirection < scrollViewY && scrollViewY > 0 {
+            isHidden = true
+        }
+        let userInfo : [String : Bool] = [ "isHidden" : isHidden ]
+        NotificationCenter.default.post(name: tabBarNotificationKey, object: nil, userInfo: userInfo)
+        prevScrollDirection = scrollView.contentOffset.y
+    }
+}
+

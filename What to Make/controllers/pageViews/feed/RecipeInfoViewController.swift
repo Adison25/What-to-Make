@@ -182,21 +182,6 @@ extension RecipeInfoViewController {
         return imageView
     }
     
-    
-    private func createActiveTimeLabel(with model: RecipeItem, scrollView: UIScrollView) -> UIButton{
-        let activeLabel = UIButton()
-        activeLabel.setTitle("Active Time: \(model.activeTime)",for: .normal)
-        //call some func that makes the size fit perfectly to how many characterrs are in the string
-        activeLabel.titleLabel?.font = activeLabel.titleLabel?.font.withSize(15)//recipeTitleFont()
-        activeLabel.titleLabel?.numberOfLines = 0
-        activeLabel.setTitleColor(dynamicColorText, for: .normal)
-        activeLabel.titleLabel?.textAlignment = .left
-        scrollView.addSubview(activeLabel)
-        activeLabel.translatesAutoresizingMaskIntoConstraints = false
-        activeLabel.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
-        return activeLabel
-    }
-    
     private func createTitleLabel(with model: RecipeItem, scrollView: UIScrollView) -> UIButton{
         //title
         let titleLabel = UIButton()
