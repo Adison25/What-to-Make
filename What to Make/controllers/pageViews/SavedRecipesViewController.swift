@@ -37,6 +37,18 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         return lable
     }()
     
+    lazy var filterButton : UIButton = {
+        let button = UIButton(frame: CGRect(x: view.frame.size.width * 0.85, y: view.frame.size.height * 0.85, width: view.frame.size.width * 0.10, height: view.frame.size.width * 0.10 ))
+        button.setBackgroundImage(UIImage(systemName: "line.horizontal.3.decrease.circle.fill"), for: .normal)
+        button.tintColor = dynamicColorText
+        button.backgroundColor = .systemBackground
+        button.layer.cornerRadius = view.frame.size.width * 0.05
+        button.alpha = 0
+//        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(goToFilterView), for: .touchUpInside)
+        return button
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +59,8 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         view.addSubview(alertLabel)
+        view.addSubview(filterButton)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,17 +71,20 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         }
         if Constants.savedRecipes.count == 0 {
             alertLabel.alpha = 1
+            filterButton.alpha = 0
         }else {
-            alertLabel.alpha = 0 }
+            alertLabel.alpha = 0
+            filterButton.alpha = 1
+        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
         NSLayoutConstraint.activate([
-            alertLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            alertLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+                   alertLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                   alertLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+               ])
     }
     
     func fetchRecipe() {
@@ -101,6 +116,13 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         
         let ret = RecipeItem(key: item.key!, name: item.name!, activeTime: item.activeTime!, difficulty: item.difficulty!, yield: item.yield!, photoURL: item.photoURL!, sourceURL: item.sourceURL!, ingredients: ingredients, directions: directions, tags: tags, isSaved: item.isSaved)
         return ret
+    }
+    
+    @objc func goToFilterView() {
+        let vc = FilterViewController()
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
 }
 
