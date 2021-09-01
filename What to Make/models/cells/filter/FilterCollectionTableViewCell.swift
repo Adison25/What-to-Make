@@ -23,6 +23,7 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     
     var models = [String]()
     var row = 0
+    var whichVC = 0
     var fontSize: CGFloat = 0
     
     weak var delegate2: MyCustomCellDelegate2?
@@ -46,9 +47,10 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     }
     
     
-    func configure(with models: [String],idx: Int) {
+    func configure(with models: [String],idx: Int,whichVC: Int) {
         self.models = models
         self.row = idx
+        self.whichVC = whichVC
         collectionView.reloadData()
     }
         
@@ -58,7 +60,7 @@ class FilterCollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonCollectionViewCell.identifier, for: indexPath) as! ButtonCollectionViewCell
-        cell.configure(with: models[indexPath.row],row: row, col: indexPath.row)
+        cell.configure(with: models[indexPath.row],row: row, col: indexPath.row, whichVC: whichVC)
         cell.delegate = self
         return cell
     }

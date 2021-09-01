@@ -122,10 +122,12 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
     func getSavedRecipeItems(recipes: [Recipe]) {
         var idx = 0
         Constants.savedModifiedRecipes.removeAll()
+        Constants.savedAllRecipes.removeAll()
         for item in recipes {
             Constants.savedModifiedRecipes.append(convertRecipeToRecipeItem(item: item))
             idx += 1
         }
+        Constants.savedAllRecipes = Constants.savedModifiedRecipes
     }
     
     @objc func goToFilterView() {

@@ -99,12 +99,12 @@ class FilterSavedViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func configureNumRecipeLabel() {
-        if Constants.modifiedRecipesArr.count == 0 {
+        if Constants.savedModifiedRecipes.count == 0 {
             numberReciepesLabel.setTitle("SHOW RECIPES", for: .normal)
             numberReciepesLabel.backgroundColor = .systemGray4
             numberReciepesLabel.setTitleColor(dynamicColorBackground, for: .normal)
         }else {
-            numberReciepesLabel.setTitle("SHOW \(Constants.modifiedRecipesArr.count) RECIPES", for: .normal)
+            numberReciepesLabel.setTitle("SHOW \(Constants.savedModifiedRecipes.count) RECIPES", for: .normal)
             Utilities.styleFilledButton(numberReciepesLabel)
             numberReciepesLabel.setTitleColor(dynamicColorText, for: .normal)
         }
@@ -122,20 +122,21 @@ class FilterSavedViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @objc func openSaved() {
-        if Constants.modifiedRecipesArr.count > 0 {
-            let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarVC) as! TabBarController)
-            vc.modalTransitionStyle = .crossDissolve
-            vc.modalPresentationStyle = .fullScreen
-            vc.selectedIndex = 0
-            self.present(vc, animated: true)
-        }
+        dismiss(animated: true, completion: nil)
+//        if Constants.savedModifiedRecipes.count > 0 {
+//            let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarVC) as! TabBarController)
+//            vc.modalTransitionStyle = .crossDissolve
+//            vc.modalPresentationStyle = .fullScreen
+//            vc.selectedIndex = 0
+//            self.present(vc, animated: true)
+//        }
     }
     
     @objc func tappedClearAll(){
         //resets all the buttons
-        resetButtonActiveArray()
+        resetButtonActiveArraySaved()
         tableView.reloadData()
-        resetModifiedArray()
+        resetModifiedArraySaved()
         configureNumRecipeLabel()
     }
     
@@ -154,7 +155,7 @@ class FilterSavedViewController: UIViewController, UITableViewDelegate, UITableV
         else if indexPath.row == 1  || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 7  {
             let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.identifier, for: indexPath) as! FilterCollectionTableViewCell
             let num = equivalentToIndexPathOdd(idx: indexPath.row)
-            cell.configure(with: buttonArray[num], idx: num)
+            cell.configure(with: buttonArray[num], idx: num, whichVC: 1)
             cell.selectionStyle = .none
             cell.delegate2 = self
             return cell
@@ -185,7 +186,7 @@ class FilterSavedViewController: UIViewController, UITableViewDelegate, UITableV
         else if indexPath.row == 1  || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 7  {
             let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.identifier, for: indexPath) as! FilterCollectionTableViewCell
             let num = equivalentToIndexPathOdd(idx: indexPath.row)
-            cell.configure(with: buttonArray[num], idx: num)
+            cell.configure(with: buttonArray[num], idx: num, whichVC: 1)
             cell.selectionStyle = .none
             cell.delegate2 = self
         }

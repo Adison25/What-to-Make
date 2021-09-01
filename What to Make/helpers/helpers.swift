@@ -76,6 +76,16 @@ func saveCoreData() {
     }
 }
 
+func updateSavedRecipe(idx: Int, active: Bool) {
+    Constants.allRecipes[idx].isSaved = active
+    Constants.modifiedRecipesArr[idx].isSaved = active
+    do {
+        Constants.savedRecipes = try Constants.context.fetch(Recipe.fetchRequest())
+    }catch {
+        print("error fetching core data")
+    }
+}
+
 class DynamicHeightCollectionView: UICollectionView {
     override func layoutSubviews() {
         super.layoutSubviews()

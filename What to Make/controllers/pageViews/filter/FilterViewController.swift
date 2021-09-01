@@ -154,7 +154,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else if indexPath.row == 1  || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 7  {
             let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.identifier, for: indexPath) as! FilterCollectionTableViewCell
             let num = equivalentToIndexPathOdd(idx: indexPath.row)
-            cell.configure(with: buttonArray[num], idx: num)
+            cell.configure(with: buttonArray[num], idx: num, whichVC: 2)
             cell.selectionStyle = .none
             cell.delegate2 = self
             return cell
@@ -185,7 +185,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else if indexPath.row == 1  || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 7  {
             let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.identifier, for: indexPath) as! FilterCollectionTableViewCell
             let num = equivalentToIndexPathOdd(idx: indexPath.row)
-            cell.configure(with: buttonArray[num], idx: num)
+            cell.configure(with: buttonArray[num], idx: num, whichVC: 2)
             cell.selectionStyle = .none
             cell.delegate2 = self
         }
