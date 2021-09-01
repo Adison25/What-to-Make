@@ -28,6 +28,7 @@ class SettingsTableViewCell: UITableViewCell {
     private let label: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
+        label.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return label
     }()
     

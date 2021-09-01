@@ -135,6 +135,8 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //resets all the buttons
         resetButtonActiveArray()
         tableView.reloadData()
+        resetModifiedArray()
+        configureNumRecipeLabel()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

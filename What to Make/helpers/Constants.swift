@@ -48,6 +48,10 @@ func resetButtonActiveArray() {
     }
 }
 
+func resetModifiedArray() {
+    Constants.modifiedRecipesArr = Constants.allRecipes
+}
+
 var filterArr: [String] = []
 
 func addFilter(filter: String) {
