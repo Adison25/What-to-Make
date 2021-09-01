@@ -1,22 +1,21 @@
 //
-//  SettingsViewController.swift
-//  DismissTabBarDemo
+//  FilterSavedViewController.swift
+//  What to Make
 //
-//  Created by Diego Bustamante on 7/15/20.
-//  Copyright © 2020 Diego Bustamante. All rights reserved.
+//  Created by Adison Emerick on 9/1/21.
 //
 
 import UIKit
 
-struct Model {
-    let text: String
-    
-    init(text: String) {
-        self.text = text
-    }
-}
+//struct Model {
+//    let text: String
+//    
+//    init(text: String) {
+//        self.text = text
+//    }
+//}
 
-class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MyCustomCellDelegate2 {
+class FilterSavedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MyCustomCellDelegate2 {
     
     private let tableView = DynamicSizeTableView()
     private let numberReciepesLabel = UIButton()
@@ -110,7 +109,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             numberReciepesLabel.setTitleColor(dynamicColorText, for: .normal)
         }
         numberReciepesLabel.titleLabel?.textAlignment = .center
-        numberReciepesLabel.addTarget(self, action: #selector(openFeed), for: .touchUpInside)
+        numberReciepesLabel.addTarget(self, action: #selector(openSaved), for: .touchUpInside)
         //        numberReciepesLabel.backgroundColor = dynamicColorBackground
         numberReciepesLabel.layer.cornerRadius = 18
         numberReciepesLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -122,11 +121,12 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ])
     }
     
-    @objc func openFeed() {
+    @objc func openSaved() {
         if Constants.modifiedRecipesArr.count > 0 {
             let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarVC) as! TabBarController)
             vc.modalTransitionStyle = .crossDissolve
             vc.modalPresentationStyle = .fullScreen
+            vc.selectedIndex = 0
             self.present(vc, animated: true)
         }
     }
@@ -194,7 +194,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
 }
 
-extension FilterViewController {
+extension FilterSavedViewController {
     
     func equivalentToIndexPathEven(idx: Int) -> Int {
         switch(idx) {

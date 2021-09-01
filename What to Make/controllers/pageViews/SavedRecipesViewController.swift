@@ -76,6 +76,7 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
             alertLabel.alpha = 0
             filterButton.alpha = 1
         }
+        getSavedRecipeItems(recipes: Constants.savedRecipes)
     }
     
     override func viewDidLayoutSubviews() {
@@ -99,7 +100,7 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         }
     }
     
-    func covertRecipeToRecipeItem(item: Recipe) -> RecipeItem {
+    func convertRecipeToRecipeItem(item: Recipe) -> RecipeItem {
         
         var ingredients: [String] = []
         for case let it as Ingredient in item.ingredients ?? [] {
@@ -118,8 +119,17 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDelegate, UI
         return ret
     }
     
+    func getSavedRecipeItems(recipes: [Recipe]) {
+        var idx = 0
+        Constants.savedModifiedRecipes.removeAll()
+        for item in recipes {
+            Constants.savedModifiedRecipes.append(convertRecipeToRecipeItem(item: item))
+            idx += 1
+        }
+    }
+    
     @objc func goToFilterView() {
-        let vc = FilterViewController()
+        let vc = FilterSavedViewController()
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
@@ -132,11 +142,12 @@ extension SavedRecipesViewController {
         idx = indexPath.row
         let vc = RecipeInfoViewController()
         //get recipe from array and set the cell
-        let recipe = Constants.savedRecipes[indexPath.row]
-        let rec = covertRecipeToRecipeItem(item: recipe)
-        vc.configureInfoView(with: rec, index: indexPath.row)
+//        let recipe = Constants.savedRecipes[indexPath.row]
+//        let rec = convertRecipeToRecipeItem(item: recipe)
+        vc.configureInfoView(with: Constants.savedModifiedRecipes[indexPath.row], index: indexPath.row)
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .fullScreen
+        vc.whichVc = 1 //for saved
         present(vc, animated: true)
     }
     
@@ -146,16 +157,17 @@ extension SavedRecipesViewController {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return core data size
-        return Constants.savedRecipes.count
+        return Constants.savedModifiedRecipes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
         
         //get recipe from array and set the cell
-        let recipe = Constants.savedRecipes[indexPath.row]
-        let rec = covertRecipeToRecipeItem(item: recipe)
-        cell.configure(with: rec)
+//        let recipe = Constants.savedRecipes[indexPath.row]
+//        let rec = convertRecipeToRecipeItem(item: recipe)
+//        print(Constants.savedModifiedRecipes[indexPath.row])
+        cell.configure(with: Constants.savedModifiedRecipes[indexPath.row])
         return cell
     }
     

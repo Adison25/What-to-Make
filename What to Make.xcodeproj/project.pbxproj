@@ -18,6 +18,7 @@
 		751664C126C1AD8900CBACCC /* FilterCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 751664BF26C1AD8900CBACCC /* FilterCollectionTableViewCell.xib */; };
 		751664C726C1EACF00CBACCC /* ButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751664C526C1EACF00CBACCC /* ButtonCollectionViewCell.swift */; };
 		751664C826C1EACF00CBACCC /* ButtonCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 751664C626C1EACF00CBACCC /* ButtonCollectionViewCell.xib */; };
+		75237EC826DFD58C00BA3964 /* FilterSavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75237EC726DFD58C00BA3964 /* FilterSavedViewController.swift */; };
 		753AF04E26A9D06200AE1D54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF04D26A9D06200AE1D54 /* AppDelegate.swift */; };
 		753AF05026A9D06200AE1D54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753AF04F26A9D06200AE1D54 /* SceneDelegate.swift */; };
 		753AF05526A9D06200AE1D54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753AF05326A9D06200AE1D54 /* Main.storyboard */; };
@@ -70,6 +71,7 @@
 		751664BF26C1AD8900CBACCC /* FilterCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		751664C526C1EACF00CBACCC /* ButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		751664C626C1EACF00CBACCC /* ButtonCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCollectionViewCell.xib; sourceTree = "<group>"; };
+		75237EC726DFD58C00BA3964 /* FilterSavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSavedViewController.swift; sourceTree = "<group>"; };
 		753AF04A26A9D06200AE1D54 /* What to Make.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What to Make.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		753AF04D26A9D06200AE1D54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		753AF04F26A9D06200AE1D54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +178,15 @@
 			path = filter;
 			sourceTree = "<group>";
 		};
+		75237EC626DFD56500BA3964 /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				753AF06526A9D16000AE1D54 /* FilterViewController.swift */,
+				75237EC726DFD58C00BA3964 /* FilterSavedViewController.swift */,
+			);
+			path = filter;
+			sourceTree = "<group>";
+		};
 		753AF04126A9D06200AE1D54 = {
 			isa = PBXGroup;
 			children = (
@@ -245,7 +256,7 @@
 				753AF06126A9D13800AE1D54 /* TabBarController.swift */,
 				75DA0A8E26D45FEF00A2CF1F /* LoadingViewController.swift */,
 				75DA0A4C26CC02E100A2CF1F /* feed */,
-				753AF06526A9D16000AE1D54 /* FilterViewController.swift */,
+				75237EC626DFD56500BA3964 /* filter */,
 				753AF06626A9D16000AE1D54 /* SavedRecipesViewController.swift */,
 				75DA0A8926D0253600A2CF1F /* SettingsViewController.swift */,
 				75DA0A4D26CC02F500A2CF1F /* preliminary */,
@@ -467,6 +478,7 @@
 				753AF06A26A9D16000AE1D54 /* SavedRecipesViewController.swift in Sources */,
 				75DA0B0226DAB07800A2CF1F /* Tag+CoreDataClass.swift in Sources */,
 				75A25C7726AE575C00A6643F /* dynamicColor.swift in Sources */,
+				75237EC826DFD58C00BA3964 /* FilterSavedViewController.swift in Sources */,
 				751664C026C1AD8900CBACCC /* FilterCollectionTableViewCell.swift in Sources */,
 				75A25C7926AE75C800A6643F /* WebViewViewController.swift in Sources */,
 				75DA0A9226D6F34500A2CF1F /* WhatToMake.xcdatamodeld in Sources */,

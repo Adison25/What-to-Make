@@ -90,6 +90,20 @@ extension RecipeInfoViewController {
     //dismisses the current vc
     @objc private func didTapDone(){
         dismiss(animated: true, completion: nil)
+//        if whichVc == 2 {
+//            let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarVC) as! TabBarController)
+//            vc.modalTransitionStyle = .crossDissolve
+//            vc.modalPresentationStyle = .fullScreen
+//            vc.selectedIndex = 1
+//            self.present(vc, animated: true)
+//        }else if whichVc == 1 {
+//            let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarVC) as! TabBarController)
+//            vc.modalTransitionStyle = .crossDissolve
+//            vc.modalPresentationStyle = .fullScreen
+//            vc.selectedIndex = 0
+//            self.present(vc, animated: true)
+//        }
+        
     }
     
     //opens the link
