@@ -24,7 +24,7 @@ class FilterSavedViewController: UIViewController, UITableViewDelegate, UITableV
     lazy var filterLabel: UILabel = {
         let label = UILabel()
         label.text = "Filters"
-        label.font = UIFont.boldSystemFont(ofSize: 50)
+        label.font = UIFont.boldSystemFont(ofSize: 48)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return label
@@ -41,6 +41,18 @@ class FilterSavedViewController: UIViewController, UITableViewDelegate, UITableV
         clearFiltersButton.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         return clearFiltersButton
     }()
+    
+    lazy var backButton: UIButton = {
+        let itemWidth =  view.frame.size.height * 0.15//navBar.frame.size.height/3//navBar.frame.size.width*0.08
+        let itemHeight =  view.frame.size.height * 0.05
+        let backButton = UIButton()//frame: CGRect(x: view.frame.size.width * 0.05, y: view.frame.size.height * 0.15, width: itemWidth, height: itemHeight))
+        backButton.setBackgroundImage(UIImage(systemName: "arrow.left"), for: .normal)
+        backButton.tintColor = dynamicColorText
+        backButton.addTarget(self, action: #selector(didTapDone), for: .touchUpInside)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        return backButton
+    }()
+    
     var buttonArray = [
         ["Under 15 min","Under 30 Min", "Under 60 Min"],
         ["Breakfast","Snack","Smoothies", "Lunch","Sandwiches","Dinner","Bowl Meals","Pasta", "Salad","Soups", "Pizza","Chicken","Dessert", "Drinks"],
@@ -68,18 +80,27 @@ class FilterSavedViewController: UIViewController, UITableViewDelegate, UITableV
         numberReciepesLabel.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         view.addSubview(filterLabel)
         view.addSubview(clearFiltersButton)
+        view.addSubview(backButton)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         NSLayoutConstraint.activate([
-            filterLabel.topAnchor.constraint(equalTo: view.topAnchor,constant: view.frame.size.height * 0.10),
-            filterLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15)
+            backButton.topAnchor.constraint(equalTo: view.topAnchor,constant: view.frame.size.height * 0.05),
+            backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15),
+            backButton.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.08),
+            backButton.heightAnchor.constraint(equalToConstant: view.frame.size.width * 0.06)
+        ])
+        NSLayoutConstraint.activate([
+            filterLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor,constant: view.frame.size.height * 0.01),
+            filterLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15),
+            filterLabel.heightAnchor.constraint(equalToConstant: view.frame.size.height * 0.08)
         ])
         NSLayoutConstraint.activate([
             clearFiltersButton.centerYAnchor.constraint(equalTo: filterLabel.centerYAnchor,constant: view.frame.size.height*0.01),
             clearFiltersButton.leftAnchor.constraint(equalTo: filterLabel.leftAnchor, constant: view.frame.size.width * 0.65)
         ])
+       
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: filterLabel.bottomAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -94,54 +115,9 @@ class FilterSavedViewController: UIViewController, UITableViewDelegate, UITableV
         configureNumRecipeLabel()
     }
     
-    func updateLabel2() {
-        configureNumRecipeLabel()
-    }
-    
-    func configureNumRecipeLabel() {
-        if Constants.savedModifiedRecipes.count == 0 {
-            numberReciepesLabel.setTitle("SHOW RECIPES", for: .normal)
-            numberReciepesLabel.backgroundColor = .systemGray4
-            numberReciepesLabel.setTitleColor(dynamicColorBackground, for: .normal)
-        }else {
-            numberReciepesLabel.setTitle("SHOW \(Constants.savedModifiedRecipes.count) RECIPES", for: .normal)
-            Utilities.styleFilledButton(numberReciepesLabel)
-            numberReciepesLabel.setTitleColor(dynamicColorText, for: .normal)
-        }
-        numberReciepesLabel.titleLabel?.textAlignment = .center
-        numberReciepesLabel.addTarget(self, action: #selector(openSaved), for: .touchUpInside)
-        //        numberReciepesLabel.backgroundColor = dynamicColorBackground
-        numberReciepesLabel.layer.cornerRadius = 18
-        numberReciepesLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            numberReciepesLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -view.frame.size.height * 0.05),
-            numberReciepesLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.60), //or 0.25 can change depending on what i want it to look like
-            numberReciepesLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.frame.size.width/5)
-        ])
-    }
-    
-    @objc func openSaved() {
-        dismiss(animated: true, completion: nil)
-//        if Constants.savedModifiedRecipes.count > 0 {
-//            let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: Constants.Storyboard.tabBarVC) as! TabBarController)
-//            vc.modalTransitionStyle = .crossDissolve
-//            vc.modalPresentationStyle = .fullScreen
-//            vc.selectedIndex = 0
-//            self.present(vc, animated: true)
-//        }
-    }
-    
-    @objc func tappedClearAll(){
-        //resets all the buttons
-        resetButtonActiveArraySaved()
-        tableView.reloadData()
-        resetModifiedArraySaved()
-        configureNumRecipeLabel()
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return 11
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -196,6 +172,50 @@ class FilterSavedViewController: UIViewController, UITableViewDelegate, UITableV
 }
 
 extension FilterSavedViewController {
+        
+    func updateLabel2() {
+        configureNumRecipeLabel()
+    }
+    
+    func configureNumRecipeLabel() {
+        if Constants.savedModifiedRecipes.count == 0 {
+            numberReciepesLabel.setTitle("SHOW RECIPES", for: .normal)
+            numberReciepesLabel.backgroundColor = .systemGray4
+            numberReciepesLabel.setTitleColor(dynamicColorBackground, for: .normal)
+        }else {
+            numberReciepesLabel.setTitle("SHOW \(Constants.savedModifiedRecipes.count) RECIPES", for: .normal)
+            Utilities.styleFilledButton(numberReciepesLabel)
+            numberReciepesLabel.setTitleColor(dynamicColorText, for: .normal)
+        }
+        numberReciepesLabel.titleLabel?.textAlignment = .center
+        numberReciepesLabel.addTarget(self, action: #selector(openSaved), for: .touchUpInside)
+        //        numberReciepesLabel.backgroundColor = dynamicColorBackground
+        numberReciepesLabel.layer.cornerRadius = 18
+        numberReciepesLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            numberReciepesLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -view.frame.size.height * 0.05),
+            numberReciepesLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.60), //or 0.25 can change depending on what i want it to look like
+            numberReciepesLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.frame.size.width/5)
+        ])
+    }
+    
+    @objc func openSaved() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func tappedClearAll(){
+        //resets all the buttons
+        resetButtonActiveArraySaved()
+        tableView.reloadData()
+        resetModifiedArraySaved()
+        configureNumRecipeLabel()
+    }
+    
+    @objc private func didTapDone(){
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     func equivalentToIndexPathEven(idx: Int) -> Int {
         switch(idx) {
