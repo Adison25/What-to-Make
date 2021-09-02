@@ -7,14 +7,6 @@
 
 import UIKit
 
-//struct Model {
-//    let text: String
-//    
-//    init(text: String) {
-//        self.text = text
-//    }
-//}
-
 class FilterSavedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MyCustomCellDelegate2 {
     
     private let tableView = DynamicSizeTableView()
@@ -100,7 +92,6 @@ class FilterSavedViewController: UIViewController, UITableViewDelegate, UITableV
             clearFiltersButton.centerYAnchor.constraint(equalTo: filterLabel.centerYAnchor,constant: view.frame.size.height*0.01),
             clearFiltersButton.leftAnchor.constraint(equalTo: filterLabel.leftAnchor, constant: view.frame.size.width * 0.65)
         ])
-       
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: filterLabel.bottomAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
