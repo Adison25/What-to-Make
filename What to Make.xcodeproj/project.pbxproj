@@ -72,6 +72,7 @@
 		751664C526C1EACF00CBACCC /* ButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		751664C626C1EACF00CBACCC /* ButtonCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCollectionViewCell.xib; sourceTree = "<group>"; };
 		75237EC726DFD58C00BA3964 /* FilterSavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSavedViewController.swift; sourceTree = "<group>"; };
+		75237EC926E2710800BA3964 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		753AF04A26A9D06200AE1D54 /* What to Make.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What to Make.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		753AF04D26A9D06200AE1D54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		753AF04F26A9D06200AE1D54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -208,14 +209,15 @@
 		753AF04C26A9D06200AE1D54 /* What to Make */ = {
 			isa = PBXGroup;
 			children = (
-				75DA0A4826CBFA4E00A2CF1F /* GoogleService-Info.plist */,
 				75DA0A5426CC7BF400A2CF1F /* helpers */,
 				753AF06D26A9D91700AE1D54 /* models */,
 				753AF06C26A9D91100AE1D54 /* views */,
 				753AF06B26A9D90A00AE1D54 /* controllers */,
 				753AF05626A9D06300AE1D54 /* Assets.xcassets */,
 				753AF05B26A9D06300AE1D54 /* Info.plist */,
+				75DA0A4826CBFA4E00A2CF1F /* GoogleService-Info.plist */,
 				75DA0A9026D6F34500A2CF1F /* WhatToMake.xcdatamodeld */,
+				75237EC926E2710800BA3964 /* Configuration.storekit */,
 			);
 			path = "What to Make";
 			sourceTree = "<group>";

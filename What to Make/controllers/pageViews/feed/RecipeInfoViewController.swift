@@ -453,23 +453,33 @@ extension RecipeInfoViewController {
             yieldLabel2.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.25),
             yieldLabel2.heightAnchor.constraint(equalTo: yieldLabel.heightAnchor)
         ])
-
-        //banner ad
-        scrollView.addSubview(banner)
-        NSLayoutConstraint.activate([
-            banner.topAnchor.constraint(equalTo: yieldLabel.bottomAnchor,constant: scrollView.frame.size.height * 0.01),
-            banner.leftAnchor.constraint(equalTo: view.leftAnchor),
-            banner.widthAnchor.constraint(equalToConstant: view.frame.size.width),
-            banner.heightAnchor.constraint(equalToConstant: 50)//view.frame.size.height * 0.10)
-        ])
-
-        //ingredient views
+        
         let ingredientHeader = createIngredientHeader(scrollView: scrollView)
-        NSLayoutConstraint.activate([
-            ingredientHeader.topAnchor.constraint(equalTo: banner.bottomAnchor,constant: scrollView.frame.size.height * 0.01),
-            ingredientHeader.leftAnchor.constraint(equalTo: scrollView.leftAnchor,constant: 10),
-            ingredientHeader.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.41)
-        ])
+       
+        if UserDefaults.standard.bool(forKey: "adsRemoved") == false {
+            //banner ad
+            scrollView.addSubview(banner)
+            NSLayoutConstraint.activate([
+                banner.topAnchor.constraint(equalTo: yieldLabel.bottomAnchor,constant: scrollView.frame.size.height * 0.01),
+                banner.leftAnchor.constraint(equalTo: view.leftAnchor),
+                banner.widthAnchor.constraint(equalToConstant: view.frame.size.width),
+                banner.heightAnchor.constraint(equalToConstant: 50)//view.frame.size.height * 0.10)
+            ])
+            //ingredient views
+            NSLayoutConstraint.activate([
+                ingredientHeader.topAnchor.constraint(equalTo: banner.bottomAnchor,constant: scrollView.frame.size.height * 0.01),
+                ingredientHeader.leftAnchor.constraint(equalTo: scrollView.leftAnchor,constant: 10),
+                ingredientHeader.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.41)
+            ])
+        } else {
+            //ingredient views
+           
+           NSLayoutConstraint.activate([
+               ingredientHeader.topAnchor.constraint(equalTo: yieldLabel.bottomAnchor,constant: scrollView.frame.size.height * 0.01),
+               ingredientHeader.leftAnchor.constraint(equalTo: scrollView.leftAnchor,constant: 10),
+               ingredientHeader.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.41)
+           ])
+        }
         createIngredientTableView(scrollView: scrollView)
         NSLayoutConstraint.activate([
             ingredientsTableView.topAnchor.constraint(equalTo: ingredientHeader.bottomAnchor,constant: 15),

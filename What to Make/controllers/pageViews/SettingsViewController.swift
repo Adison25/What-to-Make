@@ -7,20 +7,21 @@
 
 import UIKit
 import GoogleMobileAds
+import StoreKit
 
 struct Section {
-    let title: String
+    var title: String
     let options: [SettingsOption]
 }
 
 struct SettingsOption {
-    let title: String
+    var title: String
     let icon: UIImage?
     let iconBackgroundColor: UIColor
     let handler: (() -> Void)
 }
 
-class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADFullScreenContentDelegate {
+class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADFullScreenContentDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver{
     
     private var prevScrollDirection: CGFloat = 0
     
@@ -39,20 +40,32 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     private var interstitial: GADInterstitialAd!
     
     var models = [Section]()
+    var products = [SKProduct]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupClearNavBar()
         navigationItem.title = "Settings"
-        configure()
+        SKPaymentQueue.default().add(self)
+        fetchProducts()
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
         tableView.estimatedRowHeight = UITableView.automaticDimension
         view.addSubview(sheetLoc)
-        
+        configure()
+    }
+    
+    enum Product: String, CaseIterable {
+        case removeAds = "com.What-to-Make.removeAds"
+    }
+    
+    func fetchProducts() {
+        let request = SKProductsRequest(productIdentifiers: Set(Product.allCases.compactMap({ $0.rawValue })))
+        request.delegate = self
+        request.start()
     }
     
     func configure() {
@@ -92,7 +105,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             })
         ]))
         models.append(Section(title: "Advertising", options: [
-            SettingsOption(title: "Remove Ads $2.99", icon: UIImage(systemName: "megaphone.fill"), iconBackgroundColor: .systemBlue, handler: {
+            
+            SettingsOption(title: "r", icon: UIImage(systemName: "megaphone.fill"), iconBackgroundColor: .systemBlue, handler: {
+                if UserDefaults.standard.bool(forKey: "adsRemoved") == false {
+                    let payment = SKPayment(product: self.products[0])
+                    SKPaymentQueue.default().add(payment)
+                    self.tableView.reloadData()
+                }
                 
             }),
             SettingsOption(title: "Watch an Ad", icon: UIImage(systemName: "play.circle.fill"), iconBackgroundColor: .systemYellow, handler: {
@@ -129,6 +148,39 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         ]))        
     }
     
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        DispatchQueue.main.async {
+            self.products = response.products
+            self.tableView.reloadData()
+        }
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+//        print("Here")
+        transactions.forEach ({
+            switch $0.transactionState {
+            
+            case .purchasing:
+                print("purchasing")
+            case .purchased:
+                print("purchased")
+                SKPaymentQueue.default().finishTransaction($0)
+                defaults.set(true, forKey: "adsRemoved")
+            case .failed:
+                print("failed")
+                SKPaymentQueue.default().finishTransaction($0)
+            case .restored:
+                print("restored")
+                SKPaymentQueue.default().finishTransaction($0)
+                defaults.set(true, forKey: "adsRemoved")
+            case .deferred:
+                print("deferred")
+            @unknown default:
+                print("default")
+            }
+        })
+    }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = models[section]
         return section.title
@@ -143,9 +195,19 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = models[indexPath.section].options[indexPath.row]
+        var model = models[indexPath.section].options[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier, for: indexPath) as? SettingsTableViewCell else {
             return UITableViewCell()
+        }
+        if  products.count == 1 && indexPath.row == 0 && model.title == "r" {
+            let product = products[0]
+            model.title = "\(product.localizedTitle): \(product.priceLocale.currencySymbol ?? "$")\(product.price)"
+        }
+        if products.count == 1 && indexPath.row == 0 && UserDefaults.standard.bool(forKey: "adsRemoved") == true {
+            let product = products[0]
+            if model.title == "\(product.localizedTitle): \(product.priceLocale.currencySymbol ?? "$")\(product.price)" {
+                model.title = "Ads are removed"
+            }
         }
         cell.configure(with: model)
         return cell

@@ -37,6 +37,7 @@ func fetchData(completion: @escaping ([RecipeItem]) -> Void) {
 //    Constants.onTaskFinished = completion
 }
 
+
 func addToCoreData(idx: Int) {
     let item = Constants.modifiedRecipesArr[idx]
     let rec = Recipe(context: Constants.context)
