@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 struct Section {
     let title: String
@@ -19,7 +20,7 @@ struct SettingsOption {
     let handler: (() -> Void)
 }
 
-class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADFullScreenContentDelegate {
     
     private var prevScrollDirection: CGFloat = 0
     
@@ -35,6 +36,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return view
     }()
     
+    private var interstitial: GADInterstitialAd!
+    
     var models = [Section]()
     
     override func viewDidLoad() {
@@ -49,6 +52,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.frame = view.bounds
         tableView.estimatedRowHeight = UITableView.automaticDimension
         view.addSubview(sheetLoc)
+        
     }
     
     func configure() {
@@ -93,6 +97,25 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             }),
             SettingsOption(title: "Watch an Ad", icon: UIImage(systemName: "play.circle.fill"), iconBackgroundColor: .systemYellow, handler: {
                 
+                let request = GADRequest()
+                GADInterstitialAd.load(withAdUnitID:"ca-app-pub-4337025650731051/4044218146",
+                                       request: request,
+                                       completionHandler: { [self] ad, error in
+                                        if let error = error {
+                                            print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                                            return
+                                        }
+                                        interstitial = ad
+                                        interstitial.fullScreenContentDelegate = self
+                                       }
+                )
+                
+                if self.interstitial != nil {
+                    self.interstitial.present(fromRootViewController: self)
+                }else {
+                    print("ad wasnt ready")
+                }
+                
             })
             
         ]))
@@ -135,12 +158,24 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-       return UITableView.automaticDimension
+        return UITableView.automaticDimension
     }
     
 }
 
 extension SettingsViewController {
+    
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        print("Error: \(error.localizedDescription)")
+    }
+    
+    func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        print("Success!")
+    }
+    
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        print("user dismmissed the ad")
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let scrollViewY = scrollView.contentOffset.y

@@ -6,6 +6,7 @@
 //
 import UIKit
 import AMXFontAutoScale
+import GoogleMobileAds
 
 class ChecklistItem {
     var title: String
@@ -59,6 +60,15 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         return sourceButton
     }()
     
+     lazy var banner: GADBannerView = {
+        let banner = GADBannerView()
+        banner.adUnitID = "ca-app-pub-4337025650731051/6211254474"
+        banner.load(GADRequest())
+        banner.translatesAutoresizingMaskIntoConstraints = false
+        banner.backgroundColor = .systemBackground
+        return banner
+    }()
+    
     var whichVc : Int = 0
     
     private var urlString: String = ""
@@ -83,9 +93,16 @@ class RecipeInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         directionsTableView.register(DirectionTableViewCell.nib(), forCellReuseIdentifier: DirectionTableViewCell.identifier)
         directionsTableView.delegate = self
         directionsTableView.dataSource = self
+        banner.rootViewController = self
+//        view.addSubview(banner)
     }
+    
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        banner.frame = CGRect(x: 0, y: view.frame.size.height - 100, width: view.frame.size.width , height: 50)
+//    }
 }
- 
+
 extension RecipeInfoViewController {
     //dismisses the current vc
     @objc private func didTapDone(){
@@ -246,7 +263,7 @@ extension RecipeInfoViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .fill // .leading .firstBaseline .center .trailing .lastBaseline
-//        stackView.distribution = .fillEqually // .fillEqually .fillProportionally .equalSpacing .equalCentering
+        //        stackView.distribution = .fillEqually // .fillEqually .fillProportionally .equalSpacing .equalCentering
         scrollView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.backgroundColor = .systemBackground
@@ -310,7 +327,7 @@ extension RecipeInfoViewController {
         separator.backgroundColor = dynamicColorText
         infoStackView.addArrangedSubview(separator)
         separator.heightAnchor.constraint(equalTo: infoStackView.heightAnchor, multiplier: 1.0).isActive = true
-
+        
         let vert2 = createVerticalStackView()
         let ingredientLabel = createInfoStackViewHeader(text: "\(model.ingredients.count)")
         let ingredientLabel1 = createInfoStackViewLabel(text: "Ingredients")
@@ -379,7 +396,7 @@ extension RecipeInfoViewController {
         let scrollView = createScrollView()
         view.addSubview(navBar)
         updateNavbar()
-        
+
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: navBar.bottomAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -397,7 +414,8 @@ extension RecipeInfoViewController {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: titleButton.bottomAnchor,constant: view.frame.size.height * 0.05),
             imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            imageView.heightAnchor.constraint(equalTo: scrollView.widthAnchor)
+            imageView.heightAnchor.constraint(equalTo: scrollView.widthAnchor),
+            imageView.leftAnchor.constraint(equalTo: scrollView.leftAnchor)
         ])
         let infoStackView = createInfoStackView(scrollView: scrollView)
         NSLayoutConstraint.activate([
@@ -407,7 +425,7 @@ extension RecipeInfoViewController {
             infoStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
         ])
         configureStackView(scrollView: scrollView, infoStackView: infoStackView, model: model)
-        
+
         //difficulty labels
         let difficultLabel = createBoldLabel(scrollView: scrollView, str: "Difficulty: ")
         NSLayoutConstraint.activate([
@@ -435,11 +453,20 @@ extension RecipeInfoViewController {
             yieldLabel2.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.25),
             yieldLabel2.heightAnchor.constraint(equalTo: yieldLabel.heightAnchor)
         ])
-        
+
+        //banner ad
+        scrollView.addSubview(banner)
+        NSLayoutConstraint.activate([
+            banner.topAnchor.constraint(equalTo: yieldLabel.bottomAnchor,constant: scrollView.frame.size.height * 0.01),
+            banner.leftAnchor.constraint(equalTo: view.leftAnchor),
+            banner.widthAnchor.constraint(equalToConstant: view.frame.size.width),
+            banner.heightAnchor.constraint(equalToConstant: 50)//view.frame.size.height * 0.10)
+        ])
+
         //ingredient views
         let ingredientHeader = createIngredientHeader(scrollView: scrollView)
         NSLayoutConstraint.activate([
-            ingredientHeader.topAnchor.constraint(equalTo: yieldLabel.bottomAnchor,constant: scrollView.frame.size.height * 0.01),
+            ingredientHeader.topAnchor.constraint(equalTo: banner.bottomAnchor,constant: scrollView.frame.size.height * 0.01),
             ingredientHeader.leftAnchor.constraint(equalTo: scrollView.leftAnchor,constant: 10),
             ingredientHeader.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.41)
         ])
