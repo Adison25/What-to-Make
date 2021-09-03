@@ -166,6 +166,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 print("purchased")
                 SKPaymentQueue.default().finishTransaction($0)
                 defaults.set(true, forKey: "adsRemoved")
+                tableView.reloadData()
             case .failed:
                 print("failed")
                 SKPaymentQueue.default().finishTransaction($0)
@@ -173,6 +174,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 print("restored")
                 SKPaymentQueue.default().finishTransaction($0)
                 defaults.set(true, forKey: "adsRemoved")
+                tableView.reloadData()
             case .deferred:
                 print("deferred")
             @unknown default:
