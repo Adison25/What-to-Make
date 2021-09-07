@@ -29,9 +29,9 @@ class LoginViewController: UIViewController {
         
         errorLabel.alpha = 0
         //Styling the elements
-        Utilities.styleTextField(emailTextField)
+        Utilities.styleTextField(emailTextField, width: 200)
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        Utilities.styleTextField(passwordTextField)
+        Utilities.styleTextField(passwordTextField, width: 200)
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         Utilities.styleFilledButton(loginButton)
     }

@@ -17,31 +17,55 @@ class SignUpViewController: UIViewController {
     @IBOutlet var signUpButton: UIButton!
     @IBOutlet var errorLabel: UILabel!
     @IBOutlet var backButton: UIButton!
+    @IBOutlet var stackView: UIStackView!
+    
+    var width: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        if view.frame.size.width * 0.50 < 320 {
+            NSLayoutConstraint.activate([
+                stackView.widthAnchor.constraint(equalToConstant: 320)
+            ])
+            width = 320
+        }else {
+            NSLayoutConstraint.activate([
+                stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)
+            ])
+            width = view.frame.size.width * 0.7
+        }
+        width = width * 0.5
         setpUpElements()
         setBackgroundImage()
         self.hideKeyboardOnTap()
-        
     }
     
     func setpUpElements() {
         
         backButton.setTitleColor(.white, for: .normal)
+        backButton.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         
         //hide the error label
         errorLabel.alpha = 0
         
+        let size = view.frame.size.width * 14 / 414
+        
         //Styling the elements
-        Utilities.styleTextField(firstNameTextField)
         firstNameTextField.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        Utilities.styleTextField(lastNameTextField)
-        lastNameTextField.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        Utilities.styleTextField(emailTextField)
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        Utilities.styleTextField(passwordTextField)
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        Utilities.styleTextField(firstNameTextField, width: width)
+
+//        firstNameTextField.minimumFontSize = size
+//        firstNameTextField.adjustsFontForContentSizeCategory = true
+        
+        Utilities.styleTextField(lastNameTextField, width: width)
+        lastNameTextField.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: size)])
+        
+        Utilities.styleTextField(emailTextField, width: width)
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: size)])
+        Utilities.styleTextField(passwordTextField, width: width)
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: size)])
         Utilities.styleFilledButton(signUpButton)
     }
     

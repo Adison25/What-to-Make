@@ -139,12 +139,15 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
         ]))
         models.append(Section(title: "Information", options: [
-            SettingsOption(title: "About", icon: UIImage(systemName: "info.circle.fill"), iconBackgroundColor: .systemGray, handler: {
+            SettingsOption(title: "About Me", icon: UIImage(systemName: "info.circle.fill"), iconBackgroundColor: .systemGray, handler: {
                 
-            }),
-            SettingsOption(title: "Privacy Policy", icon: UIImage(systemName: "hand.raised.fill"), iconBackgroundColor: .systemTeal, handler: {
-                
+                //send to my personal website
+            
             })
+//            ,
+//            SettingsOption(title: "Privacy Policy", icon: UIImage(systemName: "hand.raised.fill"), iconBackgroundColor: .systemTeal, handler: {
+//                
+//            })
         ]))        
     }
     

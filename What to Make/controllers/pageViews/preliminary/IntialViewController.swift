@@ -12,15 +12,29 @@ class IntialViewController: UIViewController {
     @IBOutlet var signUpButton: UIButton!
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var stackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        if view.frame.size.width * 0.50 < 300 {
+            NSLayoutConstraint.activate([
+                stackView.widthAnchor.constraint(equalToConstant: 300)
+            ])
+        }else {
+            NSLayoutConstraint.activate([
+                stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5)
+            ])
+        }
         setUpElements()
         setBackgroundImage()
     }
     
     func setUpElements() {
         titleLabel.textColor = .white
+        titleLabel.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
+        signUpButton.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
+        loginButton.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         Utilities.styleFilledButton(signUpButton)
         Utilities.styleHollowButton(loginButton)
     }

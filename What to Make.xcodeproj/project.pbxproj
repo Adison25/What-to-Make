@@ -140,7 +140,7 @@
 			children = (
 				75DA0A8B26D0609F00A2CF1F /* settings */,
 				751664B726C1A63000CBACCC /* filter */,
-				751664B626C1A62600CBACCC /* photoCollection */,
+				751664B626C1A62600CBACCC /* feed */,
 				751664B526C1A61300CBACCC /* recipeInfo */,
 				75DA0A9626D7E77700A2CF1F /* ImageCollectionViewCell.swift */,
 			);
@@ -158,12 +158,12 @@
 			path = recipeInfo;
 			sourceTree = "<group>";
 		};
-		751664B626C1A62600CBACCC /* photoCollection */ = {
+		751664B626C1A62600CBACCC /* feed */ = {
 			isa = PBXGroup;
 			children = (
 				753AF06E26A9EC1500AE1D54 /* PhotoCollectionViewCell.swift */,
 			);
-			path = photoCollection;
+			path = feed;
 			sourceTree = "<group>";
 		};
 		751664B726C1A63000CBACCC /* filter */ = {
