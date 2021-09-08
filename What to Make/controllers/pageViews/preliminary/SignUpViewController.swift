@@ -32,10 +32,13 @@ class SignUpViewController: UIViewController {
             width = 320
         }else {
             NSLayoutConstraint.activate([
-                stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)
+                stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5)
             ])
-            width = view.frame.size.width * 0.7
+            width = view.frame.size.width * 0.5
         }
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.topAnchor,constant: view.frame.size.height * 0.10)
+        ])
         width = width * 0.5
         setpUpElements()
         setBackgroundImage()
@@ -53,20 +56,24 @@ class SignUpViewController: UIViewController {
         let size = view.frame.size.width * 14 / 414
         
         //Styling the elements
-        firstNameTextField.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         Utilities.styleTextField(firstNameTextField, width: width)
-
-//        firstNameTextField.minimumFontSize = size
-//        firstNameTextField.adjustsFontForContentSizeCategory = true
+        firstNameTextField.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: size)])
+        firstNameTextField.font = UIFont.systemFont(ofSize: size)
         
         Utilities.styleTextField(lastNameTextField, width: width)
         lastNameTextField.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: size)])
+        lastNameTextField.font = UIFont.systemFont(ofSize: size)
         
         Utilities.styleTextField(emailTextField, width: width)
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: size)])
+        emailTextField.font = UIFont.systemFont(ofSize: size)
+        
         Utilities.styleTextField(passwordTextField, width: width)
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: size)])
+        passwordTextField.font = UIFont.systemFont(ofSize: size)
+        
         Utilities.styleFilledButton(signUpButton)
+        signUpButton.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
     }
     
     // check the fields and validate that the data is correct. If everything is correct, this method returns nil. Otherwise, it returns  the error message

@@ -15,9 +15,29 @@ class LoginViewController: UIViewController {
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var errorLabel: UILabel!
     @IBOutlet var backButton: UIButton!
+    @IBOutlet var stackView: UIStackView!
+    
+    var width: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        if view.frame.size.width * 0.50 < 320 {
+            NSLayoutConstraint.activate([
+                stackView.widthAnchor.constraint(equalToConstant: 320)
+            ])
+            width = 320
+        }else {
+            NSLayoutConstraint.activate([
+                stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5)
+            ])
+            width = view.frame.size.width * 0.5
+        }
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.topAnchor,constant: view.frame.size.height * 0.10)
+        ])
+        width = width * 0.5
         setpUpElements()
         setBackgroundImage()
         self.hideKeyboardOnTap()
@@ -26,14 +46,23 @@ class LoginViewController: UIViewController {
     func setpUpElements() {
         
         backButton.setTitleColor(.white, for: .normal)
+        backButton.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
         
         errorLabel.alpha = 0
+        
+        let size = view.frame.size.width * 14 / 414
+        
         //Styling the elements
-        Utilities.styleTextField(emailTextField, width: 200)
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        Utilities.styleTextField(passwordTextField, width: 200)
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        Utilities.styleTextField(emailTextField, width: width)
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: size)])
+        emailTextField.font = UIFont.systemFont(ofSize: size)
+        
+        Utilities.styleTextField(passwordTextField, width: width)
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: size)])
+        passwordTextField.font = UIFont.systemFont(ofSize: size)
+        
         Utilities.styleFilledButton(loginButton)
+        loginButton.titleLabel?.amx_autoScaleFont(forReferenceScreenSize: .size5p5Inch)
     }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
