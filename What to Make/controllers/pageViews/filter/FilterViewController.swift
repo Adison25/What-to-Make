@@ -53,7 +53,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return backButton
     }()
     var buttonArray = [
-        ["Under 15 min","Under 30 Min", "Under 60 Min"],
+        ["Under 15 min","Under 30 min", "Under 60 min"],
         ["Breakfast","Snack","Smoothies", "Lunch","Sandwiches","Dinner","Bowl Meals","Pasta", "Salad","Soups", "Pizza","Chicken","Dessert", "Drinks"],
         ["Gluten Free","Vegetarian", "Mediterranean", "Pescatarian", "Vegan","Kosher","Nut Free"],
         ["Easy","Medium", "Hard"]
