@@ -48,7 +48,7 @@ class FilterSavedViewController: UIViewController, UITableViewDelegate, UITableV
     var buttonArray = [
         ["Under 15 min","Under 30 Min", "Under 60 Min"],
         ["Breakfast","Snack","Smoothies", "Lunch","Sandwiches","Dinner","Bowl Meals","Pasta", "Salad","Soups", "Pizza","Chicken","Dessert", "Drinks"],
-        ["Gluten Free","Vegetarian", "Mediterranean", "Pescatarian", "Vegan","Kosher","Nut Free"],
+        ["Gluten Free","Vegetarian","Vegan"],
         ["Easy","Medium", "Hard"]
     ]
     var header = ["Time","Dish Type","Dietary","Difficulty"]
