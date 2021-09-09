@@ -27,6 +27,7 @@ func fetchData(completion: @escaping ([RecipeItem]) -> Void) {
                 }
             }
             Constants.allRecipes = newItems
+            Constants.allRecipes.shuffle()
             Constants.modifiedRecipesArr = Constants.allRecipes
             completion(Constants.modifiedRecipesArr)
         }

@@ -13,6 +13,7 @@ public let tabBarNotificationKey = Notification.Name(rawValue: "tabBarNotificati
 class FeedViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, CHTCollectionViewDelegateWaterfallLayout {
     
     private var prevScrollDirection: CGFloat = 0
+    var called = false
 
     lazy var collectionView : UICollectionView = {
         let layout = CHTCollectionViewWaterfallLayout()
@@ -44,6 +45,9 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         collectionView.dataSource = self
         collectionView.delegate = self
         view.addSubview(filterButton)
+        
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.addTarget(self, action: #selector(didPullToRefreash), for: .valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +61,16 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
+    }
+    
+    @objc func didPullToRefreash(){
+        Constants.allRecipes.shuffle()
+        Constants.modifiedRecipesArr = Constants.allRecipes
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            self.collectionView.refreshControl?.endRefreshing()
+            self.collectionView.reloadData()
+        }
     }
     
     @objc func goToFilterView() {
@@ -96,6 +110,10 @@ extension FeedViewController {
         return CGSize(width: view.frame.size.width/2,  height: view.frame.size.width/2)
     }
     
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        called = false
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let scrollViewY = scrollView.contentOffset.y
         let scrollSizeHeight = scrollView.contentSize.height
@@ -105,11 +123,18 @@ extension FeedViewController {
         
         if prevScrollDirection > scrollViewY && prevScrollDirection < scrollHeight {
             isHidden = false
-            // print("Scroll Up")
         } else if prevScrollDirection < scrollViewY && scrollViewY > 0 {
             isHidden = true
-            // print("Scroll Down")
         }
+//        if called == false && prevScrollDirection < -1 * view.frame.size.height * 0.32 {
+//            Constants.allRecipes.shuffle()
+//            Constants.modifiedRecipesArr = Constants.allRecipes
+//            DispatchQueue.main.async {
+//                collectionView.reloadData()
+//            }
+//
+//            called = true
+//        }
         let userInfo : [String : Bool] = [ "isHidden" : isHidden ]
         NotificationCenter.default.post(name: tabBarNotificationKey, object: nil, userInfo: userInfo)
         prevScrollDirection = scrollView.contentOffset.y
