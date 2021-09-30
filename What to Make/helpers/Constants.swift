@@ -29,14 +29,14 @@ struct Constants {
     static var buttonActiveArray = [
         [0,0,0],
         [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
+        [0,0,0],
         [0,0,0]
     ]
     
     static var buttonActiveArraySaved = [
         [0,0,0],
         [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
+        [0,0,0],
         [0,0,0]
     ]
     
